@@ -1,4 +1,41 @@
 ﻿@{
     ViewData["Title"] = "Local search algorithms";
+    var chessboard = (Chessboard)ViewData["Chessboard"];
 }
 <h1>N-queens problem - @ViewData["Title"]</h1>
+
+<div> @* DISPLAY CHESSBOARD*@
+    
+    <h2>Chessboard size: @chessboard.Size x @chessboard.Size</h2>
+    @{
+        for(int i = 0; i < chessboard.Size; i++)
+        {
+            for (int j = 0; j < chessboard.Size; j++)
+            {
+                if(i % 2 == 0)
+                {
+                    if(j % 2 == 0)
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+                    if(j % 2 == 0)
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+        }
+    }
+
+</div>
