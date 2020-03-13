@@ -13,6 +13,11 @@ namespace N_Queens_problem.Models
             _chessboard = new Chessboard(4);
         }
 
+        public void SetAlgorithm(Algorithm algorithm)
+        {
+            _algorithm = algorithm;
+        }
+
         public Chessboard GetResultBoard()
         {
             return _chessboard;

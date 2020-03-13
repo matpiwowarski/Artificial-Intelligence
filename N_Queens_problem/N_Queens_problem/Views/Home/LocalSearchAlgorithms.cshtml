@@ -1,7 +1,20 @@
 ﻿@{
     ViewData["Title"] = "Local search algorithms";
-    var chessboard = ViewBag.ChessBoard;
+    var chessboard = (Chessboard)ViewBag.ChessBoard;
     var queenImageLink = "https://github.com/matpiwowarski/Local-Search-Algorithms/blob/master/N_Queens_problem/N_Queens_problem/Resources/queen.png?raw=true";
+
+    void CheckIfQueenOrEmpty(ChessPiece[,] board, int i, int j)
+    {
+        if (board[i, j] == ChessPiece.Queen)
+        {
+            <img src=@queenImageLink alt="QUEEN" style="height: 100px; width: 100px;">
+        }
+        else
+        {
+            <img style="height: 100px; width: 100px;">
+        }
+    }
+
 }
 <h1>N-queens problem - @ViewData["Title"]</h1>
 
@@ -9,43 +22,51 @@
 <h2>Chessboard size: @chessboard.Size x @chessboard.Size</h2>
 
 <div style="width: 50%; margin: 0 auto;">
-        @{
-            for (int i = 0; i < chessboard.Size; i++)
+    @{
+        for (int i = 0; i < chessboard.Size; i++)
+        {
+            for (int j = 0; j < chessboard.Size; j++)
             {
-                for (int j = 0; j < chessboard.Size; j++)
+                if (i % 2 == 0)
                 {
-                    if (i % 2 == 0)
+                    if (j % 2 == 0)
                     {
-                        if (j % 2 == 0)
-                        {
-                            <div style="height: 100px; width: 100px; background-color: lightgray; display:inline-block;">
-                                <img src=@queenImageLink alt="QUEEN" style="height: 100px; width: 100px;">
-                            </div>
-                        }
-                        else
-                        {
-                            <div style="height: 100px; width: 100px; background-color: orange; display:inline-block;">
-                                <img style="height: 100px; width: 100px;"/>
-                            </div>
-                        }
+                        <div style="height: 100px; width: 100px; background-color: lightgray; display:inline-block;">
+                            @{
+                                CheckIfQueenOrEmpty(chessboard.Board, i, j);
+                            }
+                        </div>
                     }
                     else
                     {
-                        if (j % 2 == 0)
-                        {
-                            <div style="height: 100px; width: 100px; background-color: orange; display:inline-block;">
-                                <img style="height: 100px; width: 100px;"/>
-                            </div>
-                        }
-                        else
-                        {
-                            <div style="height: 100px; width: 100px; background-color: lightgray; display:inline-block;">
-                                <img style="height: 100px; width: 100px;"/>
-                            </div>
-                        }
+                        <div style="height: 100px; width: 100px; background-color: orange; display:inline-block;">
+                            @{
+                                CheckIfQueenOrEmpty(chessboard.Board, i, j);
+                            }
+                        </div>
                     }
                 }
-                <br />
+                else
+                {
+                    if (j % 2 == 0)
+                    {
+                        <div style="height: 100px; width: 100px; background-color: orange; display:inline-block;">
+                            @{
+                                CheckIfQueenOrEmpty(chessboard.Board, i, j);
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="height: 100px; width: 100px; background-color: lightgray; display:inline-block;">
+                            @{
+                                CheckIfQueenOrEmpty(chessboard.Board, i, j);
+                            }
+                        </div>
+                    }
+                }
             }
+            <br />
         }
+    }
 </div>

@@ -27,7 +27,7 @@ namespace N_Queens_problem.Controllers
         {
             NQueensProblem nQueensProblem = new NQueensProblem();
 
-            ViewBag.NQueensProblem = nQueensProblem;
+            ViewBag.ChessBoard = nQueensProblem.GetResultBoard();
 
             return View();
         }
