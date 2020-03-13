@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Models\Algorithms\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Resources\queen.png" />

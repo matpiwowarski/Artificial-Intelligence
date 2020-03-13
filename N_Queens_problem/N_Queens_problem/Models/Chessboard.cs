@@ -9,13 +9,13 @@ namespace N_Queens_problem.Models
 
     public class Chessboard
     {
-        public int Size { get; set; }
-        public ChessPiece[,] Board;
+        private int _size { get; set; }
+        private ChessPiece[,] _board;
 
         public Chessboard(int size)
         {
-            Size = size;
-            Board = new ChessPiece[size, size];
+            _size = size;
+            _board = new ChessPiece[size, size];
         }
     }
 }

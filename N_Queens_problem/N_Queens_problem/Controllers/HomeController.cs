@@ -25,9 +25,9 @@ namespace N_Queens_problem.Controllers
 
         public IActionResult LocalSearchAlgorithms()
         {
-            var chessboard = new Chessboard(3);
+            NQueensProblem nQueensProblem = new NQueensProblem();
 
-            ViewData["Chessboard"] = chessboard;
+            ViewBag.NQueensProblem = nQueensProblem;
 
             return View();
         }
