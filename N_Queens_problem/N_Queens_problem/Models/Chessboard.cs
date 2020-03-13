@@ -10,7 +10,7 @@ namespace N_Queens_problem.Models
     public class Chessboard
     {
         public int Size { get; set; }
-        public ChessPiece[,] Board;
+        public ChessPiece[,] Board; // BOARD [ ROW , COLUMN]
 
         public Chessboard(int size)
         {

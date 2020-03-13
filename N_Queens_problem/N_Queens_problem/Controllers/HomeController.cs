@@ -27,6 +27,11 @@ namespace N_Queens_problem.Controllers
         {
             NQueensProblem nQueensProblem = new NQueensProblem();
 
+            // TEST
+            nQueensProblem.GetResultBoard().Board[0, 1] = ChessPiece.Queen; // BOARD [ ROW , COLUMN]
+            nQueensProblem.GetResultBoard().Board[1, 3] = ChessPiece.Queen; // BOARD [ ROW , COLUMN]
+            //
+
             ViewBag.ChessBoard = nQueensProblem.GetResultBoard();
 
             return View();
