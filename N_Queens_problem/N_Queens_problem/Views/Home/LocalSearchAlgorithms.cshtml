@@ -1,43 +1,51 @@
 ﻿@{
     ViewData["Title"] = "Local search algorithms";
     var chessboard = (Chessboard)ViewData["Chessboard"];
+    var queenImageLink = "https://github.com/matpiwowarski/Local-Search-Algorithms/blob/master/N_Queens_problem/N_Queens_problem/Resources/queen.png?raw=true";
 }
 <h1>N-queens problem - @ViewData["Title"]</h1>
 
-<div>
-    @* DISPLAY CHESSBOARD*@
+@* DISPLAY CHESSBOARD*@
+<h2>Chessboard size: @chessboard.Size x @chessboard.Size</h2>
 
-    <h2>Chessboard size: @chessboard.Size x @chessboard.Size</h2>
-    @{
-        for (int i = 0; i < chessboard.Size; i++)
-        {
-            for (int j = 0; j < chessboard.Size; j++)
+<div style="width: 50%; margin: 0 auto;">
+        @{
+            for (int i = 0; i < chessboard.Size; i++)
             {
-                if (i % 2 == 0)
+                for (int j = 0; j < chessboard.Size; j++)
                 {
-                    if (j % 2 == 0)
+                    if (i % 2 == 0)
                     {
-                        <div class="card" style="height: 100px; width: 100px; background-color: lightgray; display:inline-block;"></div>
+                        if (j % 2 == 0)
+                        {
+                            <div style="height: 100px; width: 100px; background-color: lightgray; display:inline-block;">
+                                <img src=@queenImageLink alt="QUEEN" style="height: 100px; width: 100px;">
+                            </div>
+                        }
+                        else
+                        {
+                            <div style="height: 100px; width: 100px; background-color: orange; display:inline-block;">
+                                <img style="height: 100px; width: 100px;"/>
+                            </div>
+                        }
                     }
                     else
                     {
-                        <div class="card" style="height: 100px; width: 100px; background-color: orange; display:inline-block;"></div>
+                        if (j % 2 == 0)
+                        {
+                            <div style="height: 100px; width: 100px; background-color: orange; display:inline-block;">
+                                <img style="height: 100px; width: 100px;"/>
+                            </div>
+                        }
+                        else
+                        {
+                            <div style="height: 100px; width: 100px; background-color: lightgray; display:inline-block;">
+                                <img style="height: 100px; width: 100px;"/>
+                            </div>
+                        }
                     }
                 }
-                else
-                {
-                    if (j % 2 == 0)
-                    {
-                        <div class="card" style="height: 100px; width: 100px; background-color: orange; display:inline-block;"></div>
-                    }
-                    else
-                    {
-                        <div class="card" style="height: 100px; width: 100px; background-color: lightgray; display:inline-block;"></div>
-                    }
-                }
+                <br />
             }
-            <br />
         }
-    }
-
 </div>
