@@ -22,5 +22,28 @@ namespace N_Queens_problem.Models
         {
             return _chessboard;
         }
+
+        public bool CheckIfProblemSolved()
+        {
+            bool solved = true;
+
+            for(int i = 0; i < _chessboard.Size; i++)
+            {
+                for(int j = 0; j < _chessboard.Size; j++)
+                {
+                    if(_chessboard.Board[i, j] == ChessPiece.Queen)
+                    {
+                        bool queenCanBeAttacked = _chessboard.CheckIfQueenCanBeAttacked(i, j);
+                        if (queenCanBeAttacked)
+                        {
+                            solved = false;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return solved;
+        }
     }
 }

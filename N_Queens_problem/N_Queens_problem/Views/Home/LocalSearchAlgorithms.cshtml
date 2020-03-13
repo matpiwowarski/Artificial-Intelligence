@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Local search algorithms";
-    var chessboard = (Chessboard)ViewBag.ChessBoard;
+    var nQueensProblem = (NQueensProblem)ViewBag.NQueensProblem;
+    var chessboard = nQueensProblem.GetResultBoard();
     var queenImageLink = "https://github.com/matpiwowarski/Local-Search-Algorithms/blob/master/N_Queens_problem/N_Queens_problem/Resources/queen.png?raw=true";
 
     void CheckIfQueenOrEmpty(ChessPiece[,] board, int i, int j)
@@ -20,53 +21,58 @@
 
 @* DISPLAY CHESSBOARD*@
 <h2>Chessboard size: @chessboard.Size x @chessboard.Size</h2>
-
-<div style="width: 50%; margin: 0 auto;">
-    @{
-        for (int i = 0; i < chessboard.Size; i++)
-        {
-            for (int j = 0; j < chessboard.Size; j++)
+<center>
+    <div style="width: 50%; margin: 0 auto;">
+        @{
+            for (int i = 0; i < chessboard.Size; i++)
             {
-                if (i % 2 == 0)
+                for (int j = 0; j < chessboard.Size; j++)
                 {
-                    if (j % 2 == 0)
+                    if (i % 2 == 0)
                     {
-                        <div style="height: 100px; width: 100px; background-color: lightgray; display:inline-block;">
-                            @{
-                                CheckIfQueenOrEmpty(chessboard.Board, i, j);
-                            }
-                        </div>
+                        if (j % 2 == 0)
+                        {
+                            <div style="height: 100px; width: 100px; background-color: lightgray; display:inline-block;">
+                                @{
+                                    CheckIfQueenOrEmpty(chessboard.Board, i, j);
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div style="height: 100px; width: 100px; background-color: orange; display:inline-block;">
+                                @{
+                                    CheckIfQueenOrEmpty(chessboard.Board, i, j);
+                                }
+                            </div>
+                        }
                     }
                     else
                     {
-                        <div style="height: 100px; width: 100px; background-color: orange; display:inline-block;">
-                            @{
-                                CheckIfQueenOrEmpty(chessboard.Board, i, j);
-                            }
-                        </div>
+                        if (j % 2 == 0)
+                        {
+                            <div style="height: 100px; width: 100px; background-color: orange; display:inline-block;">
+                                @{
+                                    CheckIfQueenOrEmpty(chessboard.Board, i, j);
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div style="height: 100px; width: 100px; background-color: lightgray; display:inline-block;">
+                                @{
+                                    CheckIfQueenOrEmpty(chessboard.Board, i, j);
+                                }
+                            </div>
+                        }
                     }
                 }
-                else
-                {
-                    if (j % 2 == 0)
-                    {
-                        <div style="height: 100px; width: 100px; background-color: orange; display:inline-block;">
-                            @{
-                                CheckIfQueenOrEmpty(chessboard.Board, i, j);
-                            }
-                        </div>
-                    }
-                    else
-                    {
-                        <div style="height: 100px; width: 100px; background-color: lightgray; display:inline-block;">
-                            @{
-                                CheckIfQueenOrEmpty(chessboard.Board, i, j);
-                            }
-                        </div>
-                    }
-                }
+                <br />
             }
-            <br />
         }
-    }
-</div>
+    </div>
+
+    <footer>
+        <h3 style="text-align: center">Problem solved: @nQueensProblem.CheckIfProblemSolved()</h3>
+    </footer>
+</center>
