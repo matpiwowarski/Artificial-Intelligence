@@ -3,16 +3,19 @@
     var nQueensProblem = (NQueensProblem)ViewBag.NQueensProblem;
     var chessboard = nQueensProblem.GetResultBoard();
     var queenImageLink = "https://github.com/matpiwowarski/Local-Search-Algorithms/blob/master/N_Queens_problem/N_Queens_problem/Resources/queen.png?raw=true";
+    var imgSize = "100px";
+    int selectedSize = 4;
+
 
     void CheckIfQueenOrEmpty(ChessPiece[,] board, int i, int j)
     {
         if (board[i, j] == ChessPiece.Queen)
         {
-            <img src=@queenImageLink alt="QUEEN" style="height: 100px; width: 100px;">
+            <img src=@queenImageLink alt="QUEEN" style="height: @imgSize; width: @imgSize;">
         }
         else
         {
-            <img style="height: 100px; width: 100px;">
+            <img style="height: @imgSize; width: @imgSize;">
         }
     }
 
@@ -21,69 +24,74 @@
 
 <div class="row">
     <div class="col-8">
-        @* DISPLAY CHESSBOARD*@
-        <h2>Chessboard size: @chessboard.Size x @chessboard.Size</h2>
-        @{
-            for (int i = 0; i < chessboard.Size; i++)
-            {
-                for (int j = 0; j < chessboard.Size; j++)
+        <center>
+            @* DISPLAY CHESSBOARD*@
+            <h2>Chessboard size: @chessboard.Size x @chessboard.Size</h2>
+            @{
+                for (int i = 0; i < chessboard.Size; i++)
                 {
-                    if (i % 2 == 0)
+                    for (int j = 0; j < chessboard.Size; j++)
                     {
-                        if (j % 2 == 0)
+                        if (i % 2 == 0)
                         {
-                            <div style="height: 100px; width: 100px; background-color: lightgray; display:inline-block;">
-                                @{
-                                    CheckIfQueenOrEmpty(chessboard.Board, i, j);
-                                }
-                            </div>
+                            if (j % 2 == 0)
+                            {
+                                <div style="height: @imgSize; width: @imgSize; background-color: lightgray; display:inline-block;">
+                                    @{
+                                        CheckIfQueenOrEmpty(chessboard.Board, i, j);
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <div style="height: @imgSize; width: @imgSize; background-color: orange; display:inline-block;">
+                                    @{
+                                        CheckIfQueenOrEmpty(chessboard.Board, i, j);
+                                    }
+                                </div>
+                            }
                         }
                         else
                         {
-                            <div style="height: 100px; width: 100px; background-color: orange; display:inline-block;">
-                                @{
-                                    CheckIfQueenOrEmpty(chessboard.Board, i, j);
-                                }
-                            </div>
+                            if (j % 2 == 0)
+                            {
+                                <div style="height: @imgSize; width: @imgSize; background-color: orange; display:inline-block;">
+                                    @{
+                                        CheckIfQueenOrEmpty(chessboard.Board, i, j);
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <div style="height: @imgSize; width: @imgSize; background-color: lightgray; display:inline-block;">
+                                    @{
+                                        CheckIfQueenOrEmpty(chessboard.Board, i, j);
+                                    }
+                                </div>
+                            }
                         }
                     }
-                    else
-                    {
-                        if (j % 2 == 0)
-                        {
-                            <div style="height: 100px; width: 100px; background-color: orange; display:inline-block;">
-                                @{
-                                    CheckIfQueenOrEmpty(chessboard.Board, i, j);
-                                }
-                            </div>
-                        }
-                        else
-                        {
-                            <div style="height: 100px; width: 100px; background-color: lightgray; display:inline-block;">
-                                @{
-                                    CheckIfQueenOrEmpty(chessboard.Board, i, j);
-                                }
-                            </div>
-                        }
-                    }
+                    <br />
                 }
-                <br />
             }
-        }
+        </center>
     </div>
     <div class="col-4">
-        <div class="form-group">
-            <label for="SizeSelect">Select Size</label>
-            <select class="form-control" id="SizeSelect">
-                <option>4x4</option>
-                <option>5x5</option>
-                <option>6x6</option>
-                <option>7x7</option>
-                <option>8x8</option>
-                <option>9x9</option>
-                <option>10x10</option>
-            </select>
-        </div>
+        <center>
+            <div class="form-group">
+                <label for="SizeSelect">Select Size</label>
+                <select class="form-control" id="SizeSelect">
+                    <option value=4 >4x4</option>
+                    <option value=5>5x5</option>
+                    <option value=6>6x6</option>
+                    <option value=7>7x7</option>
+                    <option value=8>8x8</option>
+                    <option value=9>9x9</option>
+                    <option value=10>10x10</option>
+                </select>
+            </div>
+            <input type="button" value="Execute!" onclick="location.href='@Url.Action("LocalSearchAlgorithms", "Home", new { size = selectedSize })'"  class="btn btn-dark btn-lg"/>
+        </center>
     </div>
 </div>
     <footer>

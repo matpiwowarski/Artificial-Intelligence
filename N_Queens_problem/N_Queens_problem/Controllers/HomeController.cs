@@ -22,23 +22,25 @@ namespace N_Queens_problem.Controllers
         {
             return View();
         }
-
+        /*
         public IActionResult LocalSearchAlgorithms()
         {
             NQueensProblem nQueensProblem = new NQueensProblem();
-
-            // TEST
-            nQueensProblem.GetResultBoard().Board[0, 2] = ChessPiece.Queen; // BOARD [ ROW , COLUMN]
-            nQueensProblem.GetResultBoard().Board[1, 0] = ChessPiece.Queen; // BOARD [ ROW , COLUMN]
-            nQueensProblem.GetResultBoard().Board[2, 3] = ChessPiece.Queen; // BOARD [ ROW , COLUMN]
-            nQueensProblem.GetResultBoard().Board[3, 1] = ChessPiece.Queen; // BOARD [ ROW , COLUMN]
-            //
 
             ViewBag.nQueensProblem = nQueensProblem;
 
             return View();
         }
+        */
+        public IActionResult LocalSearchAlgorithms(int size = 4)
+        {
+            NQueensProblem nQueensProblem = new NQueensProblem(size);
 
+            ViewBag.nQueensProblem = nQueensProblem;
+
+            return View();
+        }
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
