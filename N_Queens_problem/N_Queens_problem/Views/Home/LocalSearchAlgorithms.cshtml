@@ -3,9 +3,13 @@
     var nQueensProblem = (NQueensProblem)ViewBag.NQueensProblem;
     var chessboard = nQueensProblem.GetResultBoard();
     var queenImageLink = "https://github.com/matpiwowarski/Local-Search-Algorithms/blob/master/N_Queens_problem/N_Queens_problem/Resources/queen.png?raw=true";
-    var imgSize = "100px";
     int selectedSize = 4;
 
+    var imgSize = "100px";
+    if (nQueensProblem.GetResultBoard().Size > 5)
+    {
+        imgSize = "50px";
+    }
 
     void CheckIfQueenOrEmpty(ChessPiece[,] board, int i, int j)
     {

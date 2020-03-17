@@ -32,7 +32,7 @@ namespace N_Queens_problem.Controllers
             return View();
         }
         */
-        public IActionResult LocalSearchAlgorithms(int size = 4)
+        public IActionResult LocalSearchAlgorithms(int size = 10)
         {
             NQueensProblem nQueensProblem = new NQueensProblem(size);
 
