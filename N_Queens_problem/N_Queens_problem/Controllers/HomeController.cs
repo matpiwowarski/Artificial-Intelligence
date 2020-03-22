@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using N_Queens_problem.Models;
@@ -36,7 +37,6 @@ namespace N_Queens_problem.Controllers
         public IActionResult LocalSearchAlgorithms(int size = 4)
         {
             NQueensProblem nQueensProblem = new NQueensProblem(size);
-
             // algorithms
 
             // end algorithm
@@ -45,7 +45,21 @@ namespace N_Queens_problem.Controllers
 
             return View(board);
         }
-        
+
+        [HttpPost]
+        public IActionResult LocalSearchAlgorithms(IFormCollection formCollection)
+        {
+            int size = int.Parse(formCollection["SizeSelect"]);
+            NQueensProblem nQueensProblem = new NQueensProblem(size);
+            // algorithms
+
+            // end algorithm
+            var board = nQueensProblem.GetResultBoard();
+            board.CheckIfProblemSolved();
+
+            return View(board);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
