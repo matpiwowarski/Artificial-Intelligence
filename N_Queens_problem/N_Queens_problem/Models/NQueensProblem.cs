@@ -27,5 +27,20 @@ namespace N_Queens_problem.Models
         {
             return _chessboard;
         }
+
+        public void SolvedProblemExample()
+        {
+            _chessboard.Board[0, 1] = ChessPiece.Queen;
+            _chessboard.Board[1, 3] = ChessPiece.Queen;
+            _chessboard.Board[2, 0] = ChessPiece.Queen;
+            _chessboard.Board[3, 2] = ChessPiece.Queen;
+        }
+        public void UnsolvedProblemExample()
+        {
+            _chessboard.Board[0, 0] = ChessPiece.Queen;
+            _chessboard.Board[0, 1] = ChessPiece.Queen;
+            _chessboard.Board[0, 2] = ChessPiece.Queen;
+            _chessboard.Board[0, 3] = ChessPiece.Queen;
+        }
     }
 }

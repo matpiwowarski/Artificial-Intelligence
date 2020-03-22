@@ -34,10 +34,14 @@ namespace N_Queens_problem.Controllers
         }
         */
     
-        public IActionResult LocalSearchAlgorithms(int size = 4)
+        public IActionResult LocalSearchAlgorithms()
         {
+            int size = 4;
             NQueensProblem nQueensProblem = new NQueensProblem(size);
             // algorithms
+
+            nQueensProblem.SolvedProblemExample();
+            //nQueensProblem.UnsolvedProblemExample();
 
             // end algorithm
             var board = nQueensProblem.GetResultBoard();
