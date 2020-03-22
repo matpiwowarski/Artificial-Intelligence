@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using N_Queens_problem.Models;
+using N_Queens_problem.Models.Algorithms;
 
 namespace N_Queens_problem.Controllers
 {
@@ -37,12 +38,22 @@ namespace N_Queens_problem.Controllers
         public IActionResult LocalSearchAlgorithms(int size = 4)
         {
             NQueensProblem nQueensProblem = new NQueensProblem(size);
+            nQueensProblem.SetAlgorithm(new HillClimbingAlgorithm());
             // algorithms
 
             //nQueensProblem.SolvedProblemExample();
             //nQueensProblem.UnsolvedProblemExample();
 
+            /* CUSTOM TESTING
+            var testBoard = nQueensProblem.GetResultBoard().Board;
+            testBoard[0, 0] = ChessPiece.Queen;
+            testBoard[0, 3] = ChessPiece.Queen;
+            testBoard[0, 2] = ChessPiece.Queen;
+            testBoard[0, 3] = ChessPiece.Queen;
+            */
+
             nQueensProblem.SetRandomBoardState();
+            nQueensProblem.DoAlgorithm();
 
             // end algorithm
             var board = nQueensProblem.GetResultBoard();
@@ -55,10 +66,13 @@ namespace N_Queens_problem.Controllers
         public IActionResult ChangeBoardGameSize(IFormCollection formCollection)
         {
             int size = int.Parse(formCollection["SizeSelect"]);
+
             NQueensProblem nQueensProblem = new NQueensProblem(size);
+            nQueensProblem.SetAlgorithm(new HillClimbingAlgorithm());
             // algorithms
 
             nQueensProblem.SetRandomBoardState();
+            nQueensProblem.DoAlgorithm();
 
             // end algorithm
             var board = nQueensProblem.GetResultBoard();

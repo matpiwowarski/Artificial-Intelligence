@@ -12,6 +12,7 @@ namespace N_Queens_problem.Models
         public int Size { get; set; }
         public ChessPiece[,] Board { get; set; } // BOARD [ ROW , COLUMN]
         public bool IsSolved { get; set; }
+        public int HeuristicResult { get; set; }
 
         public Chessboard(int size)
         {

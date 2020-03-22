@@ -60,5 +60,10 @@ namespace N_Queens_problem.Models
                 _chessboard.Board[x, y] = ChessPiece.Queen;
             }
         }
+
+        public void DoAlgorithm()
+        {
+            _algorithm.SolveProblem(_chessboard);
+        }
     }
 }
