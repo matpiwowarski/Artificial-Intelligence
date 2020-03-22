@@ -77,12 +77,12 @@
                     <br />
                 }
             }
-            <p>@Html.ActionLink("Clear", "LocalSearchAlgorithms")</p>
+            <p>@Html.ActionLink("Clear", "LocalSearchAlgorithms", new { size = @Model.Size })</p>
         </center>
     </div>
     <div class="col-4">
         <center>
-            @using (Html.BeginForm("LocalSearchAlgorithms", "Home", FormMethod.Post))
+            @using (Html.BeginForm("ChangeBoardGameSize", "Home", FormMethod.Post))
             {
                 <label for="SizeSelect">Select Size</label>
                 <select class="form-control" id="SizeSelect" name="SizeSelect">
@@ -95,12 +95,22 @@
                     <option value="10">10x10</option>
                 </select>
                 <button type="submit" class="btn btn-dark" style="margin-top: 15px">
-                    Execute
+                    Change Size
                 </button>
             }
         </center>
     </div>
 </div>
 <footer>
-    <h3 style="text-align: center">Problem solved: @Model.IsSolved</h3>
+    <center>
+        <h3 style="display: inline;"> Problem Solved: </h3>
+        @if (Model.IsSolved)
+        {
+            <h3 style="color: green; display: inline;">True</h3>
+        }
+        else
+        {
+            <h3 style="color: red; display: inline;">False</h3>
+        }
+    </center>
 </footer>

@@ -34,9 +34,8 @@ namespace N_Queens_problem.Controllers
         }
         */
     
-        public IActionResult LocalSearchAlgorithms()
+        public IActionResult LocalSearchAlgorithms(int size = 4)
         {
-            int size = 4;
             NQueensProblem nQueensProblem = new NQueensProblem(size);
             // algorithms
 
@@ -53,17 +52,19 @@ namespace N_Queens_problem.Controllers
         }
 
         [HttpPost]
-        public IActionResult LocalSearchAlgorithms(IFormCollection formCollection)
+        public IActionResult ChangeBoardGameSize(IFormCollection formCollection)
         {
             int size = int.Parse(formCollection["SizeSelect"]);
             NQueensProblem nQueensProblem = new NQueensProblem(size);
             // algorithms
 
+            nQueensProblem.SetRandomBoardState();
+
             // end algorithm
             var board = nQueensProblem.GetResultBoard();
             board.CheckIfProblemSolved();
 
-            return View(board);
+            return View("LocalSearchAlgorithms", board);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
