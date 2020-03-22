@@ -10,12 +10,14 @@ namespace N_Queens_problem.Models
     public class Chessboard
     {
         public int Size { get; set; }
-        public ChessPiece[,] Board; // BOARD [ ROW , COLUMN]
+        public ChessPiece[,] Board { get; set; } // BOARD [ ROW , COLUMN]
+        public bool IsSolved { get; set; }
 
         public Chessboard(int size)
         {
             Size = size;
             Board = new ChessPiece[size, size];
+            IsSolved = false;
         }
 
         internal bool CheckIfQueenCanBeAttacked(int x, int y)
@@ -59,6 +61,29 @@ namespace N_Queens_problem.Models
                     isAttacked = true;
             }
             return isAttacked;
+        }
+
+        public bool CheckIfProblemSolved()
+        {
+            IsSolved = true;
+
+            for (int i = 0; i < Size; i++)
+            {
+                for (int j = 0; j < Size; j++)
+                {
+                    if (Board[i, j] == ChessPiece.Queen)
+                    {
+                        bool queenCanBeAttacked = CheckIfQueenCanBeAttacked(i, j);
+                        if (queenCanBeAttacked)
+                        {
+                            IsSolved = false;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return IsSolved;
         }
     }
 }

@@ -32,13 +32,18 @@ namespace N_Queens_problem.Controllers
             return View();
         }
         */
-        public IActionResult LocalSearchAlgorithms(int size = 10)
+    
+        public IActionResult LocalSearchAlgorithms(int size = 4)
         {
             NQueensProblem nQueensProblem = new NQueensProblem(size);
 
-            ViewBag.nQueensProblem = nQueensProblem;
+            // algorithms
 
-            return View();
+            // end algorithm
+            var board = nQueensProblem.GetResultBoard();
+            board.CheckIfProblemSolved();
+
+            return View(board);
         }
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

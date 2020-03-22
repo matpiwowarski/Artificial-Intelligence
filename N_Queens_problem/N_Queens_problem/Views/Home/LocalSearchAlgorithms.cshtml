@@ -1,12 +1,11 @@
-﻿@{
-    ViewData["Title"] = "Local search algorithms";
-    var nQueensProblem = (NQueensProblem)ViewBag.NQueensProblem;
-    var chessboard = nQueensProblem.GetResultBoard();
-    var queenImageLink = "https://github.com/matpiwowarski/Local-Search-Algorithms/blob/master/N_Queens_problem/N_Queens_problem/Resources/queen.png?raw=true";
-    int selectedSize = 4;
+﻿@model Chessboard
 
+@{
+    ViewBag.Title = "Local search algorithms";
+    var queenImageLink = "https://github.com/matpiwowarski/Local-Search-Algorithms/blob/master/N_Queens_problem/N_Queens_problem/Resources/queen.png?raw=true";
     var imgSize = "100px";
-    if (nQueensProblem.GetResultBoard().Size > 5)
+
+    if (Model.Size > 5)
     {
         imgSize = "50px";
     }
@@ -24,17 +23,17 @@
     }
 
 }
-<h1>N-queens problem - @ViewData["Title"]</h1>
+<h1>N-queens problem - @ViewBag.Title</h1>
 
 <div class="row">
     <div class="col-8">
         <center>
             @* DISPLAY CHESSBOARD*@
-            <h2>Chessboard size: @chessboard.Size x @chessboard.Size</h2>
+            <h2>Chessboard size: @Model.Size x @Model.Size</h2>
             @{
-                for (int i = 0; i < chessboard.Size; i++)
+                for (int i = 0; i < Model.Size; i++)
                 {
-                    for (int j = 0; j < chessboard.Size; j++)
+                    for (int j = 0; j < Model.Size; j++)
                     {
                         if (i % 2 == 0)
                         {
@@ -42,7 +41,7 @@
                             {
                                 <div style="height: @imgSize; width: @imgSize; background-color: lightgray; display:inline-block;">
                                     @{
-                                        CheckIfQueenOrEmpty(chessboard.Board, i, j);
+                                        CheckIfQueenOrEmpty(Model.Board, i, j);
                                     }
                                 </div>
                             }
@@ -50,7 +49,7 @@
                             {
                                 <div style="height: @imgSize; width: @imgSize; background-color: orange; display:inline-block;">
                                     @{
-                                        CheckIfQueenOrEmpty(chessboard.Board, i, j);
+                                        CheckIfQueenOrEmpty(Model.Board, i, j);
                                     }
                                 </div>
                             }
@@ -61,7 +60,7 @@
                             {
                                 <div style="height: @imgSize; width: @imgSize; background-color: orange; display:inline-block;">
                                     @{
-                                        CheckIfQueenOrEmpty(chessboard.Board, i, j);
+                                        CheckIfQueenOrEmpty(Model.Board, i, j);
                                     }
                                 </div>
                             }
@@ -69,7 +68,7 @@
                             {
                                 <div style="height: @imgSize; width: @imgSize; background-color: lightgray; display:inline-block;">
                                     @{
-                                        CheckIfQueenOrEmpty(chessboard.Board, i, j);
+                                        CheckIfQueenOrEmpty(Model.Board, i, j);
                                     }
                                 </div>
                             }
@@ -85,7 +84,7 @@
             <div class="form-group">
                 <label for="SizeSelect">Select Size</label>
                 <select class="form-control" id="SizeSelect">
-                    <option value=4 >4x4</option>
+                    <option value=4>4x4</option>
                     <option value=5>5x5</option>
                     <option value=6>6x6</option>
                     <option value=7>7x7</option>
@@ -94,10 +93,14 @@
                     <option value=10>10x10</option>
                 </select>
             </div>
-            <input type="button" value="Execute!" onclick="location.href='@Url.Action("LocalSearchAlgorithms", "Home", new { size = selectedSize })'"  class="btn btn-dark btn-lg"/>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <p>@Html.ActionLink("Submit", "LocalSearchAlgorithms", new { size = 5 })</p>
+                </div>
+            </div>
         </center>
     </div>
 </div>
-    <footer>
-        <h3 style="text-align: center">Problem solved: @nQueensProblem.CheckIfProblemSolved()</h3>
-    </footer>
+<footer>
+    <h3 style="text-align: center">Problem solved: @Model.IsSolved</h3>
+</footer>
