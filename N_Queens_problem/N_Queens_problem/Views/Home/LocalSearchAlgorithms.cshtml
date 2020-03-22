@@ -82,7 +82,7 @@
     </div>
     <div class="col-4">
         <center>
-            @using (Html.BeginForm("ChangeBoardGameSize", "Home", FormMethod.Post))
+            @using (Html.BeginForm("ChangeBoardgameSize", "Home", FormMethod.Post))
             {
                 <label for="SizeSelect">Select Size</label>
                 <select class="form-control" id="SizeSelect" name="SizeSelect">
@@ -96,6 +96,20 @@
                 </select>
                 <button type="submit" class="btn btn-dark" style="margin-top: 15px">
                     Change Size
+                </button>
+            }
+            @using (Html.BeginForm("DoAlgorithm", "Home", FormMethod.Post))
+            {
+                @Html.HiddenFor(size => Model.Size)
+                <label for="AlgorithmSelect">Select Algorithm</label>
+                <select class="form-control" id="AlgorithmSelect" name="AlgorithmSelect">
+                    <option value="Hill Climbing">Hill Climbing</option>
+                    <option value="Simulated Annealing">Simulated Annealing</option>
+                    <option value="Local Beam Search">Local Beam Search</option>
+                    <option value="Genetic">Genetic</option>
+                </select>
+                <button type="submit" class="btn btn-dark" style="margin-top: 15px">
+                    Execute
                 </button>
             }
         </center>

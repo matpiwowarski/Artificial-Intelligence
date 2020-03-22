@@ -34,28 +34,14 @@ namespace N_Queens_problem.Controllers
             return View();
         }
         */
-    
+
+        // FIRST VIEW + CLEAR()
         public IActionResult LocalSearchAlgorithms(int size = 4)
         {
             NQueensProblem nQueensProblem = new NQueensProblem(size);
-            nQueensProblem.SetAlgorithm(new HillClimbingAlgorithm());
-            // algorithms
-
-            //nQueensProblem.SolvedProblemExample();
-            //nQueensProblem.UnsolvedProblemExample();
-
-            /* CUSTOM TESTING
-            var testBoard = nQueensProblem.GetResultBoard().Board;
-            testBoard[0, 0] = ChessPiece.Queen;
-            testBoard[0, 3] = ChessPiece.Queen;
-            testBoard[0, 2] = ChessPiece.Queen;
-            testBoard[0, 3] = ChessPiece.Queen;
-            */
 
             nQueensProblem.SetRandomBoardState();
-            nQueensProblem.DoAlgorithm();
 
-            // end algorithm
             var board = nQueensProblem.GetResultBoard();
             board.CheckIfProblemSolved();
 
@@ -63,18 +49,38 @@ namespace N_Queens_problem.Controllers
         }
 
         [HttpPost]
-        public IActionResult ChangeBoardGameSize(IFormCollection formCollection)
+        public IActionResult ChangeBoardgameSize(IFormCollection formCollection)
         {
             int size = int.Parse(formCollection["SizeSelect"]);
 
             NQueensProblem nQueensProblem = new NQueensProblem(size);
-            nQueensProblem.SetAlgorithm(new HillClimbingAlgorithm());
-            // algorithms
 
             nQueensProblem.SetRandomBoardState();
+
+            var board = nQueensProblem.GetResultBoard();
+            board.CheckIfProblemSolved();
+
+            return View("LocalSearchAlgorithms", board);
+        }
+
+        [HttpPost]
+        public IActionResult DoAlgorithm(IFormCollection formCollection,int size)
+        {
+            NQueensProblem nQueensProblem = new NQueensProblem(size);
+            var algorithmName = formCollection["Algorithm"];
+
+            switch(algorithmName)
+            {
+                case "Hill Climbing":
+                    nQueensProblem.SetAlgorithm(new HillClimbingAlgorithm());
+                    break;
+                default:
+                    nQueensProblem.SetAlgorithm(new HillClimbingAlgorithm());
+                    break;
+            }
+
             nQueensProblem.DoAlgorithm();
 
-            // end algorithm
             var board = nQueensProblem.GetResultBoard();
             board.CheckIfProblemSolved();
 
