@@ -64,9 +64,10 @@ namespace N_Queens_problem.Controllers
         }
 
         [HttpPost]
-        public IActionResult DoAlgorithm(IFormCollection formCollection,int size)
+        public IActionResult DoAlgorithm(IFormCollection formCollection)
         {
-            NQueensProblem nQueensProblem = new NQueensProblem(size);
+            NQueensProblem nQueensProblem = new NQueensProblem();
+
             var algorithmName = formCollection["Algorithm"];
 
             switch(algorithmName)
@@ -81,10 +82,10 @@ namespace N_Queens_problem.Controllers
 
             nQueensProblem.DoAlgorithm();
 
-            var board = nQueensProblem.GetResultBoard();
-            board.CheckIfProblemSolved();
+            var resultBoard = nQueensProblem.GetResultBoard();
+            resultBoard.CheckIfProblemSolved();
 
-            return View("LocalSearchAlgorithms", board);
+            return View("LocalSearchAlgorithms", resultBoard);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

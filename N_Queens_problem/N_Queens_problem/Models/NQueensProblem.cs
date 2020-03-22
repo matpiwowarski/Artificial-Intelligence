@@ -5,12 +5,11 @@ namespace N_Queens_problem.Models
 {
     public class NQueensProblem
     {
-        private Chessboard _chessboard;
+        private static Chessboard _chessboard;
         private Algorithm _algorithm;
 
         public NQueensProblem()
         {
-            _chessboard = new Chessboard(4);
         }
 
         public NQueensProblem(int size)
@@ -21,11 +20,6 @@ namespace N_Queens_problem.Models
         public void SetAlgorithm(Algorithm algorithm)
         {
             _algorithm = algorithm;
-        }
-
-        public void SetBoard(ChessPiece[,] board)
-        {
-            _chessboard.Board = board;
         }
 
         public Chessboard GetResultBoard()

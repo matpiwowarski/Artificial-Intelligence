@@ -14,6 +14,22 @@ namespace N_Queens_problem.Models
         public bool IsSolved { get; set; }
         public int HeuristicResult { get; set; }
 
+        public Chessboard()
+        {
+        }
+
+        internal void CopyBoard(ChessPiece[,] board)
+        {
+            for(int i =0; i < Size; i++)
+            {
+                for (int j = 0; j < Size; j++)
+                {
+                    if (board[i, j] == ChessPiece.Queen)
+                        Board[i, j] = ChessPiece.Queen;
+                }
+            }
+        }
+
         public Chessboard(int size)
         {
             Size = size;

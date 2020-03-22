@@ -100,7 +100,6 @@
             }
             @using (Html.BeginForm("DoAlgorithm", "Home", FormMethod.Post))
             {
-                @Html.HiddenFor(size => Model.Size)
                 <label for="AlgorithmSelect">Select Algorithm</label>
                 <select class="form-control" id="AlgorithmSelect" name="AlgorithmSelect">
                     <option value="Hill Climbing">Hill Climbing</option>
