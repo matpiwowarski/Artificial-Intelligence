@@ -40,8 +40,9 @@ namespace N_Queens_problem.Controllers
             NQueensProblem nQueensProblem = new NQueensProblem(size);
             // algorithms
 
-            nQueensProblem.SolvedProblemExample();
+            //nQueensProblem.SolvedProblemExample();
             //nQueensProblem.UnsolvedProblemExample();
+            nQueensProblem.SetRandomBoardState();
 
             // end algorithm
             var board = nQueensProblem.GetResultBoard();
