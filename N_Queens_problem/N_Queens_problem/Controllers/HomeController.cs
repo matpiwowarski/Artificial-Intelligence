@@ -42,6 +42,7 @@ namespace N_Queens_problem.Controllers
 
             //nQueensProblem.SolvedProblemExample();
             //nQueensProblem.UnsolvedProblemExample();
+
             nQueensProblem.SetRandomBoardState();
 
             // end algorithm

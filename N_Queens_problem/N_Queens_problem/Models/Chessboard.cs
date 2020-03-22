@@ -60,6 +60,11 @@ namespace N_Queens_problem.Models
                 if (Board[i, j] == ChessPiece.Queen)
                     isAttacked = true;
             }
+            for (int i = x + 1, j = y - 1; i < Size && j >= 0; i++, j--)
+            {
+                if (Board[i, j] == ChessPiece.Queen)
+                    isAttacked = true;
+            }
             return isAttacked;
         }
 
