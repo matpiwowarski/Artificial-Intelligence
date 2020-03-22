@@ -3,11 +3,23 @@
 @{
     ViewBag.Title = "Local search algorithms";
     var queenImageLink = "https://github.com/matpiwowarski/Local-Search-Algorithms/blob/master/N_Queens_problem/N_Queens_problem/Resources/queen.png?raw=true";
-    var imgSize = "100px";
+    var imgSize = "90px";
 
-    if (Model.Size > 5)
+    if (Model.Size > 10)
+    {
+        imgSize = "30px";
+    }
+    else if (Model.Size > 8)
+    {
+        imgSize = "40px";
+    }
+    else if (Model.Size > 6)
     {
         imgSize = "50px";
+    }
+    else if (Model.Size > 4)
+    {
+        imgSize = "60px";
     }
 
     void CheckIfQueenOrEmpty(ChessPiece[,] board, int i, int j)
@@ -93,8 +105,10 @@
                     <option value="8">8x8</option>
                     <option value="9">9x9</option>
                     <option value="10">10x10</option>
+                    <option value="11">11x11</option>
+                    <option value="12">12x12</option>
                 </select>
-                <button type="submit" class="btn btn-dark" style="margin-top: 15px">
+                <button type="submit" class="btn btn-primary" style="margin-top: 15px; margin-bottom: 15px">
                     Change Size
                 </button>
             }
@@ -107,7 +121,7 @@
                     <option value="Local Beam Search">Local Beam Search</option>
                     <option value="Genetic">Genetic</option>
                 </select>
-                <button type="submit" class="btn btn-dark" style="margin-top: 15px">
+                <button type="submit" class="btn btn-success" style="margin-top: 15px">
                     Execute
                 </button>
             }
