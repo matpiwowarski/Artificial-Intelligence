@@ -45,7 +45,7 @@ namespace N_Queens_problem.Models
 
         public void SetRandomBoardState()
         {
-            for(int x = 0; x < _chessboard.Size; x++)
+            for (int x = 0; x < _chessboard.Size; x++)
             {
                 Random random = new Random();
                 int y = random.Next(0, _chessboard.Size);

@@ -101,16 +101,5 @@ namespace N_Queens_problem.Models
 
             return IsSolved;
         }
-
-        public void MoveQueenVertical(int column, int newRow)
-        {
-            for(int i = 0; i < Size; i++)
-            {
-                if (Board[i, column] == ChessPiece.Queen) // deleting older one
-                    Board[i, column] = ChessPiece.Empty;
-
-                Board[newRow, column] = ChessPiece.Queen;
-            }
-        }
     }
 }

@@ -77,5 +77,42 @@ namespace N_Queens_problem.Models.Algorithms
             }
             return result;
         }
+
+        protected void MoveQueenVertical(ChessPiece[,] board, int size, int column, int newRow)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                if (board[i, column] == ChessPiece.Queen) // deleting older one
+                    board[i, column] = ChessPiece.Empty;
+
+                board[newRow, column] = ChessPiece.Queen;
+            }
+        }
+
+        protected int GetQueenRowInColumn(ChessPiece[,] board, int size, int column)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                if (board[i, column] == ChessPiece.Queen) // deleting older one
+                    return i;
+            }
+
+            return -1; // Queen not found
+        }
+
+        public ChessPiece[,] GenerateRandomBoardState(int size)
+        {
+            ChessPiece[,] newBoard = new ChessPiece[size, size];
+
+            for (int x = 0; x < size; x++)
+            {
+                Random random = new Random();
+                int y = random.Next(0, size);
+
+                newBoard[y, x] = ChessPiece.Queen;
+            }
+
+            return newBoard;
+        }
     }
 }
