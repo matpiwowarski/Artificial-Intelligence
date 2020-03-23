@@ -43,11 +43,13 @@ namespace N_Queens_problem.Models.Algorithms
                             break;
                     }
                 }
-
+                
                 if(startingState.Equals(board)) // we are blocked => we have to start again
                 {
                     board = GenerateRandomBoardState(size);
+                    bestResult = this.Heuristic(board, size);
                 }
+                
             }
 
             chessBoard.HeuristicResult = bestResult;
