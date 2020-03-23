@@ -73,5 +73,10 @@ namespace N_Queens_problem.Models
                 _chessboard.HeuristicResult = _algorithm.Heuristic(_chessboard.Board, _chessboard.Size);
             }
         }
+
+        public void SetMaximumNumberOfSteps(int number)
+        {
+            _chessboard.MaximumNumberOfSteps = number;
+        }
     }
 }

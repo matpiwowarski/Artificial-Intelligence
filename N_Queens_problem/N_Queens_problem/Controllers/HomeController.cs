@@ -70,7 +70,18 @@ namespace N_Queens_problem.Controllers
         {
             NQueensProblem nQueensProblem = new NQueensProblem();
 
-            var algorithmName = formCollection["Algorithm"];
+            var algorithmName = formCollection["AlgorithmSelect"];
+
+            try
+            {
+                var maximumNumberOfSteps = int.Parse(formCollection["MaxSteps"]);
+                nQueensProblem.SetMaximumNumberOfSteps(maximumNumberOfSteps);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Exception message: {0}", e.Message);
+            } 
+
 
             switch(algorithmName)
             {

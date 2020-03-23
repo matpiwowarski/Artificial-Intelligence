@@ -13,21 +13,13 @@ namespace N_Queens_problem.Models
         public ChessPiece[,] Board { get; set; } // BOARD [ ROW , COLUMN]
         public bool IsSolved { get; set; }
         public int HeuristicResult { get; set; }
+        public int NumberOfSteps { get; set; }
+        public int MaximumNumberOfSteps { get; set; }
 
         public Chessboard()
         {
-        }
-
-        internal void CopyBoard(ChessPiece[,] board)
-        {
-            for(int i =0; i < Size; i++)
-            {
-                for (int j = 0; j < Size; j++)
-                {
-                    if (board[i, j] == ChessPiece.Queen)
-                        Board[i, j] = ChessPiece.Queen;
-                }
-            }
+            NumberOfSteps = 0;
+            MaximumNumberOfSteps = 50;
         }
 
         public Chessboard(int size)
@@ -35,6 +27,8 @@ namespace N_Queens_problem.Models
             Size = size;
             Board = new ChessPiece[size, size];
             IsSolved = false;
+            NumberOfSteps = 0;
+            MaximumNumberOfSteps = 50;
         }
 
         internal bool CheckIfQueenCanBeAttacked(int x, int y)

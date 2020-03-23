@@ -90,7 +90,11 @@
                 }
             }
             <p>@Html.ActionLink("Clear", "LocalSearchAlgorithms", new { size = @Model.Size })</p>
-            <p>Heuristic: @Model.HeuristicResult</p> 
+            <p>Heuristic: @Model.HeuristicResult</p>
+            @if (Model.NumberOfSteps > 0)
+            {
+                <p>Number of steps: @Model.NumberOfSteps</p>
+            }
         </center>
     </div>
     <div class="col-4">
@@ -122,6 +126,8 @@
                     <option value="Local Beam Search">Local Beam Search</option>
                     <option value="Genetic">Genetic</option>
                 </select>
+                <label for="MaxSteps" style="margin-top: 10px;">Maximum number of steps</label>
+                <input class="form-control" id="MaxSteps" name="MaxSteps" type="text" value="10" />
                 <button type="submit" class="btn btn-success" style="margin-top: 15px">
                     Execute
                 </button>
