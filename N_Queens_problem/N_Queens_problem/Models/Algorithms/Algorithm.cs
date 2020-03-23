@@ -5,7 +5,7 @@ namespace N_Queens_problem.Models.Algorithms
     {
         public abstract void SolveProblem(Chessboard chessboard);
 
-        // h(x) = pairs of queens that are attacking each other
+        // h(x) = pairs of queens that are attacking each other (directly or indirectly)
         public int Heuristic(ChessPiece[,] board, int boardSize)
         {
             int result = 0;

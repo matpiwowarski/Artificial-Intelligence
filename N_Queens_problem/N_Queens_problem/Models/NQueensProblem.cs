@@ -45,19 +45,12 @@ namespace N_Queens_problem.Models
 
         public void SetRandomBoardState()
         {
-            for(int i = 0; i < _chessboard.Size; i++)
+            for(int x = 0; x < _chessboard.Size; x++)
             {
                 Random random = new Random();
-                int x = random.Next(0, _chessboard.Size);
                 int y = random.Next(0, _chessboard.Size);
 
-                while (_chessboard.Board[x,y] == ChessPiece.Queen)
-                {
-                    x = random.Next(0, _chessboard.Size);
-                    y = random.Next(0, _chessboard.Size);
-                }
-
-                _chessboard.Board[x, y] = ChessPiece.Queen;
+                _chessboard.Board[y, x] = ChessPiece.Queen;
             }
         }
 

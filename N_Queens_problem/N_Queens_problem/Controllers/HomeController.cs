@@ -44,6 +44,9 @@ namespace N_Queens_problem.Controllers
             nQueensProblem.DoAlgorithm(); // just heuristic result
 
             var board = nQueensProblem.GetResultBoard();
+
+            board.MoveQueenVertical(0, 0);
+            
             board.CheckIfProblemSolved();
 
             return View(board);
