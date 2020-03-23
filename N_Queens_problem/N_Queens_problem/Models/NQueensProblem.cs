@@ -10,6 +10,7 @@ namespace N_Queens_problem.Models
 
         public NQueensProblem()
         {
+         
         }
 
         public NQueensProblem(int size)
@@ -62,7 +63,15 @@ namespace N_Queens_problem.Models
 
         public void DoAlgorithm()
         {
-            _algorithm.SolveProblem(_chessboard);
+            if(_algorithm != null)
+            {
+                _algorithm.SolveProblem(_chessboard);
+            }
+            else
+            {
+                _algorithm = new HillClimbingAlgorithm(); // we will use it just to calculate heuristic, not to do hillclimbing algorithm
+                _chessboard.HeuristicResult = _algorithm.Heuristic(_chessboard.Board, _chessboard.Size);
+            }
         }
     }
 }

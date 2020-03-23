@@ -35,13 +35,13 @@
     }
 
 }
-<h1>N-queens problem - @ViewBag.Title</h1>
+<h2>N-queens problem - @ViewBag.Title</h2>
 
 <div class="row">
     <div class="col-8">
         <center>
             @* DISPLAY CHESSBOARD*@
-            <h2>Chessboard size: @Model.Size x @Model.Size</h2>
+            <h3>Chessboard size: @Model.Size x @Model.Size</h3>
             @{
                 for (int i = 0; i < Model.Size; i++)
                 {
@@ -90,6 +90,7 @@
                 }
             }
             <p>@Html.ActionLink("Clear", "LocalSearchAlgorithms", new { size = @Model.Size })</p>
+            <p>Heuristic: @Model.HeuristicResult</p> 
         </center>
     </div>
     <div class="col-4">
@@ -130,7 +131,7 @@
 </div>
 <footer>
     <center>
-        <h3 style="display: inline;"> Problem Solved: </h3>
+        <h4 style="display: inline;"> Problem Solved: </h4>
         @if (Model.IsSolved)
         {
             <h3 style="color: green; display: inline;">True</h3>

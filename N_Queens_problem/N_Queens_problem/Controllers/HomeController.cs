@@ -41,6 +41,7 @@ namespace N_Queens_problem.Controllers
             NQueensProblem nQueensProblem = new NQueensProblem(size);
 
             nQueensProblem.SetRandomBoardState();
+            nQueensProblem.DoAlgorithm(); // just heuristic result
 
             var board = nQueensProblem.GetResultBoard();
             board.CheckIfProblemSolved();
@@ -56,6 +57,7 @@ namespace N_Queens_problem.Controllers
             NQueensProblem nQueensProblem = new NQueensProblem(size);
 
             nQueensProblem.SetRandomBoardState();
+            nQueensProblem.DoAlgorithm(); // just heuristic result
 
             var board = nQueensProblem.GetResultBoard();
             board.CheckIfProblemSolved();

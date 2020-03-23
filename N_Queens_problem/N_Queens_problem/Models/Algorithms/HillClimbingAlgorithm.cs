@@ -42,6 +42,7 @@ namespace N_Queens_problem.Models.Algorithms
 
             }
 
+            chessBoard.HeuristicResult = bestResult;
             chessBoard.Board = bestBoard;
         }
     }
