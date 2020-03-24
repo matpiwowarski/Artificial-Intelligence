@@ -89,6 +89,15 @@ namespace N_Queens_problem.Controllers
                 case "Hill Climbing":
                     nQueensProblem.SetAlgorithm(new HillClimbingAlgorithm());
                     break;
+                case "Simulated Annealing":
+                    nQueensProblem.SetAlgorithm(new SimulatedAnnealingAlgorithm());
+                    break;
+                case "Local Beam Search":
+                    nQueensProblem.SetAlgorithm(new LocalBeamSearchAlgorithm());
+                    break;
+                case "Genetic":
+                    nQueensProblem.SetAlgorithm(new GeneticAlgorithm());
+                    break;
                 default:
                     nQueensProblem.SetAlgorithm(new HillClimbingAlgorithm());
                     break;

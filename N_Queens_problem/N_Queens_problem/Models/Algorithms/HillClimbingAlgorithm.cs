@@ -17,14 +17,14 @@ namespace N_Queens_problem.Models.Algorithms
 
             int bestResult = this.Heuristic(board, size);
 
-            int counter = 0;
-            while(bestResult != 0 && counter < chessBoard.MaximumNumberOfSteps)
+            int steps = 0;
+            while(bestResult != 0 && steps < chessBoard.MaximumNumberOfSteps)
             {
                 ChessPiece[,] startingState = CopyBoard(board, size);
 
-                for (int i = 0; i < size; i++)
+                for (int i = 0; i < size; i++) // every column
                 {
-                    for (int j = 0; j < size; j++)
+                    for (int j = 0; j < size; j++) // checking which row is the best in 'i' column and we are moving there our queen
                     {
                         int rowBeforeMovingQueen = GetQueenRowInColumn(board, size, i);
 
@@ -43,6 +43,7 @@ namespace N_Queens_problem.Models.Algorithms
                         if (bestResult == 0) // h(x) == 0 => we solved the problem
                             break;
                     }
+                    steps++;
                 }
                 
                 if(CheckIfBoardsAreEqual(startingState, board, size)) // we are blocked => we have to start again
@@ -50,7 +51,6 @@ namespace N_Queens_problem.Models.Algorithms
                     board = GenerateRandomBoardState(size);
                     bestResult = this.Heuristic(board, size);
                 }
-                counter++;
             }
 
             chessBoard.HeuristicResult = bestResult;
