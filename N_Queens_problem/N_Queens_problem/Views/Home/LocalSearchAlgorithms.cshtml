@@ -117,21 +117,39 @@
                     Change Size
                 </button>
             }
+
             @using (Html.BeginForm("DoAlgorithm", "Home", FormMethod.Post))
             {
                 <label for="AlgorithmSelect">Select Algorithm</label>
-                <select class="form-control" id="AlgorithmSelect" name="AlgorithmSelect">
+                <select onchange="selectAlgorithm()" class="form-control" id="AlgorithmSelect" name="AlgorithmSelect">
                     <option value="Hill Climbing">Hill Climbing</option>
                     <option value="Simulated Annealing">Simulated Annealing</option>
                     <option value="Local Beam Search">Local Beam Search</option>
                     <option value="Genetic">Genetic</option>
                 </select>
-                <label for="MaxSteps" style="margin-top: 10px;">Maximum number of steps</label>
-                <input class="form-control" id="MaxSteps" name="MaxSteps" type="text" value="50" />
-                <button type="submit" class="btn btn-success" style="margin-top: 15px">
+
+                <div id="HillClimbingParameters" style="display: block;">
+                    <label for="MaxSteps" style="margin-top: 10px;">Maximum number of steps</label>
+                    <input class="form-control" id="MaxSteps" name="MaxSteps" type="text" value="50" />
+                </div>
+
+                <div id="SimulatedAnnealingParameters" style="display: none;">
+                    SimulatedAnnealingParameters
+                </div>
+
+                <div id="LocalBeamSearchParameters" style="display: none;">
+                    LocalBeamSearchParameters
+                </div>
+
+                <div id="GeneticParameters" style="display: none;">
+                    GeneticParameters
+                </div>
+
+                <button type = "submit" class="btn btn-success" style="margin-top: 15px">
                     Execute
                 </button>
-            }
+                }
+
         </center>
     </div>
 </div>
