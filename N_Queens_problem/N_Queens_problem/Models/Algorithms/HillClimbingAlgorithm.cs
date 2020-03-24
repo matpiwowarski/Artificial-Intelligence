@@ -17,9 +17,10 @@ namespace N_Queens_problem.Models.Algorithms
 
             int bestResult = this.Heuristic(board, size);
 
-            while(bestResult != 0)
+            int counter = 0;
+            while(bestResult != 0 && counter < chessBoard.MaximumNumberOfSteps)
             {
-                ChessPiece[,] startingState = board;
+                ChessPiece[,] startingState = CopyBoard(board, size);
 
                 for (int i = 0; i < size; i++)
                 {
@@ -44,16 +45,46 @@ namespace N_Queens_problem.Models.Algorithms
                     }
                 }
                 
-                if(startingState.Equals(board)) // we are blocked => we have to start again
+                if(CheckIfBoardsAreEqual(startingState, board, size)) // we are blocked => we have to start again
                 {
                     board = GenerateRandomBoardState(size);
                     bestResult = this.Heuristic(board, size);
                 }
-                
+                counter++;
             }
 
             chessBoard.HeuristicResult = bestResult;
             chessBoard.Board = board;
+        }
+
+
+        private ChessPiece[,] CopyBoard(ChessPiece[,] board, int size)
+        {
+            ChessPiece[,] copy = new ChessPiece[size, size];
+
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    copy[i, j] = board[i, j];
+                }
+            }
+
+            return copy;
+        }
+
+        private bool CheckIfBoardsAreEqual(ChessPiece[,] a, ChessPiece[,] b, int size)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    if (a[i, j] != b[i, j])
+                        return false;
+                }
+            }
+
+            return true;
         }
     }
 }
