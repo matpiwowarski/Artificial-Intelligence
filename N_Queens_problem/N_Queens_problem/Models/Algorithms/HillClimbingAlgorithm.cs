@@ -57,22 +57,6 @@ namespace N_Queens_problem.Models.Algorithms
             chessBoard.Board = board;
         }
 
-
-        private ChessPiece[,] CopyBoard(ChessPiece[,] board, int size)
-        {
-            ChessPiece[,] copy = new ChessPiece[size, size];
-
-            for (int i = 0; i < size; i++)
-            {
-                for (int j = 0; j < size; j++)
-                {
-                    copy[i, j] = board[i, j];
-                }
-            }
-
-            return copy;
-        }
-
         private bool CheckIfBoardsAreEqual(ChessPiece[,] a, ChessPiece[,] b, int size)
         {
             for (int i = 0; i < size; i++)

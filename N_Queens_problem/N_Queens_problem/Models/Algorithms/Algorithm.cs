@@ -114,5 +114,20 @@ namespace N_Queens_problem.Models.Algorithms
 
             return newBoard;
         }
+
+        protected ChessPiece[,] CopyBoard(ChessPiece[,] board, int size)
+        {
+            ChessPiece[,] copy = new ChessPiece[size, size];
+
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    copy[i, j] = board[i, j];
+                }
+            }
+
+            return copy;
+        }
     }
 }

@@ -15,8 +15,8 @@ namespace N_Queens_problem.Models
         public int HeuristicResult { get; set; }
         // parameters
         public int MaximumNumberOfSteps { get; set; } // 1st algorithm
-        public int StartingTemperature { get; set; } // 2nd algorithm
-        public int CoolingFactor { get; set; } // 2nd algorithm
+        public double StartingTemperature { get; set; } // 2nd algorithm
+        public double CoolingFactor { get; set; } // 2nd algorithm
 
         public Chessboard()
         {
