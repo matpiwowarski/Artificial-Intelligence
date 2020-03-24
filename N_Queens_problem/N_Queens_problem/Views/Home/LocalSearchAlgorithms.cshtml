@@ -91,10 +91,6 @@
             }
             <p>@Html.ActionLink("Clear", "LocalSearchAlgorithms", new { size = @Model.Size })</p>
             <p>Heuristic: @Model.HeuristicResult</p>
-            @if (Model.NumberOfSteps > 0)
-            {
-                <p>Number of steps: @Model.NumberOfSteps</p>
-            }
         </center>
     </div>
     <div class="col-4">
@@ -134,7 +130,10 @@
                 </div>
 
                 <div id="SimulatedAnnealingParameters" style="display: none;">
-                    SimulatedAnnealingParameters
+                    <label for="StartingTemperature" style="margin-top: 10px;">Starting Temperature</label>
+                    <input class="form-control" id="StartingTemperature" name="StartingTemperature" type="text" value="10000" />
+                    <label for="CoolingFactor" style="margin-top: 10px;">Cooling Factor</label>
+                    <input class="form-control" id="CoolingFactor" name="CoolingFactor" type="text" value="1" />
                 </div>
 
                 <div id="LocalBeamSearchParameters" style="display: none;">

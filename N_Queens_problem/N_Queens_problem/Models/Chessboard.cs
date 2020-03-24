@@ -13,13 +13,17 @@ namespace N_Queens_problem.Models
         public ChessPiece[,] Board { get; set; } // BOARD [ ROW , COLUMN]
         public bool IsSolved { get; set; }
         public int HeuristicResult { get; set; }
-        public int NumberOfSteps { get; set; }
-        public int MaximumNumberOfSteps { get; set; }
+        // parameters
+        public int MaximumNumberOfSteps { get; set; } // 1st algorithm
+        public int StartingTemperature { get; set; } // 2nd algorithm
+        public int CoolingFactor { get; set; } // 2nd algorithm
 
         public Chessboard()
         {
-            NumberOfSteps = 0;
+            // default values
             MaximumNumberOfSteps = 50;
+            StartingTemperature = 1000;
+            CoolingFactor = 1;
         }
 
         public Chessboard(int size)
@@ -27,8 +31,10 @@ namespace N_Queens_problem.Models
             Size = size;
             Board = new ChessPiece[size, size];
             IsSolved = false;
-            NumberOfSteps = 0;
+            // default values
             MaximumNumberOfSteps = 50;
+            StartingTemperature = 1000;
+            CoolingFactor = 1;
         }
 
         internal bool CheckIfQueenCanBeAttacked(int x, int y)

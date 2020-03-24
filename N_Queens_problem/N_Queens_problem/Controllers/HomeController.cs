@@ -73,28 +73,40 @@ namespace N_Queens_problem.Controllers
 
             var algorithmName = formCollection["AlgorithmSelect"];
 
-            try
-            {
-                var maximumNumberOfSteps = int.Parse(formCollection["MaxSteps"]);
-                nQueensProblem.SetMaximumNumberOfSteps(maximumNumberOfSteps);
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine("Exception message: {0}", e.Message);
-            } 
-
-
             switch(algorithmName)
             {
                 case "Hill Climbing":
+                    try // taking parameters from View and set it
+                    {
+                        var maximumNumberOfSteps = int.Parse(formCollection["MaxSteps"]);
+                        nQueensProblem.SetMaximumNumberOfSteps(maximumNumberOfSteps);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Exception message: {0}", e.Message);
+                    }
                     nQueensProblem.SetAlgorithm(new HillClimbingAlgorithm());
                     break;
+
                 case "Simulated Annealing":
+                    try // taking parameters from View and set it
+                    {
+                        var startingTemperature = int.Parse(formCollection["StartingTemperature"]);
+                        nQueensProblem.SetStartingTemperature(startingTemperature);
+                        var coolingFactor = int.Parse(formCollection["CoolingFactor"]);
+                        nQueensProblem.SetCoolingFactor(coolingFactor);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Exception message: {0}", e.Message);
+                    }
                     nQueensProblem.SetAlgorithm(new SimulatedAnnealingAlgorithm());
                     break;
+
                 case "Local Beam Search":
                     nQueensProblem.SetAlgorithm(new LocalBeamSearchAlgorithm());
                     break;
+
                 case "Genetic":
                     nQueensProblem.SetAlgorithm(new GeneticAlgorithm());
                     break;

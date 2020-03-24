@@ -5,7 +5,7 @@ namespace N_Queens_problem.Models.Algorithms
     {
         public override void SolveProblem(Chessboard chessBoard)
         {
-            throw new NotImplementedException();
+
         }
 
     }
