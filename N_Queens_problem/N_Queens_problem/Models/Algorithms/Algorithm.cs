@@ -93,7 +93,7 @@ namespace N_Queens_problem.Models.Algorithms
         {
             for (int i = 0; i < size; i++)
             {
-                if (board[i, column] == ChessPiece.Queen) // deleting older one
+                if (board[i, column] == ChessPiece.Queen)
                     return i;
             }
 
@@ -128,6 +128,15 @@ namespace N_Queens_problem.Models.Algorithms
             }
 
             return copy;
+        }
+
+        protected void RandomMove1Queen(ChessPiece[,] board, int size)
+        {
+            var random = new Random();
+            int randomColumn = random.Next(size);
+            int randomRow = random.Next(size);
+
+            MoveQueenVertical(board, size, randomColumn, randomRow);
         }
     }
 }

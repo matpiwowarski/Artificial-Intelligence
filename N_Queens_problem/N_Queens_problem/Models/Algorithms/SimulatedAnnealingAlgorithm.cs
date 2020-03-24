@@ -18,16 +18,16 @@ namespace N_Queens_problem.Models.Algorithms
 
             while (temperature > 0 && currentResult != 0)
             {
+                ChessPiece[,] boardBeforeMove = CopyBoard(board,size);
                 // 1. Random move
-                ChessPiece[,] randomState = GenerateRandomBoardState(size);
-                var newResult = this.Heuristic(randomState, size);
+                RandomMove1Queen(board, size);
+                var newResult = this.Heuristic(board, size);
                 // h = current H(x) - new H(x)
                 int h = currentResult - newResult;
                 // 2. better result -> save it
                 if (h > 0)
                 {
                     currentResult = newResult;
-                    board = randomState;
                 }
                 // 3. worse result :
                 //      a) too risky -> start start again
@@ -44,21 +44,18 @@ namespace N_Queens_problem.Models.Algorithms
                     {
                         // accepted
                         currentResult = newResult;
-                        board = randomState;
                     }
-                    else
+                    else // else rejected -> don't save 
                     {
-                        // rejected
+                        board = boardBeforeMove;
                     }
 
                 }
 
-                temperature = temperature - coolingFactor;
+                // 4. Reduce temperature
+                temperature -= coolingFactor;
             }
 
-
-
-            // 4. Reduce temperature
             chessBoard.HeuristicResult = currentResult;
             chessBoard.Board = board;
         }
