@@ -14,11 +14,12 @@ namespace N_Queens_problem.Models.Algorithms
         {
             var size = chessBoard.Size;
             var board = chessBoard.Board;
+            var maxSteps = chessBoard.MaximumNumberOfSteps;
 
             int bestResult = this.Heuristic(board, size);
 
             int steps = 0;
-            while(bestResult != 0 && steps < chessBoard.MaximumNumberOfSteps)
+            while(bestResult != 0 && steps < maxSteps)
             {
                 ChessPiece[,] startingState = CopyBoard(board, size);
 
