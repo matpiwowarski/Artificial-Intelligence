@@ -45,7 +45,6 @@ namespace N_Queens_problem.Models.Algorithms
                             break;
                     }
                     steps++;
-
                     if (steps == maxSteps)
                         break;
                 }

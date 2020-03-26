@@ -22,7 +22,7 @@ namespace N_Queens_problem.Models
         {
             // default values
             MaximumNumberOfSteps = 50;
-            StartingTemperature = 1000;
+            StartingTemperature = 10000;
             CoolingFactor = 1;
         }
 
@@ -33,7 +33,7 @@ namespace N_Queens_problem.Models
             IsSolved = false;
             // default values
             MaximumNumberOfSteps = 50;
-            StartingTemperature = 1000;
+            StartingTemperature = 10000;
             CoolingFactor = 1;
         }
 
