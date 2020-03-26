@@ -45,6 +45,9 @@ namespace N_Queens_problem.Models.Algorithms
                             break;
                     }
                     steps++;
+
+                    if (steps == maxSteps)
+                        break;
                 }
                 
                 if(CheckIfBoardsAreEqual(startingState, board, size)) // we are blocked => we have to start again
