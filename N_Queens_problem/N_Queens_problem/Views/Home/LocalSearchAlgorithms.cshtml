@@ -113,7 +113,6 @@
                     Change Size
                 </button>
             }
-
             @using (Html.BeginForm("DoAlgorithm", "Home", FormMethod.Post))
             {
                 <b><label for="AlgorithmSelect">Select Algorithm</label></b>
@@ -166,6 +165,15 @@
         }
     </center>
 </footer>
+
+
+<style>
+    select {
+        text-align: center;
+        text-align-last: center;
+        -moz-text-align-last: center;
+    }
+</style>
 
 <script>
     document.getElementById("MaxSteps").defaultValue = "@Model.Parameters.MaximumNumberOfSteps";
