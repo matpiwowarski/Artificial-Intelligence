@@ -69,19 +69,19 @@ namespace N_Queens_problem.Models
 
         public void SetMaximumNumberOfSteps(int number)
         {
-            _chessboard.MaximumNumberOfSteps = number;
+            _chessboard.Parameters.MaximumNumberOfSteps = number;
         }
         public void SetStartingTemperature(int temperature)
         {
-            _chessboard.StartingTemperature = temperature;
+            _chessboard.Parameters.StartingTemperature = temperature;
         }
         public void SetCoolingFactor(int coolingFactor)
         {
-            _chessboard.CoolingFactor = coolingFactor;
+            _chessboard.Parameters.CoolingFactor = coolingFactor;
         }
         public void SetNumberOfStates(int number)
         {
-            _chessboard.NumberOfStates = number;
+            _chessboard.Parameters.NumberOfStates = number;
         }
     }
 }

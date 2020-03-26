@@ -11,8 +11,8 @@ namespace N_Queens_problem.Models.Algorithms
         {
             var size = chessBoard.Size;
             var board = chessBoard.Board;
-            var temperature = chessBoard.StartingTemperature;
-            var coolingFactor = chessBoard.CoolingFactor;
+            var temperature = chessBoard.Parameters.StartingTemperature;
+            var coolingFactor = chessBoard.Parameters.CoolingFactor;
 
             var currentResult = this.Heuristic(board, size);
 

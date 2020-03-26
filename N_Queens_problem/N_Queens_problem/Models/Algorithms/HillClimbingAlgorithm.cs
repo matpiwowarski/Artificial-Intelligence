@@ -14,7 +14,7 @@ namespace N_Queens_problem.Models.Algorithms
         {
             var size = chessBoard.Size;
             var board = chessBoard.Board;
-            var maxSteps = chessBoard.MaximumNumberOfSteps;
+            var maxSteps = chessBoard.Parameters.MaximumNumberOfSteps;
 
             int bestResult = this.Heuristic(board, size);
 

@@ -168,7 +168,8 @@
 </footer>
 
 <script>
-    document.getElementById("MaxSteps").defaultValue = "@Model.MaximumNumberOfSteps";
-    document.getElementById("StartingTemperature").defaultValue = "@Model.StartingTemperature";
-    document.getElementById("CoolingFactor").defaultValue = "@Model.CoolingFactor";
+    document.getElementById("MaxSteps").defaultValue = "@Model.Parameters.MaximumNumberOfSteps";
+    document.getElementById("StartingTemperature").defaultValue = "@Model.Parameters.StartingTemperature";
+    document.getElementById("CoolingFactor").defaultValue = "@Model.Parameters.CoolingFactor";
+    document.getElementById("NumberOfStates").defaultValue = "@Model.Parameters.NumberOfStates";
 </script>
