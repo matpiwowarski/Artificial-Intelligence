@@ -104,6 +104,17 @@ namespace N_Queens_problem.Controllers
                     break;
 
                 case "Local Beam Search":
+                    try // taking parameters from View and set it
+                    {
+                        var maximumNumberOfSteps = int.Parse(formCollection["MaxSteps"]);
+                        nQueensProblem.SetMaximumNumberOfSteps(maximumNumberOfSteps);
+                        var numberOfStates = int.Parse(formCollection["NumberOfStates"]);
+                        nQueensProblem.SetNumberOfStates(numberOfStates);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Exception message: {0}", e.Message);
+                    }
                     nQueensProblem.SetAlgorithm(new LocalBeamSearchAlgorithm());
                     break;
 

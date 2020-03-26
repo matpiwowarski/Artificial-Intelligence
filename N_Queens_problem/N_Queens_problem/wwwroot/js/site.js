@@ -18,7 +18,7 @@ function selectAlgorithm() {
         document.getElementById('GeneticParameters').style.display = 'none';
     }
     else if (document.getElementById('AlgorithmSelect').value == 'Local Beam Search') {
-        document.getElementById('HillClimbingParameters').style.display = 'none';
+        document.getElementById('HillClimbingParameters').style.display = 'block';
         document.getElementById('SimulatedAnnealingParameters').style.display = 'none';
         document.getElementById('LocalBeamSearchParameters').style.display = 'block';
         document.getElementById('GeneticParameters').style.display = 'none';

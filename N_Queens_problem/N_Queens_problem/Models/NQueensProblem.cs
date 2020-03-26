@@ -79,5 +79,9 @@ namespace N_Queens_problem.Models
         {
             _chessboard.CoolingFactor = coolingFactor;
         }
+        public void SetNumberOfStates(int number)
+        {
+            _chessboard.NumberOfStates = number;
+        }
     }
 }

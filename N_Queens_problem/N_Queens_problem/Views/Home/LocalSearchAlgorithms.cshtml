@@ -97,7 +97,7 @@
         <center>
             @using (Html.BeginForm("ChangeBoardgameSize", "Home", FormMethod.Post))
             {
-                <label for="SizeSelect">Select Size</label>
+                <b><label for="SizeSelect">Select Size</label></b>
                 <select class="form-control" id="SizeSelect" name="SizeSelect">
                     <option value="4">4x4</option>
                     <option value="5">5x5</option>
@@ -116,13 +116,18 @@
 
             @using (Html.BeginForm("DoAlgorithm", "Home", FormMethod.Post))
             {
-                <label for="AlgorithmSelect">Select Algorithm</label>
+                <b><label for="AlgorithmSelect">Select Algorithm</label></b>
                 <select onchange="selectAlgorithm()" class="form-control" id="AlgorithmSelect" name="AlgorithmSelect">
                     <option value="Hill Climbing">Hill Climbing</option>
                     <option value="Simulated Annealing">Simulated Annealing</option>
                     <option value="Local Beam Search">Local Beam Search</option>
                     <option value="Genetic">Genetic</option>
                 </select>
+
+                <div id="LocalBeamSearchParameters" style="display: none;">
+                    <label for="NumberOfStates" style="margin-top: 10px;">Number of states</label>
+                    <input class="form-control" id="NumberOfStates" name="NumberOfStates" type="text" value="20" />
+                </div>
 
                 <div id="HillClimbingParameters" style="display: block;">
                     <label for="MaxSteps" style="margin-top: 10px;">Maximum number of steps</label>
@@ -136,18 +141,14 @@
                     <input class="form-control" id="CoolingFactor" name="CoolingFactor" type="text" value="1" />
                 </div>
 
-                <div id="LocalBeamSearchParameters" style="display: none;">
-                    LocalBeamSearchParameters
-                </div>
-
                 <div id="GeneticParameters" style="display: none;">
                     GeneticParameters
                 </div>
 
-                <button type = "submit" class="btn btn-success" style="margin-top: 15px">
+                <button type="submit" class="btn btn-success" style="margin-top: 15px">
                     Execute
                 </button>
-                }
+            }
 
         </center>
     </div>
