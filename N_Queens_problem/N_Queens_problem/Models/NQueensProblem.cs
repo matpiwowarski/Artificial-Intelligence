@@ -83,5 +83,25 @@ namespace N_Queens_problem.Models
         {
             _chessboard.Parameters.NumberOfStates = number;
         }
+        public void SetSizeOfSingleGeneration(int number)
+        {
+            _chessboard.Parameters.SizeOfSingleGeneration = number;
+        }
+        public void SetPercentOfElitism(int number)
+        {
+            _chessboard.Parameters.PercentOfElitism = number;
+        }
+        public void SetCrossoverProbability(int number)
+        {
+            _chessboard.Parameters.CrossoverProbability = number;
+        }
+        public void SetMutationProbability(int number)
+        {
+            _chessboard.Parameters.MutationProbability = number;
+        }
+        public void SetNumberOfGenerations(int number)
+        {
+            _chessboard.Parameters.NumberOfGenerations = number;
+        }
     }
 }

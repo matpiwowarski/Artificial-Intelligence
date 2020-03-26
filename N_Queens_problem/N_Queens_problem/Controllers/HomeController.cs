@@ -117,8 +117,28 @@ namespace N_Queens_problem.Controllers
                     }
                     nQueensProblem.SetAlgorithm(new LocalBeamSearchAlgorithm());
                     break;
-
                 case "Genetic":
+                    try // taking parameters from View and set it
+                    {
+                        var sizeOfSingleGeneration = int.Parse(formCollection["SizeOfSingleGeneration"]);
+                        nQueensProblem.SetSizeOfSingleGeneration(sizeOfSingleGeneration);
+
+                        var percentOfElitism = int.Parse(formCollection["PercentOfElitism"]);
+                        nQueensProblem.SetPercentOfElitism(percentOfElitism);
+
+                        var crossoverProbability = int.Parse(formCollection["CrossoverProbability"]);
+                        nQueensProblem.SetCrossoverProbability(crossoverProbability);
+
+                        var mutationProbability = int.Parse(formCollection["MutationProbability"]);
+                        nQueensProblem.SetMutationProbability(mutationProbability);
+
+                        var numberOfGenerations = int.Parse(formCollection["NumberOfGenerations"]);
+                        nQueensProblem.SetNumberOfGenerations(numberOfGenerations);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Exception message: {0}", e.Message);
+                    }
                     nQueensProblem.SetAlgorithm(new GeneticAlgorithm());
                     break;
                 default:

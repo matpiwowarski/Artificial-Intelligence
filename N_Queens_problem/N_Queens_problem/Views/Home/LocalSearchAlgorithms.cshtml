@@ -139,9 +139,17 @@
                     <label for="CoolingFactor" style="margin-top: 10px;">Cooling Factor</label>
                     <input class="form-control" id="CoolingFactor" name="CoolingFactor" type="text" value="1" />
                 </div>
-
                 <div id="GeneticParameters" style="display: none;">
-                    GeneticParameters
+                    <label for="SizeOfSingleGeneration" style="margin-top: 10px;">Size Of Single Generation</label>
+                    <input class="form-control" id="SizeOfSingleGeneration" name="SizeOfSingleGeneration" type="text" value="1" />
+                    <label for="PercentOfElitism" style="margin-top: 10px;">Percent Of Elitism</label>
+                    <input class="form-control" id="PercentOfElitism" name="PercentOfElitism" type="text" value="1" />
+                    <label for="CrossoverProbability" style="margin-top: 10px;">Crossover Probability</label>
+                    <input class="form-control" id="CrossoverProbability" name="CrossoverProbability" type="text" value="1" />
+                    <label for="MutationProbability" style="margin-top: 10px;">Mutation Probability</label>
+                    <input class="form-control" id="MutationProbability" name="MutationProbability" type="text" value="1" />
+                    <label for="NumberOfGenerations" style="margin-top: 10px;">Number Of Generations</label>
+                    <input class="form-control" id="NumberOfGenerations" name="NumberOfGenerations" type="text" value="1" />
                 </div>
 
                 <button type="submit" class="btn btn-success" style="margin-top: 15px">
@@ -177,7 +185,15 @@
 
 <script>
     document.getElementById("MaxSteps").defaultValue = "@Model.Parameters.MaximumNumberOfSteps";
+
     document.getElementById("StartingTemperature").defaultValue = "@Model.Parameters.StartingTemperature";
     document.getElementById("CoolingFactor").defaultValue = "@Model.Parameters.CoolingFactor";
+
     document.getElementById("NumberOfStates").defaultValue = "@Model.Parameters.NumberOfStates";
+
+    document.getElementById("SizeOfSingleGeneration").defaultValue = "@Model.Parameters.SizeOfSingleGeneration";
+    document.getElementById("PercentOfElitism").defaultValue = "@Model.Parameters.PercentOfElitism";
+    document.getElementById("CrossoverProbability").defaultValue = "@Model.Parameters.CrossoverProbability";
+    document.getElementById("MutationProbability").defaultValue = "@Model.Parameters.MutationProbability";
+    document.getElementById("NumberOfGenerations").defaultValue = "@Model.Parameters.NumberOfGenerations";
 </script>
