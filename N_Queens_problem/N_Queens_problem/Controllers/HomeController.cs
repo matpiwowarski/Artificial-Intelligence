@@ -78,7 +78,7 @@ namespace N_Queens_problem.Controllers
                 case "Hill Climbing":
                     try // taking parameters from View and set it
                     {
-                        var maximumNumberOfSteps = int.Parse(formCollection["MaxSteps"]);
+                        var maximumNumberOfSteps = uint.Parse(formCollection["MaxSteps"]);
                         nQueensProblem.SetMaximumNumberOfSteps(maximumNumberOfSteps);
                     }
                     catch (Exception e)
@@ -106,9 +106,9 @@ namespace N_Queens_problem.Controllers
                 case "Local Beam Search":
                     try // taking parameters from View and set it
                     {
-                        var maximumNumberOfSteps = int.Parse(formCollection["MaxSteps"]);
+                        var maximumNumberOfSteps = uint.Parse(formCollection["MaxSteps"]);
                         nQueensProblem.SetMaximumNumberOfSteps(maximumNumberOfSteps);
-                        var numberOfStates = int.Parse(formCollection["NumberOfStates"]);
+                        var numberOfStates = uint.Parse(formCollection["NumberOfStates"]);
                         nQueensProblem.SetNumberOfStates(numberOfStates);
                     }
                     catch (Exception e)

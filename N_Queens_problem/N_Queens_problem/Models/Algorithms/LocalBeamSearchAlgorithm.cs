@@ -8,7 +8,7 @@ namespace N_Queens_problem.Models.Algorithms
 
         public override void SolveProblem(Chessboard chessBoard)
         {
-            var size = chessBoard.Size;
+            var boardSize = chessBoard.Size;
             var numberOfStates = chessBoard.Parameters.NumberOfStates;
             var maxNumberOfSteps = chessBoard.Parameters.MaximumNumberOfSteps;
 
@@ -19,20 +19,20 @@ namespace N_Queens_problem.Models.Algorithms
             // generate X states
             for (int i = 0; i < numberOfStates; i++)
             {
-                var generatedState = this.GenerateRandomBoardState(size);
+                var generatedState = this.GenerateRandomBoardState(boardSize);
                 states.Add(generatedState);
             }
 
             var bestState = states[0];
-            int bestResult = Heuristic(states[0], size);
+            int bestResult = Heuristic(states[0], boardSize);
 
             // iterations - steps = depth of search
             for (int i = 0; i < maxNumberOfSteps; i++)
             {
-                MoveQueensInEveryState(states, size); // if state gets stuck => it will be replaced
+                MoveQueensInEveryState(states, boardSize); // if state gets stuck => it will be replaced
 
-                bestState = ReturnBestState(states, size);
-                bestResult = Heuristic(bestState, size);
+                bestState = ReturnBestState(states, boardSize);
+                bestResult = Heuristic(bestState, boardSize);
 
                 steps++;
 
@@ -45,14 +45,14 @@ namespace N_Queens_problem.Models.Algorithms
             chessBoard.HeuristicResult = bestResult;
         }
 
-        private ChessPiece[,] ReturnBestState(List<ChessPiece[,]> states, int size)
+        private ChessPiece[,] ReturnBestState(List<ChessPiece[,]> states, int boardSize)
         {
-            int bestResult = Heuristic(states[0], size);
+            int bestResult = Heuristic(states[0], boardSize);
             ChessPiece[,] bestState = states[0];
 
             foreach (var state in states)
             {
-                int newResult = Heuristic(state, size);
+                int newResult = Heuristic(state, boardSize);
 
                 if (newResult < bestResult)
                     bestState = state;
@@ -61,24 +61,24 @@ namespace N_Queens_problem.Models.Algorithms
             return bestState;
         }
 
-        private void MoveQueensInEveryState(List<ChessPiece[,]> states, int size)
+        private void MoveQueensInEveryState(List<ChessPiece[,]> states, int boardSize)
         {
-            for(int index = 0; index < size; index++)
+            for(int stateIndex = 0; stateIndex < states.Count; stateIndex++)
             {
-                int resultBeforeChanges = Heuristic(states[index], size);
+                int resultBeforeChanges = Heuristic(states[stateIndex], boardSize);
 
                 if (resultBeforeChanges == 0) // one of our state is solved so we don't care about the rest
                     break;
 
-                for (int i = 0; i < size; i++) // every column
+                for (int i = 0; i < boardSize; i++) // every column
                 {
-                    for (int j = 0; j < size; j++) // checking which row is the best in 'i' column and we are moving there our queen
+                    for (int j = 0; j < boardSize; j++) // checking which row is the best in 'i' column and we are moving there our queen
                     {
-                        int rowBeforeMovingQueen = GetQueenRowInColumn(states[index], size, i);
-                        int resultBeforeMovingQueen = Heuristic(states[index], size);
+                        int rowBeforeMovingQueen = GetQueenRowInColumn(states[stateIndex], boardSize, i);
+                        int resultBeforeMovingQueen = Heuristic(states[stateIndex], boardSize);
 
-                        this.MoveQueenVertical(states[index], size, i, j);
-                        int newResult = this.Heuristic(states[index], size);
+                        this.MoveQueenVertical(states[stateIndex], boardSize, i, j);
+                        int newResult = this.Heuristic(states[stateIndex], boardSize);
 
                         if (newResult < resultBeforeMovingQueen)
                         {
@@ -86,17 +86,17 @@ namespace N_Queens_problem.Models.Algorithms
                         }
                         else // worse or equal => puting back our queen
                         {
-                            this.MoveQueenVertical(states[index], size, i, rowBeforeMovingQueen);
+                            this.MoveQueenVertical(states[stateIndex], boardSize, i, rowBeforeMovingQueen);
                         }
 
                         if (newResult == 0) // h(x) == 0 => we solved the problem
                             break;
                     }
                 }
-                int resultAfterChanges = Heuristic(states[index], size);
+                int resultAfterChanges = Heuristic(states[stateIndex], boardSize);
                 if (resultBeforeChanges == resultAfterChanges) // we didn't move any queen => we generate new board
                 {
-                    states[index] = GenerateRandomBoardState(size);
+                    states[stateIndex] = GenerateRandomBoardState(boardSize);
                 }
             }
         }
