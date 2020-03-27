@@ -9,8 +9,8 @@ namespace N_Queens_problem.Models.Algorithms
         public override void SolveProblem(Chessboard chessBoard)
         {
             var size = chessBoard.Size;
-            var numberOfStates = chessBoard.Parameters.StartingTemperature;
-            var maxNumberOfSteps = chessBoard.Parameters.CoolingFactor;
+            var numberOfStates = chessBoard.Parameters.NumberOfStates;
+            var maxNumberOfSteps = chessBoard.Parameters.MaximumNumberOfSteps;
 
             int steps = 0;
 
@@ -48,7 +48,7 @@ namespace N_Queens_problem.Models.Algorithms
         private ChessPiece[,] ReturnBestState(List<ChessPiece[,]> states, int size)
         {
             int bestResult = Heuristic(states[0], size);
-            ChessPiece[,] bestState = new ChessPiece[size, size];
+            ChessPiece[,] bestState = states[0];
 
             foreach (var state in states)
             {
