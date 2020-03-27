@@ -12,6 +12,8 @@ namespace N_Queens_problem.Models.Algorithms
             var numberOfStates = chessBoard.Parameters.StartingTemperature;
             var maxNumberOfSteps = chessBoard.Parameters.CoolingFactor;
 
+            int steps = 0;
+
             var states = new List<ChessPiece[,]>();
 
             // generate X states
@@ -32,10 +34,13 @@ namespace N_Queens_problem.Models.Algorithms
                 bestState = ReturnBestState(states, size);
                 bestResult = Heuristic(bestState, size);
 
+                steps++;
+
                 if (bestResult == 0)
                     break;
             }
 
+            chessBoard.Steps = steps;
             chessBoard.Board = bestState;
             chessBoard.HeuristicResult = bestResult;
         }

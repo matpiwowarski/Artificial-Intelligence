@@ -14,6 +14,8 @@ namespace N_Queens_problem.Models.Algorithms
             var temperature = chessBoard.Parameters.StartingTemperature;
             var coolingFactor = chessBoard.Parameters.CoolingFactor;
 
+            int steps = 0;
+
             var currentResult = this.Heuristic(board, size);
 
             while (temperature > 0 && currentResult != 0)
@@ -54,8 +56,10 @@ namespace N_Queens_problem.Models.Algorithms
 
                 // 4. Reduce temperature
                 temperature -= coolingFactor;
+                steps++;
             }
 
+            chessBoard.Steps = steps;
             chessBoard.HeuristicResult = currentResult;
             chessBoard.Board = board;
         }

@@ -42,6 +42,7 @@
         <center>
             @* DISPLAY CHESSBOARD*@
             <h3>Chessboard size: @Model.Size x @Model.Size</h3>
+            <p>Heuristic: @Model.HeuristicResult</p>
             @{
                 for (int i = 0; i < Model.Size; i++)
                 {
@@ -90,7 +91,10 @@
                 }
             }
             <p>@Html.ActionLink("Clear", "LocalSearchAlgorithms", new { size = @Model.Size })</p>
-            <p>Heuristic: @Model.HeuristicResult</p>
+            @if (Model.Steps > 0)
+            {
+                <p>Steps: @Model.Steps </p>
+            }
         </center>
     </div>
     <div class="col-4">

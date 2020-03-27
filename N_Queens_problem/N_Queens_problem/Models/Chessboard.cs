@@ -14,10 +14,12 @@ namespace N_Queens_problem.Models
         public bool IsSolved { get; set; }
         public int HeuristicResult { get; set; }
         public Parameters Parameters { get; set; }
+        public int Steps { get; set; } 
 
         public Chessboard()
         {
             Parameters = new Parameters();
+            Steps = 0;
         }
 
         public Chessboard(int size)
@@ -26,6 +28,7 @@ namespace N_Queens_problem.Models
             Board = new ChessPiece[size, size];
             IsSolved = false;
             Parameters = new Parameters();
+            Steps = 0;
         }
 
         internal bool CheckIfQueenCanBeAttacked(int x, int y)

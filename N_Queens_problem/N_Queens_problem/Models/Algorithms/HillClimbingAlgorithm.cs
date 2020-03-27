@@ -44,18 +44,17 @@ namespace N_Queens_problem.Models.Algorithms
                         if (bestResult == 0) // h(x) == 0 => we solved the problem
                             break;
                     }
-                    steps++;
-                    if (steps == maxSteps)
-                        break;
                 }
-                
-                if(CheckIfBoardsAreEqual(startingState, board, size)) // we are blocked => we have to start again
+                steps++;
+
+                if (CheckIfBoardsAreEqual(startingState, board, size)) // we are blocked => we have to start again
                 {
                     board = GenerateRandomBoardState(size);
                     bestResult = this.Heuristic(board, size);
                 }
             }
 
+            chessBoard.Steps = steps;
             chessBoard.HeuristicResult = bestResult;
             chessBoard.Board = board;
         }
