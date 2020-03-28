@@ -8,7 +8,9 @@
 
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Models\Algorithms\" />
+    <Folder Include="Models\NQueensProblem\" />
+    <Folder Include="Models\NQueensProblem\Algorithms\" />
+    <Folder Include="Models\TicTacToe\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Resources\queen.png" />

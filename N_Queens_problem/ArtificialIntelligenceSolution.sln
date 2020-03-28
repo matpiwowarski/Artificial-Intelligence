@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "N_Queens_problem", "N_Queens_problem\N_Queens_problem.csproj", "{3D89195E-2402-43DE-8A45-C3C1A40140DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtificialIntelligence", "N_Queens_problem\ArtificialIntelligence.csproj", "{3D89195E-2402-43DE-8A45-C3C1A40140DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
