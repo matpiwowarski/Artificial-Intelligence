@@ -24,18 +24,7 @@ namespace N_Queens_problem.Controllers
         {
             return View();
         }
-        /*
-        public IActionResult LocalSearchAlgorithms()
-        {
-            NQueensProblem nQueensProblem = new NQueensProblem();
 
-            ViewBag.nQueensProblem = nQueensProblem;
-
-            return View();
-        }
-        */
-
-        // FIRST VIEW + CLEAR()
         public IActionResult LocalSearchAlgorithms(int size = 4)
         {
             NQueensProblem nQueensProblem = new NQueensProblem(size);
@@ -44,7 +33,7 @@ namespace N_Queens_problem.Controllers
             nQueensProblem.DoAlgorithm(); // just heuristic result
 
             var board = nQueensProblem.GetResultBoard();
-            
+
             board.CheckIfProblemSolved();
 
             return View(board);

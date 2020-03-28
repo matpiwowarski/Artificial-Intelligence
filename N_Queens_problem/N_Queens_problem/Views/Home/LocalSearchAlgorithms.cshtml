@@ -38,12 +38,37 @@
 <center><h2>N-queens problem - @ViewBag.Title</h2></center>
 
 <div class="row">
-    <div class="col-8">
+    <div class="col">
+        <div class="margin padding-info">
+            <p class="board-info">Chessboard size: @Model.Size x @Model.Size</p>
+            <p class="board-info">Heuristic: @Model.HeuristicResult</p>
+            @if (Model.Steps > 0)
+            {
+                <p class="board-info">Steps: @Model.Steps </p>
+            }
+            else
+            {
+                <p class="board-info">Steps: - </p>
+            }
+
+            <div class="board-info">
+                <span> Problem Solved: </span>
+                @if (Model.IsSolved)
+                {
+                    <span class="board-info" style="color: green;">True</span>
+                }
+                else
+                {
+                    <span class="board-info" style="color: red;">False</span>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col" id="chessboard">
         <center>
             @* DISPLAY CHESSBOARD*@
-            <p class="medium-size-info">Heuristic: @Model.HeuristicResult</p>
 
-            <div class="chessboard">
+            <div class="chessboard margin padding">
                 @{
                     for (int i = 0; i < Model.Size; i++)
                     {
@@ -92,16 +117,11 @@
                     }
                 }
             </div>
-            <b><p>Chessboard size: @Model.Size x @Model.Size</p></b>
+            <p>@Html.ActionLink("Clear", "LocalSearchAlgorithms", new { size = @Model.Size })</p>
 
-            <p class="medium-size-info" style="margin-top: -15px;">@Html.ActionLink("Clear", "LocalSearchAlgorithms", new { size = @Model.Size })</p>
-            @if (Model.Steps > 0)
-            {
-                <p class="medium-size-info" style="margin-top: -15px;">Steps: @Model.Steps </p>
-            }
         </center>
     </div>
-    <div class="col-4">
+    <div class="col margin padding">
         <center>
             @using (Html.BeginForm("ChangeBoardgameSize", "Home", FormMethod.Post))
             {
@@ -197,24 +217,26 @@
         </center>
     </div>
 </div>
-<footer>
-    <center>
-        <h4 style="display: inline;"> Problem Solved: </h4>
-        @if (Model.IsSolved)
-        {
-            <h3 style="color: green; display: inline;">True</h3>
-        }
-        else
-        {
-            <h3 style="color: red; display: inline;">False</h3>
-        }
-    </center>
-</footer>
-
 
 <style>
-    .form-control
-    {
+    .padding {
+        padding-top: 15px;
+    }
+    .padding-info {
+        padding-top: 100px;
+    }
+
+    .margin {
+        margin: 10px;
+    }
+
+    .board-info {
+        text-align: left;
+        margin-top: -15px;
+        font-size: medium;
+    }
+
+    .form-control {
         text-align: center;
     }
 
@@ -245,9 +267,6 @@
         margin-top: 10px;
         font-size: small;
         text-align: right;
-    }
-    .medium-size-info {
-        font-size: medium;
     }
 </style>
 
