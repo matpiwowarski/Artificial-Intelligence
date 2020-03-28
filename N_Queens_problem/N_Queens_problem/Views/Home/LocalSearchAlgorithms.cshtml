@@ -42,7 +42,7 @@
         <center>
             @* DISPLAY CHESSBOARD*@
             <h3>Chessboard size: @Model.Size x @Model.Size</h3>
-            <p>Heuristic: @Model.HeuristicResult</p>
+            <p class="medium-size-info">Heuristic: @Model.HeuristicResult</p>
             @{
                 for (int i = 0; i < Model.Size; i++)
                 {
@@ -90,10 +90,10 @@
                     <br />
                 }
             }
-            <p>@Html.ActionLink("Clear", "LocalSearchAlgorithms", new { size = @Model.Size })</p>
+            <p class="medium-size-info">@Html.ActionLink("Clear", "LocalSearchAlgorithms", new { size = @Model.Size })</p>
             @if (Model.Steps > 0)
             {
-                <p style="margin-top: -15px;">Steps: @Model.Steps </p>
+                <p class="medium-size-info" style="margin-top: -15px;">Steps: @Model.Steps </p>
             }
         </center>
     </div>
@@ -127,33 +127,62 @@
                     <option value="Genetic">Genetic</option>
                 </select>
 
-                <div id="LocalBeamSearchParameters" style="display: none;">
-                    <label for="NumberOfStates" style="margin-top: 10px;">Number of states</label>
-                    <input class="form-control" id="NumberOfStates" name="NumberOfStates" type="text" value="20" />
+                <div class="container" id="LocalBeamSearchParameters" style="display: none; margin-top: 15px;">
+                    <div class="row">
+                        <label class="col parameter-label" for="NumberOfStates">Number of states</label>
+                        <input class="col-4 form-control" id="NumberOfStates" name="NumberOfStates" type="text" style="text-align: center" value="20"/>
+                    </div>
                 </div>
 
-                <div id="HillClimbingParameters" style="display: block;">
-                    <label for="MaxSteps" style="margin-top: 10px;">Maximum number of steps</label>
-                    <input class="form-control" id="MaxSteps" name="MaxSteps" type="text" value="50" />
+                <div class="container" id="HillClimbingParameters" style="display: block; margin-top: 15px;">
+                    <div class="row">
+                        <label class="col parameter-label" for="MaxSteps">Maximum number of steps</label>
+                        <input class="col-4 form-control" id="MaxSteps" name="MaxSteps" type="text" style="text-align: center" value="50"/>
+                    </div>
                 </div>
 
-                <div id="SimulatedAnnealingParameters" style="display: none;">
-                    <label for="StartingTemperature" style="margin-top: 10px;">Starting Temperature</label>
-                    <input class="form-control" id="StartingTemperature" name="StartingTemperature" type="text" value="10000" />
-                    <label for="CoolingFactor" style="margin-top: 10px;">Cooling Factor</label>
-                    <input class="form-control" id="CoolingFactor" name="CoolingFactor" type="text" value="1" />
+                <div class="container" id="SimulatedAnnealingParameters" style="display: none; margin-top: 15px;">
+                    <div class="row">
+                        <label class="col parameter-label" for="StartingTemperature">Starting Temperature</label>
+                        <input class="col form-control" id="StartingTemperature" name="StartingTemperature" type="text" style="text-align: center" value="10000"/>
+                    </div>
+                    <div class="row" style="margin-top: 15px;">
+                        <label class="col parameter-label" for="CoolingFactor">Cooling Factor</label>
+                        <input class="col form-control" id="CoolingFactor" name="CoolingFactor" type="text" style="text-align: center" value="1"/>
+                    </div>
                 </div>
-                <div id="GeneticParameters" style="display: none;">
-                    <label for="SizeOfSingleGeneration" style="margin-top: 10px;">Size Of Single Generation</label>
-                    <input class="form-control" id="SizeOfSingleGeneration" name="SizeOfSingleGeneration" type="text" value="1" />
-                    <label for="PercentOfElitism" style="margin-top: 10px;">Percent Of Elitism</label>
-                    <input class="form-control" id="PercentOfElitism" name="PercentOfElitism" type="text" value="1" />
-                    <label for="CrossoverProbability" style="margin-top: 10px;">Crossover Probability</label>
-                    <input class="form-control" id="CrossoverProbability" name="CrossoverProbability" type="text" value="1" />
-                    <label for="MutationProbability" style="margin-top: 10px;">Mutation Probability</label>
-                    <input class="form-control" id="MutationProbability" name="MutationProbability" type="text" value="1" />
-                    <label for="NumberOfGenerations" style="margin-top: 10px;">Number Of Generations</label>
-                    <input class="form-control" id="NumberOfGenerations" name="NumberOfGenerations" type="text" value="1" />
+                <div class="container" id="GeneticParameters" style="display: none; margin-top: 15px;">
+                    <div class="row">
+                        <label class="col parameter-label" for="SizeOfSingleGeneration">
+                            Size Of Single Generation
+                        </label>
+                        <input class="col form-control" id="SizeOfSingleGeneration" name="SizeOfSingleGeneration" type="text" style="text-align: center" value="1"/>
+                    </div>
+                    <div class="row" style="margin-top: 2px;">
+                        <label class="col parameter-label" for="PercentOfElitism">
+                        Percent Of Elitism
+                        </label>
+                        <input class="col form-control" id="PercentOfElitism" name="PercentOfElitism" type="text" style="text-align: center" value="1"/>
+                    </div>
+
+                    <div class="row" style="margin-top: 2px;">
+                        <label class="col parameter-label" for="CrossoverProbability">
+                        Crossover Probability
+                        </label>
+                        <input class="col form-control" id="CrossoverProbability" name="CrossoverProbability" type="text" style="text-align: center" value="1"/>
+                    </div>
+                    <div class="row" style="margin-top: 2px;">
+                        <label class="col parameter-label" for="MutationProbability">
+                            Mutation Probability
+                        </label>
+                        <input class="col form-control" id="MutationProbability" name="MutationProbability" type="text" style="text-align: center" value="1"/>
+                    </div>
+                    <div class="row" style="margin-top: 2px;">
+                        <label class="col parameter-label" for="NumberOfGenerations">
+                            Number Of Generations
+                        </label>
+                        <input class="col form-control" id="NumberOfGenerations" name="NumberOfGenerations" type="text" style="text-align: center" value="1"/>
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-success" style="margin-top: 15px">
@@ -184,6 +213,13 @@
         text-align: center;
         text-align-last: center;
         -moz-text-align-last: center;
+    }
+    .parameter-label {
+        margin-top: 10px;
+        font-size: small;
+    }
+    .medium-size-info {
+        font-size: medium;
     }
 </style>
 
