@@ -35,13 +35,12 @@
     }
 
 }
-<h2>N-queens problem - @ViewBag.Title</h2>
+<center><h2>N-queens problem - @ViewBag.Title</h2></center>
 
 <div class="row">
     <div class="col-8">
         <center>
             @* DISPLAY CHESSBOARD*@
-            <h3>Chessboard size: @Model.Size x @Model.Size</h3>
             <p class="medium-size-info">Heuristic: @Model.HeuristicResult</p>
 
             <div class="chessboard">
@@ -93,8 +92,9 @@
                     }
                 }
             </div>
+            <b><p>Chessboard size: @Model.Size x @Model.Size</p></b>
 
-            <p class="medium-size-info">@Html.ActionLink("Clear", "LocalSearchAlgorithms", new { size = @Model.Size })</p>
+            <p class="medium-size-info" style="margin-top: -15px;">@Html.ActionLink("Clear", "LocalSearchAlgorithms", new { size = @Model.Size })</p>
             @if (Model.Steps > 0)
             {
                 <p class="medium-size-info" style="margin-top: -15px;">Steps: @Model.Steps </p>
