@@ -140,7 +140,7 @@ namespace N_Queens_problem.Models.Algorithms
 
             MoveQueenVertical(board, size, randomColumn, randomRow);
         }
-
+      
         protected void SortListOfStates(List<ChessPiece[,]> listOfStates, int boardSize)
         {
             int count = listOfStates.Count;

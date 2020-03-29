@@ -37,13 +37,17 @@ namespace N_Queens_problem.Models.Algorithms
                     break;
 
                 var newGeneration = new List<ChessPiece[,]>();
+                //SortListOfStates(generation, boardSize); ------- takes too long time
 
                 // k/2 iterations
-                for(int j = 0; j < sizeOfSingleGeneration/2; j++)
+                for (int j = 0; j < sizeOfSingleGeneration/2; j++)
                 {
                     // 1. Selection
-                    ChessPiece[,] chromosome1 = SelectChromosome(generation, boardSize, percentOfElitism);
-                    ChessPiece[,] chromosome2 = SelectChromosome(generation, boardSize, percentOfElitism);
+                    // best best m << k are copied into next generation
+                    MakeGenerationElite(generation, percentOfElitism);
+
+                    ChessPiece[,] chromosome1 = SelectChromosome(generation);
+                    ChessPiece[,] chromosome2 = SelectChromosome(generation);
 
                     // 2. Crossover
                     Crossover(chromosome1, chromosome2, boardSize, crossoverProbability);
@@ -66,7 +70,21 @@ namespace N_Queens_problem.Models.Algorithms
             chessBoard.HeuristicResult = bestResult;
         }
 
-        private ChessPiece[,] SelectChromosome(List<ChessPiece[,]> generation, int boardSize, double percentOfElitism)
+        private void MakeGenerationElite(List<ChessPiece[,]> generation, double percentOfElitism)
+        {
+            int count = generation.Count;
+            // generation is already sorted
+            double percentPerOneState = (double)(1) / (double)count;
+            double percentsToDelete = (1 - percentOfElitism) / percentPerOneState;
+            int iterations = (int)percentsToDelete;
+
+            for (int i = 0; i < iterations; i++)
+            {
+                generation.RemoveAt(generation.Count - 1);
+            }
+        }
+
+        private ChessPiece[,] SelectChromosome(List<ChessPiece[,]> generation)
         {
             Random random = new Random();
             var randomStateIndex = random.Next(generation.Count);
