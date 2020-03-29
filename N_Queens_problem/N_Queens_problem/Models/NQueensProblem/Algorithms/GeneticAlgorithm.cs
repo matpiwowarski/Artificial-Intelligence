@@ -16,7 +16,6 @@ namespace N_Queens_problem.Models.Algorithms
             int boardSize = chessBoard.Size;
             int steps = 0;
 
-
             var population = new List<ChessPiece[,]>(); // population -> list of states
 
             // generate initial population
@@ -26,23 +25,40 @@ namespace N_Queens_problem.Models.Algorithms
                 population.Add(generatedState);
             }
 
-            var bestState = ReturnBestState(population, boardSize);
-            int bestResult = Heuristic(bestState, boardSize);
+            var bestState = chessBoard.Board;
+            int bestResult = chessBoard.HeuristicResult;
 
             for (int i = 0; i < numberOfGenerations; i++)
             {
+                bestState = ReturnBestState(population, boardSize);
+                bestResult = Heuristic(bestState, boardSize);
+                if (bestResult == 0)
+                    break;
                 // 1. Selection
-                SelectPopulation(population);
+                SelectPopulation(population, percentOfElitism);
                 // 2. Crossover
                 Crossover(population, boardSize, crossoverProbability);
                 // 3. Mutation
+                Mutation(population, boardSize, mutationProbability);
+
+                steps++;
             }
-
-
 
             chessBoard.Steps = steps;
             chessBoard.Board = bestState;
             chessBoard.HeuristicResult = bestResult;
+        }
+
+        private void Mutation(List<ChessPiece[,]> population, int boardSize, double mutationProbability)
+        {
+            Random random = new Random();
+            var randomValue = random.NextDouble(); // random 0.0 - 1.0
+
+            if (randomValue <= mutationProbability)
+            {
+
+            }
+            // otherwise we skip mutation
         }
 
         private void Crossover(List<ChessPiece[,]> population, int boardSize, double crossoverProbability)
@@ -52,24 +68,37 @@ namespace N_Queens_problem.Models.Algorithms
 
             if(randomValue <= crossoverProbability)
             {
-                for(int i = 0; i < population.Count; i = i + 2)
+                for(int i = 0; i < population.Count; i += 2)
                 {
                     // 1st with 2nd, 3rd with 4th, 5th with 6th state:
-                    SwitchEvery2ndColumn(population[i], population[i + 1], boardSize);
+                    Random randomPoint = new Random();
+                    int crossoverPoint = randomPoint.Next(boardSize - 1); // (0, size - 2)
+
+                    SwitchPartsOfStates(population[i], population[i + 1], crossoverPoint, boardSize);
                 }
             }
             // otherwise we skip crossover
         }
 
-        private void SwitchEvery2ndColumn(ChessPiece[,] chessPiece1, ChessPiece[,] chessPiece2, int boardSize)
+        private void SwitchPartsOfStates(ChessPiece[,] state1, ChessPiece[,] state2, int crossoverPoint, int boardSize)
         {
-            for(int i = 0; i < boardSize; i++)
+            // crossoverPoint = X => first X columns won't be switched
+            for(int i = crossoverPoint; i < boardSize; i++)
             {
-
+                SwitchColumns(state1, state2, i, boardSize);
             }
         }
 
-        private void SelectPopulation(List<ChessPiece[,]> population)
+        private void SwitchColumns(ChessPiece[,] board1, ChessPiece[,] board2, int columnToSwitch, int boardSize)
+        {
+            int row1 = GetQueenRowInColumn(board1, boardSize, columnToSwitch);
+            int row2 = GetQueenRowInColumn(board2, boardSize, columnToSwitch);
+
+            MoveQueenVertical(board1, boardSize, columnToSwitch, row2);
+            MoveQueenVertical(board2, boardSize, columnToSwitch, row1);
+        }
+
+        private void SelectPopulation(List<ChessPiece[,]> population, double percentOfElitism)
         {
 
         }
