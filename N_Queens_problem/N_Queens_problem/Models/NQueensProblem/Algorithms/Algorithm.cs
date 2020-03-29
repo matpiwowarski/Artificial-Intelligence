@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace N_Queens_problem.Models.Algorithms
 {
     public abstract class Algorithm
@@ -137,6 +139,29 @@ namespace N_Queens_problem.Models.Algorithms
             int randomRow = random.Next(size);
 
             MoveQueenVertical(board, size, randomColumn, randomRow);
+        }
+
+        protected void SortListOfStates(List<ChessPiece[,]> listOfStates, int boardSize)
+        {
+            int count = listOfStates.Count;
+
+            for (int p = 0; p <= count - 2; p++)
+            {
+                for (int i = 0; i <= count - 2; i++)
+                {
+                    if (Heuristic(listOfStates[i], boardSize) > Heuristic(listOfStates[i + 1], boardSize))
+                    {
+                        Swap(listOfStates, i, i + 1);
+                    }
+                }
+            }
+        }
+
+        private void Swap<T>(IList<T> list, int indexA, int indexB)
+        {
+            T tmp = list[indexA];
+            list[indexA] = list[indexB];
+            list[indexB] = tmp;
         }
     }
 }

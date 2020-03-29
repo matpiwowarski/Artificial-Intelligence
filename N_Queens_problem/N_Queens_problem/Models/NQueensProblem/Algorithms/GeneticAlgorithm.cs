@@ -16,30 +16,38 @@ namespace N_Queens_problem.Models.Algorithms
             int boardSize = chessBoard.Size;
             int steps = 0;
 
-            var population = new List<ChessPiece[,]>(); // population -> list of states
+            var generation = new List<ChessPiece[,]>(); // generation -> list of states
 
-            // generate initial population
+            // generate initial generation
             for (int i = 0; i < sizeOfSingleGeneration; i++)
             {
                 var generatedState = this.GenerateRandomBoardState(boardSize);
-                population.Add(generatedState);
+                generation.Add(generatedState);
             }
 
             var bestState = chessBoard.Board;
             int bestResult = chessBoard.HeuristicResult;
-
+            // N iterations
             for (int i = 0; i < numberOfGenerations; i++)
             {
-                bestState = ReturnBestState(population, boardSize);
+                // calculate h for each state and find the best
+                bestState = ReturnBestState(generation, boardSize);
                 bestResult = Heuristic(bestState, boardSize);
                 if (bestResult == 0)
                     break;
+
+                var newGeneration = new List<ChessPiece[,]>();
+
                 // 1. Selection
-                SelectPopulation(population, percentOfElitism);
+                SortListOfStates(generation, boardSize);
+                ChessPiece[,] parent1 = generation[0];
+                ChessPiece[,] parent2 = generation[1];
+
+                SelectPopulation(generation, boardSize, percentOfElitism);
                 // 2. Crossover
-                Crossover(population, boardSize, crossoverProbability);
+                Crossover(generation, boardSize, crossoverProbability);
                 // 3. Mutation
-                Mutation(population, boardSize, mutationProbability);
+                Mutation(generation, boardSize, mutationProbability);
 
                 steps++;
             }
@@ -47,6 +55,11 @@ namespace N_Queens_problem.Models.Algorithms
             chessBoard.Steps = steps;
             chessBoard.Board = bestState;
             chessBoard.HeuristicResult = bestResult;
+        }
+
+        private void SelectPopulation(List<ChessPiece[,]> population, int boardSize, double percentOfElitism)
+        {
+            
         }
 
         private void Mutation(List<ChessPiece[,]> population, int boardSize, double mutationProbability)
@@ -96,11 +109,6 @@ namespace N_Queens_problem.Models.Algorithms
 
             MoveQueenVertical(board1, boardSize, columnToSwitch, row2);
             MoveQueenVertical(board2, boardSize, columnToSwitch, row1);
-        }
-
-        private void SelectPopulation(List<ChessPiece[,]> population, double percentOfElitism)
-        {
-
         }
 
         private ChessPiece[,] ReturnBestState(List<ChessPiece[,]> states, int boardSize)
