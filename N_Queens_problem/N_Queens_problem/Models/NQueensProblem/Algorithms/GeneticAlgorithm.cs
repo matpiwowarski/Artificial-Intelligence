@@ -38,57 +38,70 @@ namespace N_Queens_problem.Models.Algorithms
 
                 var newGeneration = new List<ChessPiece[,]>();
 
-                // 1. Selection
-                SortListOfStates(generation, boardSize);
-                ChessPiece[,] parent1 = generation[0];
-                ChessPiece[,] parent2 = generation[1];
+                // k/2 iterations
+                for(int j = 0; j < sizeOfSingleGeneration/2; j++)
+                {
+                    // 1. Selection
+                    ChessPiece[,] chromosome1 = SelectChromosome(generation, boardSize, percentOfElitism);
+                    ChessPiece[,] chromosome2 = SelectChromosome(generation, boardSize, percentOfElitism);
 
-                SelectPopulation(generation, boardSize, percentOfElitism);
-                // 2. Crossover
-                Crossover(generation, boardSize, crossoverProbability);
-                // 3. Mutation
-                Mutation(generation, boardSize, mutationProbability);
+                    // 2. Crossover
+                    Crossover(chromosome1, chromosome2, boardSize, crossoverProbability);
+                    // 3. Mutation
+                    Mutation(chromosome1, chromosome2, boardSize, mutationProbability);
+
+                    newGeneration.Add(chromosome1);
+                    newGeneration.Add(chromosome2);
+                }
 
                 steps++;
+                generation = newGeneration;
             }
+
+            bestState = ReturnBestState(generation, boardSize);
+            bestResult = Heuristic(bestState, boardSize);
 
             chessBoard.Steps = steps;
             chessBoard.Board = bestState;
             chessBoard.HeuristicResult = bestResult;
         }
 
-        private void SelectPopulation(List<ChessPiece[,]> population, int boardSize, double percentOfElitism)
+        private ChessPiece[,] SelectChromosome(List<ChessPiece[,]> generation, int boardSize, double percentOfElitism)
         {
-            
+            Random random = new Random();
+            var randomStateIndex = random.Next(generation.Count);
+
+            return generation[randomStateIndex];
         }
 
-        private void Mutation(List<ChessPiece[,]> population, int boardSize, double mutationProbability)
+        private void Mutation(ChessPiece[,] chromosome1, ChessPiece[,] chromosome2, int boardSize, double mutationProbability)
         {
             Random random = new Random();
             var randomValue = random.NextDouble(); // random 0.0 - 1.0
 
             if (randomValue <= mutationProbability)
             {
+                Random randomPoint = new Random();
+                int randomColumn = randomPoint.Next(boardSize);
+                int randomRow = randomPoint.Next(boardSize);
 
+                MoveQueenVertical(chromosome1, boardSize, randomColumn, randomRow);
+                MoveQueenVertical(chromosome2, boardSize, randomColumn, randomRow);
             }
             // otherwise we skip mutation
         }
 
-        private void Crossover(List<ChessPiece[,]> population, int boardSize, double crossoverProbability)
+        private void Crossover(ChessPiece[,] chromosome1, ChessPiece[,] chromosome2, int boardSize, double crossoverProbability)
         {
             Random random = new Random();
             var randomValue = random.NextDouble(); // random 0.0 - 1.0
 
-            if(randomValue <= crossoverProbability)
+            if (randomValue <= crossoverProbability)
             {
-                for(int i = 0; i < population.Count; i += 2)
-                {
-                    // 1st with 2nd, 3rd with 4th, 5th with 6th state:
-                    Random randomPoint = new Random();
-                    int crossoverPoint = randomPoint.Next(boardSize - 1); // (0, size - 2)
+                Random randomPoint = new Random();
+                int crossoverPoint = randomPoint.Next(boardSize - 1); // (0, size - 2)
 
-                    SwitchPartsOfStates(population[i], population[i + 1], crossoverPoint, boardSize);
-                }
+                SwitchPartsOfStates(chromosome1, chromosome2, crossoverPoint, boardSize);
             }
             // otherwise we skip crossover
         }
