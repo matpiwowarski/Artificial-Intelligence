@@ -7,7 +7,6 @@ namespace N_Queens_problem.Models.Algorithms
         {
         }
 
-
         // N x (N-1) possible successors
         //Hill Climbing with random restart
         public override void SolveProblem(Chessboard chessBoard)
