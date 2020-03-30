@@ -121,3 +121,7 @@ Parameters:
   
 8. `generation` is changed into `newGeneration`.
 9. Repeat `NumberOfGenerations` times steps 2-8.
+
+## Screenshot
+
+![Screen](https://github.com/matpiwowarski/Local-Search-Algorithms/blob/master/Screenshots/queens.png)
