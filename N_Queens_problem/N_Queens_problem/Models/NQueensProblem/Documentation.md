@@ -31,7 +31,7 @@ Parameters:
   queen stays on place where heuristic result is the lowest.
 2. If heuristic result after move is 0: return solved board
 3. If board is blocked (we didn't move any queen in 1st step) new board will be generated.
-4. Repeat steps 1, 2 and 3 until maximum number of steps is reached
+4. Repeat steps 1, 2 and 3 until maximum number of steps is reached.
 
 ### 2. Simulated Annealing Algorithm
 
@@ -61,7 +61,24 @@ Parameters:
   
 4. Reduce `Temperature` by `CoolingFactor`.
 5. If board after move is solved (heuristic result == 0) return solved board
-6. Repeat steps 1-5 until `Temperature` is bigger than 0.
+6. Repeat steps 1-6 until `Temperature` is bigger than 0.
 
 ### 3. Local Beam Search Algorithm
+
+Solves problem with defualt parameters for: `4x4`, `5x5`, `6x6`, `7x7`, `8x8`, `9x9`, `10x10`, `11x11`, `12x12`
+
+Parameters: 
+
+`MaximumNumberOfSteps` (maximum number of steps) - default: `50`
+`NumberOfStates` (number of states) - default: `20`
+
+**How does this work?**
+
+1. Generate X random states and save them into `states` list
+2. Find best state in list (the lowest heuristic result)
+3. If best result == 0: return best state
+4. Move queens in every column on theirs best local position in every state
+5. Blocked states (states that didn't get changed after step 4) are changed into random states
+6. Repeat steps 2-6 until maximum number of steps is reached
+
 ### 4. Genetic Algorithm
