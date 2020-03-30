@@ -21,7 +21,9 @@ has the necessary functions that will be used by inheriting classes, for example
 
 Solves problem with defualt parameters for: `4x4`, `5x5`, `6x6`, `7x7`, `8x8`, `9x9`
 
-Parameters: `MaximumNumberOfSteps` (maximum number of steps) - default: `50`
+Parameters: 
+
+`MaximumNumberOfSteps` (maximum number of steps) - default: `50`
 
 **How does this work?**
 
@@ -32,5 +34,27 @@ Parameters: `MaximumNumberOfSteps` (maximum number of steps) - default: `50`
 4. Repeat steps 1, 2 and 3 until maximum number of steps is reached
 
 ### 2. Simulated Annealing Algorithm
+
+Solves problem with defualt parameters for: `4x4`, `5x5`, `6x6`
+
+Parameters: 
+
+`StartingTemperature` (starting temperature) - default: `10 000`
+
+`CoolingFactor` (cooling factor) - default: `1`
+
+**How does this work?**
+
+1. Randomly move 1 queen
+2. If heuristic result of state after move is better: save it
+3. If heuristic result of state after move is worse or equal:
+  a) calculate `probability of accetance`: min(1,e^(h/T);
+  `h` = `current heuristic result` - `new heuristic result`
+  b) generate random value from 0 to 1
+  c) if generated random value is smaller or equal `probability of accetance`: new state is saved. Otherwise: move isn't saved.
+4. Reduce `Temperature` by `CoolingFactor`.
+5. If board after move is solved (heuristic result == 0) return solved board
+6. Repeat steps 1-5 until `Temperature` is bigger than 0.
+
 ### 3. Local Beam Search Algorithm
 ### 4. Genetic Algorithm
