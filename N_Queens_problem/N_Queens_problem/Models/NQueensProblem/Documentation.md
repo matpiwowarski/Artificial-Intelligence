@@ -107,12 +107,17 @@ Parameters:
 5. Save X first states into `elite` list (list with best results).
 6. Save `elite` into `newGeneration`.
 7. While `newGeneration` chromosomes count is not equal `SizeOfSingleGeneration` repeat:
-  a) Selection:
+  
+  a) **Selection**:
     Randomly select 2 chromosome parents from `generation` list.
-  b) Crossover:
+  
+  b) **Crossover**:
     Randomly select a point in the state and exchange all parent columns beyond that point.
-  c) Mutation:
+  
+  c) **Mutation**:
     Move a queen from random column onto random row.  
+  
   d) Add 2 chromosomes into `newGeneration` list.
+  
 8. `generation` is changed into `newGeneration`.
 9. Repeat `NumberOfGenerations` times steps 2-8.
