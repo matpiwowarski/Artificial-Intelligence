@@ -48,10 +48,17 @@ Parameters:
 1. Randomly move 1 queen
 2. If heuristic result of state after move is better: save it
 3. If heuristic result of state after move is worse or equal:
-  a) calculate `probability of accetance`: min(1,e^(h/T);
+  
+  a) Calculate `probability of accetance`: min(1,e^(h/T);
+  
   `h` = `current heuristic result` - `new heuristic result`
-  b) generate random value from 0 to 1
-  c) if generated random value is smaller or equal `probability of accetance`: new state is saved. Otherwise: move isn't saved.
+  
+  `T` = `Temperature`
+  
+  b) Generate random value from 0 to 1
+  
+  c) If generated random value is smaller or equal `probability of accetance`: new state is saved. Otherwise: move isn't saved.
+  
 4. Reduce `Temperature` by `CoolingFactor`.
 5. If board after move is solved (heuristic result == 0) return solved board
 6. Repeat steps 1-5 until `Temperature` is bigger than 0.
