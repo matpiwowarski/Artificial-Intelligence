@@ -70,6 +70,7 @@ Solves problem with defualt parameters for: `4x4`, `5x5`, `6x6`, `7x7`, `8x8`, `
 Parameters: 
 
 `MaximumNumberOfSteps` (maximum number of steps) - default: `50`
+
 `NumberOfStates` (number of states) - default: `20`
 
 **How does this work?**
