@@ -27,6 +27,7 @@ namespace N_Queens_problem.Models.Algorithms
 
             var bestState = chessBoard.Board;
             int bestResult = chessBoard.HeuristicResult;
+
             // N iterations
             for (int i = 0; i < numberOfGenerations; i++)
             {
@@ -37,17 +38,15 @@ namespace N_Queens_problem.Models.Algorithms
                     break;
 
                 var newGeneration = new List<ChessPiece[,]>();
-                //SortListOfStates(generation, boardSize); ------- takes too long time
+                SortListOfStates(generation, boardSize);
+                // best best m << k are copied into next generation
+                var elite = GetElite(generation, percentOfElitism);
 
-                // k/2 iterations
-                for (int j = 0; j < sizeOfSingleGeneration/2; j++)
+                while (newGeneration.Count != sizeOfSingleGeneration)
                 {
                     // 1. Selection
-                    // best best m << k are copied into next generation
-                    MakeGenerationElite(generation, percentOfElitism);
-
-                    ChessPiece[,] chromosome1 = SelectChromosome(generation);
-                    ChessPiece[,] chromosome2 = SelectChromosome(generation);
+                    ChessPiece[,] chromosome1 = SelectChromosome(elite);
+                    ChessPiece[,] chromosome2 = SelectChromosome(elite);
 
                     // 2. Crossover
                     Crossover(chromosome1, chromosome2, boardSize, crossoverProbability);
@@ -70,18 +69,20 @@ namespace N_Queens_problem.Models.Algorithms
             chessBoard.HeuristicResult = bestResult;
         }
 
-        private void MakeGenerationElite(List<ChessPiece[,]> generation, double percentOfElitism)
+        private List<ChessPiece[,]> GetElite(List<ChessPiece[,]> generation, double percentOfElitism)
         {
+            List<ChessPiece[,]> elite = new List<ChessPiece[,]>();
             int count = generation.Count;
             // generation is already sorted
             double percentPerOneState = (double)(1) / (double)count;
-            double percentsToDelete = (1 - percentOfElitism) / percentPerOneState;
-            int iterations = (int)percentsToDelete;
+            double percents = percentOfElitism / percentPerOneState;
+            int iterations = (int)percents;
 
             for (int i = 0; i < iterations; i++)
             {
-                generation.RemoveAt(generation.Count - 1);
+                elite.Add(generation[i]);
             }
+            return elite;
         }
 
         private ChessPiece[,] SelectChromosome(List<ChessPiece[,]> generation)
