@@ -41,12 +41,13 @@ namespace N_Queens_problem.Models.Algorithms
                 SortListOfStates(generation, boardSize);
                 // best best m << k are copied into next generation
                 var elite = GetElite(generation, percentOfElitism);
+                newGeneration = elite;
 
                 while (newGeneration.Count != sizeOfSingleGeneration)
                 {
                     // 1. Selection
-                    ChessPiece[,] chromosome1 = SelectChromosome(elite);
-                    ChessPiece[,] chromosome2 = SelectChromosome(elite);
+                    ChessPiece[,] chromosome1 = SelectChromosome(generation);
+                    ChessPiece[,] chromosome2 = SelectChromosome(generation);
 
                     // 2. Crossover
                     Crossover(chromosome1, chromosome2, boardSize, crossoverProbability);
