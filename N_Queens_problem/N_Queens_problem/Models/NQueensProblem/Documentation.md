@@ -49,7 +49,7 @@ Parameters:
 2. If heuristic result of state after move is better: save it.
 3. If heuristic result of state after move is worse or equal:
   
-  a) Calculate `probability of accetance`: min(1,e^(h/T);
+  a) Calculate `probability of accetance`: min(1,e^(h/T));
   
   `h` = `current heuristic result` - `new heuristic result`
   
