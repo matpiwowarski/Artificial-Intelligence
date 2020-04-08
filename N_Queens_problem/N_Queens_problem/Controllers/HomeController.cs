@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using N_Queens_problem.Models;
-using N_Queens_problem.Models.Algorithms;
 
 namespace N_Queens_problem.Controllers
 {
