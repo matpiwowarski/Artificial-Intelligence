@@ -1,7 +1,7 @@
 ﻿using System;
-using N_Queens_problem.Models.Algorithms;
+using ArtificialIntelligence.Models.Algorithms;
 
-namespace N_Queens_problem.Models
+namespace ArtificialIntelligence.Models
 {
     public class NQueensProblem
     {

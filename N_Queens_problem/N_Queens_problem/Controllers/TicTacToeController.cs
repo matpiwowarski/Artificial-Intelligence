@@ -13,6 +13,9 @@ namespace ArtificialIntelligence.Controllers
         {
             TicTacToe ticTacToe = new TicTacToe();
 
+            ticTacToe.PutCircle(1, 2);
+            ticTacToe.PutCross(2, 0);
+
             return View(ticTacToe);
         }
     }

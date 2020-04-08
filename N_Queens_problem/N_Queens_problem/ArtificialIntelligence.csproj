@@ -29,4 +29,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\LocalSearchAlgorithms\LocalSearchAlgorithms.cshtml" />
+  </ItemGroup>
 </Project>

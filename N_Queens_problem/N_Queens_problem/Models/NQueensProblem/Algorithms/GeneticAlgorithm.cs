@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace N_Queens_problem.Models.Algorithms
+namespace ArtificialIntelligence.Models.Algorithms
 {
-    public class GeneticAlgorithm: Algorithm
+    public class GeneticAlgorithm : Algorithm
     {
         public override void SolveProblem(Chessboard chessBoard)
         {
@@ -129,7 +129,7 @@ namespace N_Queens_problem.Models.Algorithms
         private void SwitchPartsOfStates(ChessPiece[,] state1, ChessPiece[,] state2, int crossoverPoint, int boardSize)
         {
             // crossoverPoint = X => first X columns won't be switched
-            for(int i = crossoverPoint; i < boardSize; i++)
+            for (int i = crossoverPoint; i < boardSize; i++)
             {
                 SwitchColumns(state1, state2, i, boardSize);
             }

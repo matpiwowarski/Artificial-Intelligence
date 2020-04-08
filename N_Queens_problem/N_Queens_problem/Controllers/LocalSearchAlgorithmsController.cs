@@ -5,8 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using N_Queens_problem.Models;
-using N_Queens_problem.Models.Algorithms;
+using ArtificialIntelligence.Models;
+using ArtificialIntelligence.Models.Algorithms;
 
 namespace ArtificialIntelligence.Controllers
 {

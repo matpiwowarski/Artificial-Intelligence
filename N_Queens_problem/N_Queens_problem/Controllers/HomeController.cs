@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace N_Queens_problem.Controllers
+namespace ArtificialIntelligence.Controllers
 {
     public class HomeController : Controller
     {

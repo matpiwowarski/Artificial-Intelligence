@@ -4,7 +4,23 @@
     ViewBag.Title = "Tic-Tac-Toe";
     var circleLink = "https://github.com/matpiwowarski/Local-Search-Algorithms/blob/master/N_Queens_problem/N_Queens_problem/Resources/circle.png?raw=true";
     var crossLink = "https://github.com/matpiwowarski/Local-Search-Algorithms/blob/master/N_Queens_problem/N_Queens_problem/Resources/cross.png?raw=true";
-}
+
+    void CheckIfCrossOrCircle(TicTacToeMove[,] ticTacToe, int x, int y)
+    {
+        if (ticTacToe[x, y] == TicTacToeMove.Cross)
+        {
+            <img src=@crossLink alt="cross" style="height: 100px; width: 100px;">
+        }
+        else if (ticTacToe[x, y] == TicTacToeMove.Circle)
+        {
+            <img src=@circleLink alt="circle" style="height: 100px; width: 100px;">
+        }
+        else
+        {
+            <img class="empty" src=@circleLink alt="circle" style="height:100px; width:100px;">
+            }
+        }
+    }
 
 <center><h2>@ViewBag.Title: Minimax with alpha-beta pruning</h2></center>
 
@@ -14,80 +30,79 @@
 
         <div id="tictactoe">
             <div class="box">
-                <div class="circle">
-                    <img src=@circleLink alt="circle" style="height:100px; width:100px;">
-                </div>
+                @{
+                    CheckIfCrossOrCircle(Model.ticTacToe, 0, 0);
+                }
             </div>
             <div class="box">
-                <div class="circle">
-                    <img src=@circleLink alt="circle" style="height:100px; width:100px;">
-                </div>
+                @{
+                    CheckIfCrossOrCircle(Model.ticTacToe, 1, 0);
+                }
             </div>
             <div class="box">
-                <div class="circle">
-                    <img src=@circleLink alt="circle" style="height:100px; width:100px;">
-                </div>
-            </div>
-            <br />
-            <div class="box">
-                <div class="circle">
-                    <img src=@circleLink alt="circle" style="height:100px; width:100px;">
-                </div>
-            </div>
-            <div class="box">
-                <div class="circle">
-                    <img src=@circleLink alt="circle" style="height:100px; width:100px;">
-                </div>
-            </div>
-            <div class="box">
-                <div class="circle">
-                    <img src=@circleLink alt="circle" style="height:100px; width:100px;">
-                </div>
+                @{
+                    CheckIfCrossOrCircle(Model.ticTacToe, 2, 0);
+                }
             </div>
             <br />
             <div class="box">
-                <div class="circle">
-                    <img src=@circleLink alt="circle" style="height:100px; width:100px;">
-                </div>
+                @{
+                    CheckIfCrossOrCircle(Model.ticTacToe, 0, 1);
+                }
             </div>
             <div class="box">
-                <div class="circle">
-                    <img src=@circleLink alt="circle" style="height:100px; width:100px;">
-                </div>
+                @{
+                    CheckIfCrossOrCircle(Model.ticTacToe, 1, 1);
+                }
             </div>
             <div class="box">
-                <div class="circle">
-                    <img src=@circleLink alt="circle" style="height:100px; width:100px;">
-                </div>
+                @{
+                    CheckIfCrossOrCircle(Model.ticTacToe, 2, 1);
+                }
+            </div>
+            <br />
+            <div class="box">
+                @{
+                    CheckIfCrossOrCircle(Model.ticTacToe, 0, 2);
+                }
+            </div>
+            <div class="box">
+                @{
+                    CheckIfCrossOrCircle(Model.ticTacToe, 1, 2);
+                }
+            </div>
+            <div class="box">
+                @{
+                    CheckIfCrossOrCircle(Model.ticTacToe, 2, 2);
+                }
             </div>
         </div>
     </div>
     @* USER PARAMETERS*@
     <div class="col">
-
     </div>
 </div>
 
 <style>
+
     .box {
-        background-color: darkgray;
+        background-color: lightgray;
         height: 100px;
         width: 100px;
         display: inline-block;
         margin: 5px;
     }
 
-
-    .circle {
+    .empty {
         visibility: hidden;
     }
 
-    .box:hover .circle {
+    .box:hover .empty {
         visibility: visible;
         opacity: 0.3;
     }
 
     #tictactoe {
-       margin-top: 60px;
+        margin-top: 60px;
     }
 </style>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace N_Queens_problem.Models.Algorithms
+namespace ArtificialIntelligence.Models.Algorithms
 {
     public abstract class Algorithm
     {
@@ -13,14 +13,14 @@ namespace N_Queens_problem.Models.Algorithms
             int result = 0;
             int queenToCount = boardSize;
 
-            for(int x = 0; x < boardSize; x++)
+            for (int x = 0; x < boardSize; x++)
             {
-                for(int y = 0; y < boardSize; y++)
+                for (int y = 0; y < boardSize; y++)
                 {
                     if (queenToCount == 0)
                         break;
 
-                    if(board[x,y] == ChessPiece.Queen)
+                    if (board[x, y] == ChessPiece.Queen)
                     {
                         queenToCount--;
 
@@ -140,7 +140,7 @@ namespace N_Queens_problem.Models.Algorithms
 
             MoveQueenVertical(board, size, randomColumn, randomRow);
         }
-      
+
         protected void SortListOfStates(List<ChessPiece[,]> listOfStates, int boardSize)
         {
             int count = listOfStates.Count;

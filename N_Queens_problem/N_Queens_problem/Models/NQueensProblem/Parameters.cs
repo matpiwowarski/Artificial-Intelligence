@@ -1,5 +1,5 @@
 ﻿using System;
-namespace N_Queens_problem.Models
+namespace ArtificialIntelligence.Models
 {
     public class Parameters
     {
