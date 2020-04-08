@@ -1,12 +1,6 @@
 ﻿using System;
 namespace ArtificialIntelligence.Models
 {
-    public enum ChessPiece
-    {
-        Empty,
-        Queen
-    }
-
     public class Chessboard
     {
         public int Size { get; set; }
