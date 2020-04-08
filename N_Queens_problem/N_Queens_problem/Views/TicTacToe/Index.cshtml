@@ -2,7 +2,8 @@
 
 @{
     ViewBag.Title = "Tic-Tac-Toe";
-
+    var circleLink = "https://github.com/matpiwowarski/Local-Search-Algorithms/blob/master/N_Queens_problem/N_Queens_problem/Resources/circle.png?raw=true";
+    var crossLink = "https://github.com/matpiwowarski/Local-Search-Algorithms/blob/master/N_Queens_problem/N_Queens_problem/Resources/cross.png?raw=true";
 }
 
 <center><h2>@ViewBag.Title: Minimax with alpha-beta pruning</h2></center>
@@ -11,9 +12,82 @@
     @* TIC-TAC-TOE*@
     <div class="col">
 
+        <div id="tictactoe">
+            <div class="box">
+                <div class="circle">
+                    <img src=@circleLink alt="circle" style="height:100px; width:100px;">
+                </div>
+            </div>
+            <div class="box">
+                <div class="circle">
+                    <img src=@circleLink alt="circle" style="height:100px; width:100px;">
+                </div>
+            </div>
+            <div class="box">
+                <div class="circle">
+                    <img src=@circleLink alt="circle" style="height:100px; width:100px;">
+                </div>
+            </div>
+            <br />
+            <div class="box">
+                <div class="circle">
+                    <img src=@circleLink alt="circle" style="height:100px; width:100px;">
+                </div>
+            </div>
+            <div class="box">
+                <div class="circle">
+                    <img src=@circleLink alt="circle" style="height:100px; width:100px;">
+                </div>
+            </div>
+            <div class="box">
+                <div class="circle">
+                    <img src=@circleLink alt="circle" style="height:100px; width:100px;">
+                </div>
+            </div>
+            <br />
+            <div class="box">
+                <div class="circle">
+                    <img src=@circleLink alt="circle" style="height:100px; width:100px;">
+                </div>
+            </div>
+            <div class="box">
+                <div class="circle">
+                    <img src=@circleLink alt="circle" style="height:100px; width:100px;">
+                </div>
+            </div>
+            <div class="box">
+                <div class="circle">
+                    <img src=@circleLink alt="circle" style="height:100px; width:100px;">
+                </div>
+            </div>
+        </div>
     </div>
     @* USER PARAMETERS*@
     <div class="col">
 
     </div>
 </div>
+
+<style>
+    .box {
+        background-color: darkgray;
+        height: 100px;
+        width: 100px;
+        display: inline-block;
+        margin: 5px;
+    }
+
+
+    .circle {
+        visibility: hidden;
+    }
+
+    .box:hover .circle {
+        visibility: visible;
+        opacity: 0.3;
+    }
+
+    #tictactoe {
+       margin-top: 60px;
+    }
+</style>
