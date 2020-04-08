@@ -11,6 +11,7 @@
     <Folder Include="Models\NQueensProblem\" />
     <Folder Include="Models\NQueensProblem\Algorithms\" />
     <Folder Include="Models\TicTacToe\" />
+    <Folder Include="Views\LocalSearchAlgorithms\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Resources\queen.png" />

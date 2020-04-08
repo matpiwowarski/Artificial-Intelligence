@@ -117,13 +117,13 @@
                     }
                 }
             </div>
-            <p>@Html.ActionLink("Clear", "LocalSearchAlgorithms", new { size = @Model.Size })</p>
+            <p>@Html.ActionLink("Clear", "Index", new { size = @Model.Size })</p>
 
         </center>
     </div>
     <div class="col margin padding">
         <center>
-            @using (Html.BeginForm("ChangeBoardgameSize", "Home", FormMethod.Post))
+            @using (Html.BeginForm("ChangeBoardgameSize", "LocalSearchAlgorithms", FormMethod.Post))
             {
                 <b><label for="SizeSelect">Select Size</label></b>
                 <select class="form-control" id="SizeSelect" name="SizeSelect">
@@ -141,7 +141,7 @@
                     Change Size
                 </button>
             }
-            @using (Html.BeginForm("DoAlgorithm", "Home", FormMethod.Post))
+            @using (Html.BeginForm("DoAlgorithm", "LocalSearchAlgorithms", FormMethod.Post))
             {
                 <b><label for="AlgorithmSelect">Select Algorithm</label></b>
                 <select onchange="selectAlgorithm()" class="form-control" id="AlgorithmSelect" name="AlgorithmSelect">
@@ -154,14 +154,14 @@
                 <div class="container" id="LocalBeamSearchParameters" style="display: none; margin-top: 15px;">
                     <div class="row">
                         <label class="col parameter-label" for="NumberOfStates">Number of states</label>
-                        <input class="col-4 form-control" id="NumberOfStates" name="NumberOfStates" type="text" value="20"/>
+                        <input class="col-3 form-control" id="NumberOfStates" name="NumberOfStates" type="text" value="20"/>
                     </div>
                 </div>
 
                 <div class="container" id="HillClimbingParameters" style="display: block; margin-top: 15px;">
                     <div class="row">
                         <label class="col parameter-label" for="MaxSteps">Maximum number of steps</label>
-                        <input class="col-4 form-control" id="MaxSteps" name="MaxSteps" type="text" value="50"/>
+                        <input class="col-3 form-control" id="MaxSteps" name="MaxSteps" type="text" value="50"/>
                     </div>
                 </div>
 
@@ -180,32 +180,32 @@
                         <label class="col parameter-label" for="SizeOfSingleGeneration">
                             Size Of Single Generation
                         </label>
-                        <input class="col-4 form-control" id="SizeOfSingleGeneration" name="SizeOfSingleGeneration" type="text" value="100"/>
+                        <input class="col-3 form-control" id="SizeOfSingleGeneration" name="SizeOfSingleGeneration" type="text" value="100"/>
                     </div>
                     <div class="row" style="margin-top: 2px;">
                         <label class="col parameter-label" for="PercentOfElitism">
                         Percent Of Elitism (0-100)
                         </label>
-                        <input class="col-4 form-control" id="PercentOfElitism" name="PercentOfElitism" type="text" value="20"/>
+                        <input class="col-3 form-control" id="PercentOfElitism" name="PercentOfElitism" type="text" value="20"/>
                     </div>
 
                     <div class="row" style="margin-top: 2px;">
                         <label class="col parameter-label" for="CrossoverProbability">
                         Crossover Probability (0-100)
                         </label>
-                        <input class="col-4 form-control" id="CrossoverProbability" name="CrossoverProbability" type="text" value="35"/>
+                        <input class="col-3 form-control" id="CrossoverProbability" name="CrossoverProbability" type="text" value="35"/>
                     </div>
                     <div class="row" style="margin-top: 2px;">
                         <label class="col parameter-label" for="MutationProbability">
                             Mutation Probability (0-100)
                         </label>
-                        <input class="col-4 form-control" id="MutationProbability" name="MutationProbability" type="text" value="5"/>
+                        <input class="col-3 form-control" id="MutationProbability" name="MutationProbability" type="text" value="5"/>
                     </div>
                     <div class="row" style="margin-top: 2px;">
                         <label class="col parameter-label" for="NumberOfGenerations">
                             Number Of Generations
                         </label>
-                        <input class="col-4 form-control" id="NumberOfGenerations" name="NumberOfGenerations" type="text" value="1000"/>
+                        <input class="col-3 form-control" id="NumberOfGenerations" name="NumberOfGenerations" type="text" value="1000"/>
                     </div>
                 </div>
 
