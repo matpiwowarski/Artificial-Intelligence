@@ -4,7 +4,6 @@ namespace ArtificialIntelligence.Models.TicTacToe
     public class TicTacToeBot: IPlayer
     {
         private TicTacToe ticTacToe;
-        private static int score = 0;
 
         public TicTacToeBot(TicTacToe ticTacToe)
         {
@@ -19,16 +18,6 @@ namespace ArtificialIntelligence.Models.TicTacToe
                 return true;
             }
             return false;
-        }
-
-        public void WonGame()
-        {
-            TicTacToeBot.score++;
-        }
-
-        public int GetScore()
-        {
-            return TicTacToeBot.score;
         }
     }
 }

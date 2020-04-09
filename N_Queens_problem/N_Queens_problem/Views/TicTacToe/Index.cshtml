@@ -18,72 +18,75 @@
         else
         {
             <img class="empty" src=@crossLink alt="cross" style="height:100px; width:100px;">
-            }
         }
     }
+}
 
 <center><h2>@ViewBag.Title: Minimax with alpha-beta pruning</h2></center>
 
-<div class="row">
-    @* TIC-TAC-TOE*@
-    <div class="col">
-
-        <div id="tictactoe">
-            <div class="box">
-                @{
-                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 0);
-                }
-            </div>
-            <div class="box">
-                @{
-                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 0);
-                }
-            </div>
-            <div class="box">
-                @{
-                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 0);
-                }
-            </div>
-            <br />
-            <div class="box">
-                @{
-                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 1);
-                }
-            </div>
-            <div class="box">
-                @{
-                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 1);
-                }
-            </div>
-            <div class="box">
-                @{
-                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 1);
-                }
-            </div>
-            <br />
-            <div class="box">
-                @{
-                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 2);
-                }
-            </div>
-            <div class="box">
-                @{
-                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 2);
-                }
-            </div>
-            <div class="box">
-                @{
-                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 2);
-                }
-            </div>
+@* TIC-TAC-TOE *@
+<center>
+    <div id="tictactoe">
+        <div class="box">
+            @{
+                CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 0);
+            }
+        </div>
+        <div class="box">
+            @{
+                CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 0);
+            }
+        </div>
+        <div class="box">
+            @{
+                CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 0);
+            }
+        </div>
+        <br />
+        <div class="box">
+            @{
+                CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 1);
+            }
+        </div>
+        <div class="box">
+            @{
+                CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 1);
+            }
+        </div>
+        <div class="box">
+            @{
+                CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 1);
+            }
+        </div>
+        <br />
+        <div class="box">
+            @{
+                CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 2);
+            }
+        </div>
+        <div class="box">
+            @{
+                CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 2);
+            }
+        </div>
+        <div class="box">
+            @{
+                CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 2);
+            }
         </div>
     </div>
-    @* USER PARAMETERS*@
-    <div class="col">
-    </div>
+    @* User parameters *@
+<div class="row" style="margin-top: 20px;">
+    <div class="col">    <h3 class="text-primary" style="text-align: right;"> User: @Model.UserScore </h3></div>
+    <div class="col">    <h3 style="text-align: center;"> Tie: @Model.TieScore   </h3></div>
+    <div class="col">    <h3 style="text-align: left; color: red;"> Bot: @Model.BotScore   </h3></div>
 </div>
 
+</center>
+
+
 <style>
+
 
     .box {
         background-color: lightgray;
