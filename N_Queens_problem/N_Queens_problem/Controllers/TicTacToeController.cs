@@ -16,9 +16,8 @@ namespace ArtificialIntelligence.Controllers
             TicTacToeUser user = new TicTacToeUser(ticTacToe);
             ticTacToe.SetWhoStarts(user);
 
-
-            ticTacToe.PutCircle(1, 2);
-            ticTacToe.PutCross(2, 0);
+            user.MakeMove(2, 2);
+            bot.MakeMove(1, 2);
 
             return View(ticTacToe);
         }
