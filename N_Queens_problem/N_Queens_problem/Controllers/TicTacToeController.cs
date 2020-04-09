@@ -19,6 +19,8 @@ namespace ArtificialIntelligence.Controllers
             user.MakeMove(2, 2);
             bot.MakeMove(1, 2);
 
+            ticTacToe.BotWon();
+
             return View(ticTacToe);
         }
     }
