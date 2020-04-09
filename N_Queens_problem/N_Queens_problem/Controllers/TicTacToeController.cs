@@ -12,6 +12,10 @@ namespace ArtificialIntelligence.Controllers
         public IActionResult Index()
         {
             TicTacToe ticTacToe = new TicTacToe();
+            TicTacToeBot bot = new TicTacToeBot(ticTacToe);
+            TicTacToeUser user = new TicTacToeUser(ticTacToe);
+            ticTacToe.SetWhoStarts(user);
+
 
             ticTacToe.PutCircle(1, 2);
             ticTacToe.PutCross(2, 0);
