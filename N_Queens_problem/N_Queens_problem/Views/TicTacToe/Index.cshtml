@@ -21,7 +21,7 @@
         }
         else
         {
-            <button type="submit" style="height:100px; width:100px;">
+            <button name="Button" value="@x@y" type="submit" style="height:100px; width:100px;">
                 <img class="empty" src=@crossLink alt="cross" style="height:85px; width:85px;" />
             </button>
         }
@@ -86,6 +86,8 @@
             </div>
         </div>
 
+        <p>@Html.ActionLink("new game", "Index")</p>
+
         @* Select Level *@
         <div class="row" style="margin-top: 20px;">
             <div class="col-3"></div>
@@ -101,7 +103,6 @@
             <div class="col-3"></div>
         </div>
     }
-    <p>@Html.ActionLink("new game", "Index")</p>
 
     @* Score *@
     <div class="row" style="margin-top: 20px;">

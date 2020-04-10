@@ -29,12 +29,18 @@ namespace ArtificialIntelligence.Controllers
         public IActionResult NextMove(IFormCollection formCollection)
         {
             TicTacToe ticTacToe = TicTacToe.Instance;
-
             TicTacToeBot bot = new TicTacToeBot(ticTacToe);
             TicTacToeUser user = new TicTacToeUser(ticTacToe);
 
             ticTacToe.Level = int.Parse(formCollection["Level"]);
+            string place = formCollection["Button"];
+            int userX = int.Parse(place[0].ToString());
+            int userY = int.Parse(place[1].ToString());
 
+            // user
+            user.MakeMove(userX, userY);
+
+            // bot
             Random random = new Random();
             int x = random.Next(3);
             int y = random.Next(3);
@@ -44,7 +50,7 @@ namespace ArtificialIntelligence.Controllers
                 x = random.Next(3);
                 y = random.Next(3);
             }
-
+            // checking result
             ticTacToe.CheckIfFinished();
             if(ticTacToe.IsFinsihed)
             {
