@@ -9,16 +9,20 @@
     {
         if (ticTacToe[x, y] == TicTacToeMove.Cross)
         {
-            <img src=@crossLink alt="cross" style="height: 100px; width: 100px;">
+            <button style="height:100px; width:100px;">
+                <img src=@crossLink alt="cross" style="height: 85px; width: 85px;">
+            </button>
         }
         else if (ticTacToe[x, y] == TicTacToeMove.Circle)
         {
-            <img src=@circleLink alt="circle" style="height: 100px; width: 100px;">
+            <button style="height:100px; width:100px;">
+                <img src=@circleLink alt="circle" style="height: 85px; width: 85px;">
+            </button>
         }
         else
         {
             <button type="submit" style="height:100px; width:100px;">
-                <img class="empty" src=@crossLink alt="cross" style="height:100px; width:100px;"/>
+                <img class="empty" src=@crossLink alt="cross" style="height:85px; width:85px;" />
             </button>
         }
     }
@@ -81,20 +85,20 @@
         </div>
 
         @* Select Level *@
-<div class="row" style="margin-top: 20px;">
-    <div class="col-3"></div>
-    <div class="col-6">
-        <div class="row">
-            <div class="col-4" style="text-align:left; vertical-align:bottom; display:inline-block;"><b>Easy</b></div>
-            <div class="col-4" style="text-align:center; vertical-align:top; display:inline-block;">Level</div>
-            <div class="col-4" style="text-align:right; vertical-align:bottom; display:inline-block;"><b>Hard</b></div>
-            <br />
-            <input id="Level" name="Level" type="range" min="1" max="9" value="@Model.Level" class="form-control-range slider">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-4" style="text-align:left; vertical-align:bottom; display:inline-block;"><b>Easy</b></div>
+                    <div class="col-4" style="text-align:center; vertical-align:top; display:inline-block;">Level</div>
+                    <div class="col-4" style="text-align:right; vertical-align:bottom; display:inline-block;"><b>Hard</b></div>
+                    <br />
+                    <input id="Level" name="Level" type="range" min="1" max="9" value="@Model.Level" class="form-control-range slider">
+                </div>
+            </div>
+            <div class="col-3"></div>
         </div>
-    </div>
-    <div class="col-3"></div>
-</div>
-        }
+    }
 
     @* Score *@
     <div class="row" style="margin-top: 20px;">
@@ -111,6 +115,7 @@
 
 
 
+
     .box {
         background-color: lightgray;
         height: 100px;
@@ -121,6 +126,7 @@
 
     .empty {
         visibility: hidden;
+        vertical-align: central;
     }
 
     .box:hover .empty {
@@ -130,9 +136,6 @@
 
     #tictactoe {
         margin-top: 30px;
-        background-color: black;
-        height: 330px;
-        width: 340px;
     }
 
     /* The slider itself */
