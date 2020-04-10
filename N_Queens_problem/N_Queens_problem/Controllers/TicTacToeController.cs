@@ -12,7 +12,7 @@ namespace ArtificialIntelligence.Controllers
     {
         public IActionResult Index()
         {
-            TicTacToe ticTacToe = new TicTacToe(5);
+            TicTacToe ticTacToe = TicTacToe.Instance;
             TicTacToeBot bot = new TicTacToeBot(ticTacToe);
             TicTacToeUser user = new TicTacToeUser(ticTacToe);
             ticTacToe.SetWhoStarts(user);
@@ -25,14 +25,21 @@ namespace ArtificialIntelligence.Controllers
         [HttpPost]
         public IActionResult NextMove(IFormCollection formCollection)
         {
-            int level = int.Parse(formCollection["Level"]);
-
-            TicTacToe ticTacToe = new TicTacToe(level);
+            TicTacToe ticTacToe = TicTacToe.Instance;
             TicTacToeBot bot = new TicTacToeBot(ticTacToe);
             TicTacToeUser user = new TicTacToeUser(ticTacToe);
-            ticTacToe.SetWhoStarts(user);
 
-            bot.MakeMove(0, 0);
+            ticTacToe.Level = int.Parse(formCollection["Level"]);
+
+            Random random = new Random();
+            int x = random.Next(3);
+            int y = random.Next(3);
+
+            while(!bot.MakeMove(x, y))
+            {
+                x = random.Next(3);
+                y = random.Next(3);
+            }
 
             ticTacToe.BotWon();
 

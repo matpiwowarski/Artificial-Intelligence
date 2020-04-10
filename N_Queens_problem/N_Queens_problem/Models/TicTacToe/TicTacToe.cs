@@ -1,23 +1,33 @@
 ﻿using System;
 namespace ArtificialIntelligence.Models.TicTacToe
 {
-    public class TicTacToe
+    public sealed class TicTacToe
     {
+        private static readonly TicTacToe instance = new TicTacToe();
+
         public TicTacToeMove[,] ticTacToeBoard = new TicTacToeMove[3, 3]; // x,y
         public IPlayer WhoStarts;
-        public int Level;
+        public int Level = 5;
         public int UserScore = 0;
         public int BotScore = 0;
         public int TieScore = 0;
 
-        public TicTacToe()
+        private TicTacToe()
         {
 
         }
 
-        public TicTacToe(int level)
+        static TicTacToe()
         {
-            Level = level;
+
+        }
+
+        public static TicTacToe Instance
+        {
+            get
+            {
+                return instance;
+            }
         }
 
         public void SetWhoStarts(IPlayer player)
