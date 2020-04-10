@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ArtificialIntelligence.Models.TicTacToe;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ArtificialIntelligence.Controllers
@@ -11,17 +12,31 @@ namespace ArtificialIntelligence.Controllers
     {
         public IActionResult Index()
         {
-            TicTacToe ticTacToe = new TicTacToe();
-            TicTacToeBot bot = new TicTacToeBot(ticTacToe, 5);
+            TicTacToe ticTacToe = new TicTacToe(5);
+            TicTacToeBot bot = new TicTacToeBot(ticTacToe);
             TicTacToeUser user = new TicTacToeUser(ticTacToe);
             ticTacToe.SetWhoStarts(user);
 
-            user.MakeMove(2, 2);
-            bot.MakeMove(1, 2);
+
+
+            return View(ticTacToe);
+        }
+
+        [HttpPost]
+        public IActionResult NextMove(IFormCollection formCollection)
+        {
+            int level = int.Parse(formCollection["Level"]);
+
+            TicTacToe ticTacToe = new TicTacToe(level);
+            TicTacToeBot bot = new TicTacToeBot(ticTacToe);
+            TicTacToeUser user = new TicTacToeUser(ticTacToe);
+            ticTacToe.SetWhoStarts(user);
+
+            bot.MakeMove(0, 0);
 
             ticTacToe.BotWon();
 
-            return View(ticTacToe);
+            return View("Index", ticTacToe);
         }
     }
 }

@@ -17,93 +17,100 @@
         }
         else
         {
-            <img class="empty" src=@crossLink alt="cross" style="height:100px; width:100px;">
+            <button type="submit" style="height:100px; width:100px;">
+                <img class="empty" src=@crossLink alt="cross" style="height:100px; width:100px;"/>
+            </button>
         }
     }
 }
 
 <center><h2>@ViewBag.Title: Minimax with alpha-beta pruning</h2></center>
 
-@* TIC-TAC-TOE *@
 <center>
-    <div id="tictactoe">
-        <div class="box">
-            @{
-                CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 0);
-            }
+    @using (Html.BeginForm("NextMove", "TicTacToe", FormMethod.Post))
+    {
+        @* TIC-TAC-TOE *@
+        <div id="tictactoe">
+            <div class="box">
+                @{
+                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 0);
+                }
+            </div>
+            <div class="box">
+                @{
+                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 0);
+                }
+            </div>
+            <div class="box">
+                @{
+                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 0);
+                }
+            </div>
+            <br />
+            <div class="box">
+                @{
+                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 1);
+                }
+            </div>
+            <div class="box">
+                @{
+                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 1);
+                }
+            </div>
+            <div class="box">
+                @{
+                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 1);
+                }
+            </div>
+            <br />
+            <div class="box">
+                @{
+                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 2);
+                }
+            </div>
+            <div class="box">
+                @{
+                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 2);
+                }
+            </div>
+            <div class="box">
+                @{
+                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 2);
+                }
+            </div>
         </div>
-        <div class="box">
-            @{
-                CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 0);
-            }
-        </div>
-        <div class="box">
-            @{
-                CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 0);
-            }
-        </div>
-        <br />
-        <div class="box">
-            @{
-                CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 1);
-            }
-        </div>
-        <div class="box">
-            @{
-                CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 1);
-            }
-        </div>
-        <div class="box">
-            @{
-                CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 1);
-            }
-        </div>
-        <br />
-        <div class="box">
-            @{
-                CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 2);
-            }
-        </div>
-        <div class="box">
-            @{
-                CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 2);
-            }
-        </div>
-        <div class="box">
-            @{
-                CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 2);
-            }
-        </div>
-    </div>
-    @* Score *@
+
+        @* Select Level *@
 <div class="row" style="margin-top: 20px;">
-    <div class="col-2"></div>
-    <div class="col-3">    <h3 class="text-primary" style="text-align: right;"> User: @Model.UserScore </h3></div>
-    <div class="col-2">    <h3 style="text-align: center;"> Tie: @Model.TieScore   </h3></div>
-    <div class="col-3">    <h3 style="text-align: left; color: red;"> Bot: @Model.BotScore   </h3></div>
-    <div class="col-2"></div>
-</div>
-    @* Select Level *@
-<div class="row">
     <div class="col-3"></div>
     <div class="col-6">
-        <form>
-            <div class="form-group">
-                <br />
-                <div class="row">
-                    <div class="col-4" style="text-align:left; vertical-align:bottom; display:inline-block;"><b>Easy</b></div>
-                    <div class="col-4" style="text-align:center; vertical-align:top; display:inline-block;">Level</div>
-                    <div class="col-4" style="text-align:right; vertical-align:bottom; display:inline-block;"><b>Hard</b></div>
-                    </>
-                    <input type="range" min="1" max="9" value="5" class="form-control-range slider" id="selectLevel">
-                </div>
-        </form>
+        <div class="row">
+            <div class="col-4" style="text-align:left; vertical-align:bottom; display:inline-block;"><b>Easy</b></div>
+            <div class="col-4" style="text-align:center; vertical-align:top; display:inline-block;">Level</div>
+            <div class="col-4" style="text-align:right; vertical-align:bottom; display:inline-block;"><b>Hard</b></div>
+            <br />
+            <input id="Level" name="Level" type="range" min="1" max="9" value="@Model.Level" class="form-control-range slider">
+        </div>
     </div>
     <div class="col-3"></div>
 </div>
+        }
+
+    @* Score *@
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-2"></div>
+        <div class="col-3">    <h3 class="text-primary" style="text-align: right;"> User: @Model.UserScore </h3></div>
+        <div class="col-2">    <h3 style="text-align: center;"> Tie: @Model.TieScore   </h3></div>
+        <div class="col-3">    <h3 style="text-align: left; color: red;"> Bot: @Model.BotScore   </h3></div>
+        <div class="col-2"></div>
+    </div>
+
 </center>
 
 <style>
+
+
+
     .box {
         background-color: lightgray;
         height: 100px;
@@ -123,6 +130,9 @@
 
     #tictactoe {
         margin-top: 30px;
+        background-color: black;
+        height: 330px;
+        width: 340px;
     }
 
     /* The slider itself */
@@ -138,19 +148,19 @@
         transition: opacity .2s;
     }
 
-    .slider::-webkit-slider-thumb {
-        -webkit-appearance: none; /* Override default look */
-        appearance: none;
-        width: 25px; /* Set a specific slider handle width */
-        height: 25px; /* Slider handle height */
-        background: #4CAF50; /* Green background */
-        cursor: pointer; /* Cursor on hover */
-    }
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none; /* Override default look */
+            appearance: none;
+            width: 25px; /* Set a specific slider handle width */
+            height: 25px; /* Slider handle height */
+            background: #4CAF50; /* Green background */
+            cursor: pointer; /* Cursor on hover */
+        }
 
-    /* Mouse-over effects */
-    .slider:hover {
-        opacity: 1; /* Fully shown on mouse-over */
-    }
+        /* Mouse-over effects */
+        .slider:hover {
+            opacity: 1; /* Fully shown on mouse-over */
+        }
 
         .slider::-moz-range-thumb {
             width: 25px; /* Set a specific slider handle width */

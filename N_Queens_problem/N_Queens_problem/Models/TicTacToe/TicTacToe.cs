@@ -5,6 +5,7 @@ namespace ArtificialIntelligence.Models.TicTacToe
     {
         public TicTacToeMove[,] ticTacToeBoard = new TicTacToeMove[3, 3]; // x,y
         public IPlayer WhoStarts;
+        public int Level;
         public int UserScore = 0;
         public int BotScore = 0;
         public int TieScore = 0;
@@ -12,6 +13,11 @@ namespace ArtificialIntelligence.Models.TicTacToe
         public TicTacToe()
         {
 
+        }
+
+        public TicTacToe(int level)
+        {
+            Level = level;
         }
 
         public void SetWhoStarts(IPlayer player)
