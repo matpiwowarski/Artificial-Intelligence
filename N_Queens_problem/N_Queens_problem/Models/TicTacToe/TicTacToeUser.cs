@@ -1,11 +1,32 @@
 ﻿using System;
 namespace ArtificialIntelligence.Models.TicTacToe
 {
-    public class TicTacToeUser: IPlayer
+    public sealed class TicTacToeUser: IPlayer
     {
         private TicTacToe ticTacToe;
 
-        public TicTacToeUser(TicTacToe ticTacToe)
+        private static readonly TicTacToeUser instance = new TicTacToeUser();
+
+        private TicTacToeUser()
+        {
+
+        }
+
+        static TicTacToeUser()
+        {
+
+        }
+
+        public static TicTacToeUser Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+
+        public void SetTicTacToe(TicTacToe ticTacToe)
         {
             this.ticTacToe = ticTacToe;
         }

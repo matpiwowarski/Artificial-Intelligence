@@ -16,11 +16,30 @@ namespace ArtificialIntelligence.Controllers
 
             ticTacToe.ClearBoard();
 
-            TicTacToeBot bot = new TicTacToeBot(ticTacToe);
-            TicTacToeUser user = new TicTacToeUser(ticTacToe);
-            ticTacToe.SetWhoStarts(user);
+            TicTacToeBot bot = TicTacToeBot.Instance;
+            TicTacToeUser user = TicTacToeUser.Instance;
+            bot.SetTicTacToe(ticTacToe);
+            user.SetTicTacToe(ticTacToe);
 
+            // switch starting
+            if(ticTacToe.IsPlayerStarting == true)
+            {
+                ticTacToe.IsPlayerStarting = false;
+                // bot first move
+                Random random = new Random();
+                int x = random.Next(3);
+                int y = random.Next(3);
 
+                while (!bot.MakeMove(x, y))
+                {
+                    x = random.Next(3);
+                    y = random.Next(3);
+                }
+            }
+            else
+            {
+                ticTacToe.IsPlayerStarting = true;
+            }
 
             return View(ticTacToe);
         }
@@ -29,8 +48,8 @@ namespace ArtificialIntelligence.Controllers
         public IActionResult NextMove(IFormCollection formCollection)
         {
             TicTacToe ticTacToe = TicTacToe.Instance;
-            TicTacToeBot bot = new TicTacToeBot(ticTacToe);
-            TicTacToeUser user = new TicTacToeUser(ticTacToe);
+            TicTacToeBot bot = TicTacToeBot.Instance;
+            TicTacToeUser user = TicTacToeUser.Instance;
 
             ticTacToe.Level = int.Parse(formCollection["Level"]);
             string place = formCollection["Button"];
@@ -41,15 +60,20 @@ namespace ArtificialIntelligence.Controllers
             user.MakeMove(userX, userY);
 
             // bot
-            Random random = new Random();
-            int x = random.Next(3);
-            int y = random.Next(3);
-
-            while(!bot.MakeMove(x, y))
+            ticTacToe.CheckIfFinished();
+            if (ticTacToe.IsFinsihed == false)
             {
-                x = random.Next(3);
-                y = random.Next(3);
+                Random random = new Random();
+                int x = random.Next(3);
+                int y = random.Next(3);
+
+                while (!bot.MakeMove(x, y))
+                {
+                    x = random.Next(3);
+                    y = random.Next(3);
+                }
             }
+
             // checking result
             ticTacToe.CheckIfFinished();
             if(ticTacToe.IsFinsihed)

@@ -5,10 +5,26 @@ namespace ArtificialIntelligence.Models.TicTacToe
     {
         private TicTacToe ticTacToe;
 
-        public TicTacToeBot(TicTacToe ticTacToe)
+        private static readonly TicTacToeBot instance = new TicTacToeBot();
+
+        private TicTacToeBot()
         {
-            this.ticTacToe = ticTacToe;
+
         }
+
+        static TicTacToeBot()
+        {
+
+        }
+
+        public static TicTacToeBot Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
 
         public bool MakeMove(int x, int y)
         {
@@ -18,6 +34,11 @@ namespace ArtificialIntelligence.Models.TicTacToe
                 return true;
             }
             return false;
+        }
+
+        public void SetTicTacToe(TicTacToe ticTacToe)
+        {
+            this.ticTacToe = ticTacToe;
         }
     }
 }

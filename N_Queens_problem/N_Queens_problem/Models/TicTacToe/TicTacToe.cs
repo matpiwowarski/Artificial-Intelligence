@@ -6,7 +6,7 @@ namespace ArtificialIntelligence.Models.TicTacToe
         private static readonly TicTacToe instance = new TicTacToe();
 
         public TicTacToeMove[,] ticTacToeBoard = new TicTacToeMove[3, 3]; // x,y
-        public IPlayer WhoStarts;
+        public bool IsPlayerStarting = false;
         public int Level = 5;
         public int UserScore = 0;
         public int BotScore = 0;
@@ -29,11 +29,6 @@ namespace ArtificialIntelligence.Models.TicTacToe
             {
                 return instance;
             }
-        }
-
-        public void SetWhoStarts(IPlayer player)
-        {
-            this.WhoStarts = player;
         }
 
         public void UserWon()
