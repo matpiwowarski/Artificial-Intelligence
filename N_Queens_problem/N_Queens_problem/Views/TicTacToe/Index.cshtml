@@ -35,52 +35,54 @@
     {
         @* TIC-TAC-TOE *@
         <div id="tictactoe">
-            <div class="box">
-                @{
-                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 0);
-                }
-            </div>
-            <div class="box">
-                @{
-                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 0);
-                }
-            </div>
-            <div class="box">
-                @{
-                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 0);
-                }
-            </div>
-            <br />
-            <div class="box">
-                @{
-                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 1);
-                }
-            </div>
-            <div class="box">
-                @{
-                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 1);
-                }
-            </div>
-            <div class="box">
-                @{
-                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 1);
-                }
-            </div>
-            <br />
-            <div class="box">
-                @{
-                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 2);
-                }
-            </div>
-            <div class="box">
-                @{
-                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 2);
-                }
-            </div>
-            <div class="box">
-                @{
-                    CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 2);
-                }
+            <div id="board">
+                <div class="box">
+                    @{
+                        CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 0);
+                    }
+                </div>
+                <div class="box">
+                    @{
+                        CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 0);
+                    }
+                </div>
+                <div class="box">
+                    @{
+                        CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 0);
+                    }
+                </div>
+                <br />
+                <div class="box">
+                    @{
+                        CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 1);
+                    }
+                </div>
+                <div class="box">
+                    @{
+                        CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 1);
+                    }
+                </div>
+                <div class="box">
+                    @{
+                        CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 1);
+                    }
+                </div>
+                <br />
+                <div class="box">
+                    @{
+                        CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 2);
+                    }
+                </div>
+                <div class="box">
+                    @{
+                        CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 2);
+                    }
+                </div>
+                <div class="box">
+                    @{
+                        CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 2);
+                    }
+                </div>
             </div>
         </div>
 
@@ -113,11 +115,22 @@
 
 <style>
 
+    button {
+        background: transparent;
+        border: none !important;
+    }
 
-
+    #board {
+        position: absolute;
+        top: 130px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
     .box {
-        background-color: lightgray;
+        background-color: white;
         height: 100px;
         width: 100px;
         display: inline-block;
@@ -135,7 +148,12 @@
     }
 
     #tictactoe {
+        background-color: black;
+        opacity: 0.8;
         margin-top: 30px;
+        margin-bottom: 30px;
+        width: 310px;
+        height: 310px;
     }
 
     /* The slider itself */
