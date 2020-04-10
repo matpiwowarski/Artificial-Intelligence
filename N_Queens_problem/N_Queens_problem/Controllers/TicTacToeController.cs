@@ -26,6 +26,13 @@ namespace ArtificialIntelligence.Controllers
         public IActionResult NextMove(IFormCollection formCollection)
         {
             TicTacToe ticTacToe = TicTacToe.Instance;
+
+            if(ticTacToe.CheckIfFinished())
+            {
+                ticTacToe.TieScore++;
+                return RedirectToAction("Index", "TicTacToe");
+            }
+
             TicTacToeBot bot = new TicTacToeBot(ticTacToe);
             TicTacToeUser user = new TicTacToeUser(ticTacToe);
 

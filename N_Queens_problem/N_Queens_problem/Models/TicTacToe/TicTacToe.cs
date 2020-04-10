@@ -11,6 +11,7 @@ namespace ArtificialIntelligence.Models.TicTacToe
         public int UserScore = 0;
         public int BotScore = 0;
         public int TieScore = 0;
+        public bool IsFinsihed = false;
 
         private TicTacToe()
         {
@@ -89,6 +90,19 @@ namespace ArtificialIntelligence.Models.TicTacToe
                 return true;
             }
             return false;
+        }
+
+        public void CheckIfFinished()
+        {
+            for(int i = 0; i < 3; i++)
+            {
+                for(int j = 0; j < 3; j++)
+                {
+                    if (ticTacToeBoard[i, j] == TicTacToeMove.Empty)
+                        IsFinsihed = false;
+                }
+            }
+            IsFinsihed = true;
         }
     }
 }
