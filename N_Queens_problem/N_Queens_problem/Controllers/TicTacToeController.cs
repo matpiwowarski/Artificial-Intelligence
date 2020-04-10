@@ -13,6 +13,9 @@ namespace ArtificialIntelligence.Controllers
         public IActionResult Index()
         {
             TicTacToe ticTacToe = TicTacToe.Instance;
+
+            ticTacToe.ClearBoard();
+
             TicTacToeBot bot = new TicTacToeBot(ticTacToe);
             TicTacToeUser user = new TicTacToeUser(ticTacToe);
             ticTacToe.SetWhoStarts(user);
@@ -26,12 +29,6 @@ namespace ArtificialIntelligence.Controllers
         public IActionResult NextMove(IFormCollection formCollection)
         {
             TicTacToe ticTacToe = TicTacToe.Instance;
-
-            if(ticTacToe.CheckIfFinished())
-            {
-                ticTacToe.TieScore++;
-                return RedirectToAction("Index", "TicTacToe");
-            }
 
             TicTacToeBot bot = new TicTacToeBot(ticTacToe);
             TicTacToeUser user = new TicTacToeUser(ticTacToe);
@@ -48,7 +45,11 @@ namespace ArtificialIntelligence.Controllers
                 y = random.Next(3);
             }
 
-            ticTacToe.BotWon();
+            ticTacToe.CheckIfFinished();
+            if(ticTacToe.IsFinsihed)
+            {
+                ticTacToe.TieScore++;
+            }
 
             return View("Index", ticTacToe);
         }
