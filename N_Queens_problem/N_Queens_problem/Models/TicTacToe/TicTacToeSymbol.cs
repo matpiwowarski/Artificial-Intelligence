@@ -1,7 +1,7 @@
 ﻿using System;
 namespace ArtificialIntelligence.Models
 {
-    public enum TicTacToeMove
+    public enum TicTacToeSymbol
     {
         Empty,
         Circle,

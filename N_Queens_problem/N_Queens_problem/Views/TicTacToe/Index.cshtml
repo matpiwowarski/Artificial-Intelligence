@@ -5,25 +5,34 @@
     var circleLink = "https://github.com/matpiwowarski/Local-Search-Algorithms/blob/master/N_Queens_problem/N_Queens_problem/Resources/circle.png?raw=true";
     var crossLink = "https://github.com/matpiwowarski/Local-Search-Algorithms/blob/master/N_Queens_problem/N_Queens_problem/Resources/cross.png?raw=true";
 
-    void CheckIfCrossOrCircle(TicTacToeMove[,] ticTacToe, int x, int y)
+    void CheckIfCrossOrCircle(TicTacToeSymbol[,] ticTacToe, int x, int y)
     {
-        if (ticTacToe[x, y] == TicTacToeMove.Cross)
+        if (ticTacToe[x, y] == TicTacToeSymbol.Cross)
         {
             <div class="doneMove" style="height:100px; width:100px;">
-                <img src=@crossLink alt="cross" style="height: 85px; width: 85px;">
+                <img src=@crossLink alt="cross" style="height: 100px; width: 100px;">
             </div>
         }
-        else if (ticTacToe[x, y] == TicTacToeMove.Circle)
+        else if (ticTacToe[x, y] == TicTacToeSymbol.Circle)
         {
             <div class="doneMove" style="height:100px; width:100px;">
-                <img src=@circleLink alt="circle" style="height: 85px; width: 85px;">
+                <img src=@circleLink alt="circle" style="height: 100px; width: 100px;">
             </div>
         }
         else
         {
-            <button name="Button" value="@x@y" type="submit" style="height:100px; width:100px;">
-                <img class="empty" src=@crossLink alt="cross" style="height:85px; width:85px;" />
-            </button>
+            if (Model.IsFinsihed == false)
+            {
+                <button name="Button" value="@x@y" type="submit" style="height:100px; width:100px;">
+                    <img class="empty" src=@crossLink alt="cross" style="height:85px; width:85px;" />
+                </button>
+            }
+            else
+            {
+                <div class="doneMove" style="height:100px; width:100px;">
+                    <img class="hidden" src=@crossLink alt="cross" style="height:100px; width:100px;vertical-align: central;" />
+                </div>
+            }
         }
     }
 }
@@ -117,14 +126,15 @@
 
 <style>
 
+
+
     button {
         background: transparent;
         border: none !important;
     }
 
-    .doneMove
-    {
-        display:inline-block;
+    .doneMove {
+        display: inline-block;
     }
 
     #board {
@@ -142,6 +152,10 @@
         width: 100px;
         display: inline-block;
         margin: 5px;
+    }
+
+    .hidden{
+        opacity: 0.0;
     }
 
     .empty {

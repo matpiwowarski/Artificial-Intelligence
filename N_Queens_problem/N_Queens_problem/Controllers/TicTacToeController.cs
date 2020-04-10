@@ -15,6 +15,7 @@ namespace ArtificialIntelligence.Controllers
             TicTacToe ticTacToe = TicTacToe.Instance;
 
             ticTacToe.ClearBoard();
+            ticTacToe.IsFinsihed = false;
 
             TicTacToeBot bot = TicTacToeBot.Instance;
             TicTacToeUser user = TicTacToeUser.Instance;
@@ -58,11 +59,14 @@ namespace ArtificialIntelligence.Controllers
 
             // user
             user.MakeMove(userX, userY);
-
-            // bot
-            ticTacToe.CheckIfFinished();
-            if (ticTacToe.IsFinsihed == false)
+            if (ticTacToe.CheckIfSymbolWon(user.Symbol))
             {
+                ticTacToe.IsFinsihed = true;
+                ticTacToe.UserScore++;
+            }
+            else
+            {
+                // bot
                 Random random = new Random();
                 int x = random.Next(3);
                 int y = random.Next(3);
@@ -72,13 +76,18 @@ namespace ArtificialIntelligence.Controllers
                     x = random.Next(3);
                     y = random.Next(3);
                 }
-            }
 
-            // checking result
-            ticTacToe.CheckIfFinished();
-            if(ticTacToe.IsFinsihed)
-            {
-                ticTacToe.TieScore++;
+                if (ticTacToe.CheckIfSymbolWon(bot.Symbol))
+                {
+                    ticTacToe.IsFinsihed = true;
+                    ticTacToe.BotScore++;
+                }
+                else
+                {
+                    ticTacToe.CheckIfFinished();
+                    if (ticTacToe.IsFinsihed)
+                        ticTacToe.TieScore++;
+                }
             }
 
             return View("Index", ticTacToe);

@@ -4,6 +4,7 @@ namespace ArtificialIntelligence.Models.TicTacToe
     public class TicTacToeBot: IPlayer
     {
         private TicTacToe ticTacToe;
+        public readonly TicTacToeSymbol Symbol = TicTacToeSymbol.Circle;
 
         private static readonly TicTacToeBot instance = new TicTacToeBot();
 
@@ -28,9 +29,9 @@ namespace ArtificialIntelligence.Models.TicTacToe
 
         public bool MakeMove(int x, int y)
         {
-            if (ticTacToe.ticTacToeBoard[x, y] == TicTacToeMove.Empty)
+            if (ticTacToe.ticTacToeBoard[x, y] == TicTacToeSymbol.Empty)
             {
-                ticTacToe.ticTacToeBoard[x, y] = TicTacToeMove.Circle;
+                ticTacToe.ticTacToeBoard[x, y] = TicTacToeSymbol.Circle;
                 return true;
             }
             return false;
