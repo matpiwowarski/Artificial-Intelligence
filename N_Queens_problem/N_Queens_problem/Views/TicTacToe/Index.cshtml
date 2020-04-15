@@ -113,24 +113,52 @@
         </div>
     }
 
-    @* Score *@
-    <div class="row" style="margin-top: 20px;">
-        <div class="col-2"></div>
-        <div class="col-3">    <h3 class="text-primary" style="text-align: right;"> User: @Model.UserScore </h3></div>
-        <div class="col-2">    <h3 style="text-align: center;"> Tie: @Model.TieScore   </h3></div>
-        <div class="col-3">    <h3 style="text-align: left; color: red;"> Bot: @Model.BotScore   </h3></div>
-        <div class="col-2"></div>
-    </div>
+    @if (Model.GameStatus == ArtificialIntelligence.Models.TicTacToe.GameStatus.InProgress)
+    {
+        @* Score *@
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-2"></div>
+            <div class="col-3">    <h3 class="text-primary" style="text-align: right;"> User: @Model.UserScore </h3></div>
+            <div class="col-2">    <h3 style="text-align: center;"> Tie: @Model.TieScore   </h3></div>
+            <div class="col-3">    <h3 style="text-align: left; color: red;"> Bot: @Model.BotScore   </h3></div>
+            <div class="col-2"></div>
+        </div>
+    }
+    else
+    {
+        @* You won / You lost / TIE *@
+            @if(Model.GameStatus == ArtificialIntelligence.Models.TicTacToe.GameStatus.UserWon)
+            {
+                <div class="col-2 result"><h1> YOU WON</h1></div>
+            }
+            else if(Model.GameStatus == ArtificialIntelligence.Models.TicTacToe.GameStatus.BotWon)
+            {
+                <div class="col-2 result"><h1> YOU LOST</h1></div>
+            }
+            else
+            {
+                <div class="col-2 result"><h1> TIE GAME</h1></div>
+            }
+    }
 
 </center>
 
 <style>
 
-
-
     button {
         background: transparent;
         border: none !important;
+    }
+
+    .result {
+        position: absolute;
+        top: 250px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        color: orange;
+        text-shadow: 4px 4px 8px black; 
     }
 
     .doneMove {
