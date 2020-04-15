@@ -45,53 +45,17 @@
         @* TIC-TAC-TOE *@
         <div id="tictactoe">
             <div id="board">
-                <div class="box">
-                    @{
-                        CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 0);
+                @for (int x = 0; x < 3; x++)
+                {
+                    for (int y = 0; y < 3; y++)
+                    {
+                        <div class="box">
+                            @{
+                                CheckIfCrossOrCircle(Model.ticTacToeBoard, x, y);
+                            }
+                        </div>
                     }
-                </div>
-                <div class="box">
-                    @{
-                        CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 0);
-                    }
-                </div>
-                <div class="box">
-                    @{
-                        CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 0);
-                    }
-                </div>
-                <br />
-                <div class="box">
-                    @{
-                        CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 1);
-                    }
-                </div>
-                <div class="box">
-                    @{
-                        CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 1);
-                    }
-                </div>
-                <div class="box">
-                    @{
-                        CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 1);
-                    }
-                </div>
-                <br />
-                <div class="box">
-                    @{
-                        CheckIfCrossOrCircle(Model.ticTacToeBoard, 0, 2);
-                    }
-                </div>
-                <div class="box">
-                    @{
-                        CheckIfCrossOrCircle(Model.ticTacToeBoard, 1, 2);
-                    }
-                </div>
-                <div class="box">
-                    @{
-                        CheckIfCrossOrCircle(Model.ticTacToeBoard, 2, 2);
-                    }
-                </div>
+                }
             </div>
         </div>
 
