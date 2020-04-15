@@ -51,29 +51,25 @@ namespace ArtificialIntelligence.Controllers
             TicTacToeBot bot = TicTacToeBot.Instance;
             TicTacToeUser user = TicTacToeUser.Instance;
 
+            // setting level
             ticTacToe.Level = int.Parse(formCollection["Level"]);
+            
             string place = formCollection["Button"];
             int userX = int.Parse(place[0].ToString());
             int userY = int.Parse(place[1].ToString());
 
             // user
             user.MakeMove(userX, userY);
-
+            //
             ticTacToe.CheckGameStatus();
 
             if(ticTacToe.GameStatus == GameStatus.InProgress)
             {
                 // bot
-                Random random = new Random();
-                int x = random.Next(3);
-                int y = random.Next(3);
-
-                while (!bot.MakeMove(x, y))
-                {
-                    x = random.Next(3);
-                    y = random.Next(3);
-                }
-
+                MiniMax miniMax = new MiniMax(ticTacToe.ticTacToeBoard);
+                Tuple<int, int> xy = miniMax.GetBotMove(ticTacToe.Level);
+                bot.MakeMove(xy.Item1, xy.Item2);
+                //
                 ticTacToe.CheckGameStatus();
 
                 if (ticTacToe.GameStatus != GameStatus.InProgress)
