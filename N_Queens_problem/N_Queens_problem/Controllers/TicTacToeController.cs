@@ -59,34 +59,42 @@ namespace ArtificialIntelligence.Controllers
 
             // user
             user.MakeMove(userX, userY);
-            if (ticTacToe.CheckIfSymbolWon(user.Symbol))
+            if (ticTacToe.CheckIfSymbolWon(user.Symbol)) // check if user won
             {
                 ticTacToe.IsFinsihed = true;
                 ticTacToe.UserScore++;
             }
             else
             {
-                // bot
-                Random random = new Random();
-                int x = random.Next(3);
-                int y = random.Next(3);
-
-                while (!bot.MakeMove(x, y))
+                ticTacToe.CheckIfFinished();
+                if (ticTacToe.IsFinsihed) // check tie
                 {
-                    x = random.Next(3);
-                    y = random.Next(3);
-                }
-
-                if (ticTacToe.CheckIfSymbolWon(bot.Symbol))
-                {
-                    ticTacToe.IsFinsihed = true;
-                    ticTacToe.BotScore++;
+                    ticTacToe.TieScore++;
                 }
                 else
                 {
-                    ticTacToe.CheckIfFinished();
-                    if (ticTacToe.IsFinsihed)
-                        ticTacToe.TieScore++;
+                    // bot
+                    Random random = new Random();
+                    int x = random.Next(3);
+                    int y = random.Next(3);
+
+                    while (!bot.MakeMove(x, y))
+                    {
+                        x = random.Next(3);
+                        y = random.Next(3);
+                    }
+
+                    if (ticTacToe.CheckIfSymbolWon(bot.Symbol)) // check if bot won
+                    {
+                        ticTacToe.IsFinsihed = true;
+                        ticTacToe.BotScore++;
+                    }
+                    else
+                    {
+                        ticTacToe.CheckIfFinished(); // check tie
+                        if (ticTacToe.IsFinsihed)
+                            ticTacToe.TieScore++;
+                    }
                 }
             }
 
