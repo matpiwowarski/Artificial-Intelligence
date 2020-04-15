@@ -21,7 +21,7 @@
         }
         else
         {
-            if (Model.IsFinsihed == false)
+            if (Model.GameStatus == ArtificialIntelligence.Models.TicTacToe.GameStatus.InProgress)
             {
                 <button name="Button" value="@x@y" type="submit" style="height:100px; width:100px;">
                     <img class="empty" src=@crossLink alt="cross" style="height:85px; width:85px;" />

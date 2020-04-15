@@ -5,13 +5,13 @@ namespace ArtificialIntelligence.Models.TicTacToe
     {
         private static readonly TicTacToe instance = new TicTacToe();
 
+        public GameStatus GameStatus = GameStatus.InProgress;
         public TicTacToeSymbol[,] ticTacToeBoard = new TicTacToeSymbol[3, 3]; // x,y
         public bool IsPlayerStarting = false;
         public int Level = 5;
         public int UserScore = 0;
         public int BotScore = 0;
         public int TieScore = 0;
-        public bool IsFinsihed = false;
 
         private TicTacToe()
         {
@@ -71,7 +71,32 @@ namespace ArtificialIntelligence.Models.TicTacToe
             return false;
         }
 
-        public void CheckIfFinished()
+        public void CheckGameStatus()
+        {
+            SetTieIfGameEnded();
+            if (CheckIfSymbolWon(TicTacToeSymbol.Circle))
+                GameStatus = GameStatus.BotWon;
+            if (CheckIfSymbolWon(TicTacToeSymbol.Cross))
+                GameStatus = GameStatus.UserWon;
+        }
+
+        public void CheckGameStatusAndGivePoint()
+        {
+            if(GameStatus == GameStatus.Tie)
+            {
+                TieScore++;
+            }
+            else if(GameStatus == GameStatus.BotWon)
+            {
+                BotScore++;
+            }
+            else if(GameStatus == GameStatus.UserWon)
+            {
+                UserScore++;
+            }
+        }
+
+        private void SetTieIfGameEnded()
         {
             for(int i = 0; i < 3; i++)
             {
@@ -79,12 +104,11 @@ namespace ArtificialIntelligence.Models.TicTacToe
                 {
                     if (ticTacToeBoard[i, j] == TicTacToeSymbol.Empty)
                     {
-                        IsFinsihed = false;
                         return;
                     }
                 }
             }
-            IsFinsihed = true;
+            GameStatus = GameStatus.Tie;
         }
 
         public void ClearBoard()
@@ -96,6 +120,7 @@ namespace ArtificialIntelligence.Models.TicTacToe
                     ticTacToeBoard[i, j] = TicTacToeSymbol.Empty;
                 }
             }
+            GameStatus = GameStatus.InProgress;
         }
 
     }

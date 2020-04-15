@@ -15,7 +15,6 @@ namespace ArtificialIntelligence.Controllers
             TicTacToe ticTacToe = TicTacToe.Instance;
 
             ticTacToe.ClearBoard();
-            ticTacToe.IsFinsihed = false;
 
             TicTacToeBot bot = TicTacToeBot.Instance;
             TicTacToeUser user = TicTacToeUser.Instance;
@@ -59,43 +58,32 @@ namespace ArtificialIntelligence.Controllers
 
             // user
             user.MakeMove(userX, userY);
-            if (ticTacToe.CheckIfSymbolWon(user.Symbol)) // check if user won
+
+            ticTacToe.CheckGameStatus();
+
+            if(ticTacToe.GameStatus == GameStatus.InProgress)
             {
-                ticTacToe.IsFinsihed = true;
-                ticTacToe.UserScore++;
+                // bot
+                Random random = new Random();
+                int x = random.Next(3);
+                int y = random.Next(3);
+
+                while (!bot.MakeMove(x, y))
+                {
+                    x = random.Next(3);
+                    y = random.Next(3);
+                }
+
+                ticTacToe.CheckGameStatus();
+
+                if (ticTacToe.GameStatus != GameStatus.InProgress)
+                {
+                    ticTacToe.CheckGameStatusAndGivePoint();
+                }
             }
             else
             {
-                ticTacToe.CheckIfFinished();
-                if (ticTacToe.IsFinsihed) // check tie
-                {
-                    ticTacToe.TieScore++;
-                }
-                else
-                {
-                    // bot
-                    Random random = new Random();
-                    int x = random.Next(3);
-                    int y = random.Next(3);
-
-                    while (!bot.MakeMove(x, y))
-                    {
-                        x = random.Next(3);
-                        y = random.Next(3);
-                    }
-
-                    if (ticTacToe.CheckIfSymbolWon(bot.Symbol)) // check if bot won
-                    {
-                        ticTacToe.IsFinsihed = true;
-                        ticTacToe.BotScore++;
-                    }
-                    else
-                    {
-                        ticTacToe.CheckIfFinished(); // check tie
-                        if (ticTacToe.IsFinsihed)
-                            ticTacToe.TieScore++;
-                    }
-                }
+                ticTacToe.CheckGameStatusAndGivePoint();
             }
 
             return View("Index", ticTacToe);
