@@ -32,7 +32,7 @@ namespace ArtificialIntelligence.Models.TicTacToe
                     if(BoardBeforeMove[i,j] == TicTacToeSymbol.Empty)
                     {
                         BoardBeforeMove[i, j] = TicTacToeSymbol.Circle;
-                        int score = GetScore(i, j);
+                        int score = GetScore(i, j, level, true);
                         BoardBeforeMove[i, j] = TicTacToeSymbol.Empty;
                         if (score > bestScore)
                         {
@@ -47,8 +47,27 @@ namespace ArtificialIntelligence.Models.TicTacToe
             return new Tuple<int, int>(bestX, bestY);
         }
 
-        private int GetScore(int x, int y)
+        // MiniMax algorithm
+        private int GetScore(int x, int y, int depth, bool isMaximizing)
         {
+            int score = 0;
+            TicTacToeChecker ticTacToeChecker = new TicTacToeChecker();
+
+            if(isMaximizing) // circle should be the best
+            {
+                if(ticTacToeChecker.CheckIfSymbolWon(TicTacToeSymbol.Circle, BoardBeforeMove))
+                {
+                    score++;
+                }
+            }
+            else // cross should be the worst
+            {
+                if (ticTacToeChecker.CheckIfSymbolWon(TicTacToeSymbol.Cross, BoardBeforeMove))
+                {
+                    score--;
+                }
+            }
+
             return 1;
         }
     }

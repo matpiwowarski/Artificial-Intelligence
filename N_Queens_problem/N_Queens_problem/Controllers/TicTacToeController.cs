@@ -42,6 +42,7 @@ namespace ArtificialIntelligence.Controllers
         public IActionResult NextMove(IFormCollection formCollection)
         {
             TicTacToe ticTacToe = TicTacToe.Instance;
+            TicTacToeChecker ticTacToeChecker = new TicTacToeChecker();
             TicTacToeBot bot = TicTacToeBot.Instance;
             TicTacToeUser user = TicTacToeUser.Instance;
 
@@ -55,7 +56,7 @@ namespace ArtificialIntelligence.Controllers
             // user
             user.MakeMove(userX, userY);
             //
-            ticTacToe.CheckGameStatus();
+            ticTacToeChecker.CheckGameStatus(ticTacToe);
 
             if(ticTacToe.GameStatus == GameStatus.InProgress)
             {
@@ -64,16 +65,16 @@ namespace ArtificialIntelligence.Controllers
                 Tuple<int, int> xy = miniMax.GetBotMove(ticTacToe.Level);
                 bot.MakeMove(xy.Item1, xy.Item2);
                 //
-                ticTacToe.CheckGameStatus();
+                ticTacToeChecker.CheckGameStatus(ticTacToe);
 
                 if (ticTacToe.GameStatus != GameStatus.InProgress)
                 {
-                    ticTacToe.CheckGameStatusAndGivePoint();
+                    ticTacToeChecker.CheckGameStatusAndGivePoint(ticTacToe);
                 }
             }
             else
             {
-                ticTacToe.CheckGameStatusAndGivePoint();
+                ticTacToeChecker.CheckGameStatusAndGivePoint(ticTacToe);
             }
 
             return View("Index", ticTacToe);
