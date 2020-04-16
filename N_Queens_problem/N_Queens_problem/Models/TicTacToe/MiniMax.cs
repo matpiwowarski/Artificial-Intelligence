@@ -21,12 +21,35 @@ namespace ArtificialIntelligence.Models.TicTacToe
 
         public Tuple<int, int> GetBotMove(int level)
         {
-            int x = 0;
-            int y = 0;
+            int bestX = 0;
+            int bestY = 0;
+            int bestScore = -int.MaxValue;
 
+            for(int i = 0; i < 3; i++)
+            {
+                for(int j = 0; j < 3; j++)
+                {
+                    if(BoardBeforeMove[i,j] == TicTacToeSymbol.Empty)
+                    {
+                        BoardBeforeMove[i, j] = TicTacToeSymbol.Circle;
+                        int score = GetScore(i, j);
+                        BoardBeforeMove[i, j] = TicTacToeSymbol.Empty;
+                        if (score > bestScore)
+                        {
+                            bestScore = score;
+                            bestX = i;
+                            bestY = j;
+                        }
+                    }
+                }
+            }
 
+            return new Tuple<int, int>(bestX, bestY);
+        }
 
-            return new Tuple<int, int>(x, y);
+        private int GetScore(int x, int y)
+        {
+            return 1;
         }
     }
 }

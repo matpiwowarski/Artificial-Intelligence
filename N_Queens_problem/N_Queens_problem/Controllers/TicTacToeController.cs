@@ -26,15 +26,9 @@ namespace ArtificialIntelligence.Controllers
             {
                 ticTacToe.IsPlayerStarting = false;
                 // bot first move
-                Random random = new Random();
-                int x = random.Next(3);
-                int y = random.Next(3);
-
-                while (!bot.MakeMove(x, y))
-                {
-                    x = random.Next(3);
-                    y = random.Next(3);
-                }
+                MiniMax miniMax = new MiniMax(ticTacToe.ticTacToeBoard);
+                Tuple<int, int> xy = miniMax.GetBotMove(ticTacToe.Level);
+                bot.MakeMove(xy.Item1, xy.Item2);
             }
             else
             {
