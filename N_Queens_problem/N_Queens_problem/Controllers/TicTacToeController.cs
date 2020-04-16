@@ -27,7 +27,7 @@ namespace ArtificialIntelligence.Controllers
                 ticTacToe.IsPlayerStarting = false;
                 // bot first move
                 MiniMax miniMax = new MiniMax(ticTacToe.ticTacToeBoard);
-                Tuple<int, int> xy = miniMax.GetBotMove(ticTacToe.Level);
+                Tuple<int, int> xy = miniMax.BestMove(ticTacToe.Level);
                 bot.MakeMove(xy.Item1, xy.Item2);
             }
             else
@@ -62,7 +62,7 @@ namespace ArtificialIntelligence.Controllers
             {
                 // bot
                 MiniMax miniMax = new MiniMax(ticTacToe.ticTacToeBoard);
-                Tuple<int, int> xy = miniMax.GetBotMove(ticTacToe.Level);
+                Tuple<int, int> xy = miniMax.BestMove(ticTacToe.Level);
                 bot.MakeMove(xy.Item1, xy.Item2);
                 //
                 ticTacToeChecker.CheckGameStatus(ticTacToe);

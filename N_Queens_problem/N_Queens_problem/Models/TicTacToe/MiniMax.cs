@@ -23,7 +23,7 @@ namespace ArtificialIntelligence.Models.TicTacToe
             }
         }
 
-        public Tuple<int, int> GetBotMove(int level)
+        public Tuple<int, int> BestMove(int level)
         {
             int bestX = 0;
             int bestY = 0;
@@ -36,7 +36,7 @@ namespace ArtificialIntelligence.Models.TicTacToe
                     if(BoardBeforeMove[i,j] == TicTacToeSymbol.Empty)
                     {
                         BoardBeforeMove[i, j] = TicTacToeSymbol.Circle;
-                        int score = GetScore(0, true);
+                        int score = MiniMaxAlgorithm(0, false);
                         BoardBeforeMove[i, j] = TicTacToeSymbol.Empty;
                         if (score > bestScore)
                         {
@@ -52,7 +52,7 @@ namespace ArtificialIntelligence.Models.TicTacToe
         }
 
         // MiniMax algorithm
-        private int GetScore(int depth, bool isMaximizing)
+        private int MiniMaxAlgorithm(int depth, bool isMaximizing)
         {
             TicTacToeChecker ticTacToeChecker = new TicTacToeChecker();
 
@@ -80,7 +80,7 @@ namespace ArtificialIntelligence.Models.TicTacToe
                         if (BoardBeforeMove[i, j] == TicTacToeSymbol.Empty)
                         {
                             BoardBeforeMove[i, j] = TicTacToeSymbol.Circle;
-                            int scoreMax = GetScore(depth + 1, false);
+                            int scoreMax = MiniMaxAlgorithm(depth + 1, false);
                             BoardBeforeMove[i, j] = TicTacToeSymbol.Empty;
 
                             bestScore = Math.Max(scoreMax, bestScore);
@@ -99,7 +99,7 @@ namespace ArtificialIntelligence.Models.TicTacToe
                         if (BoardBeforeMove[i, j] == TicTacToeSymbol.Empty)
                         {
                             BoardBeforeMove[i, j] = TicTacToeSymbol.Cross;
-                            int scoreMin = GetScore(depth + 1, true);
+                            int scoreMin = MiniMaxAlgorithm(depth + 1, true);
                             BoardBeforeMove[i, j] = TicTacToeSymbol.Empty;
 
                             bestScore = Math.Min(scoreMin, bestScore);
