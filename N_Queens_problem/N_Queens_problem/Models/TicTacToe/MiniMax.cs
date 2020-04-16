@@ -9,12 +9,16 @@ namespace ArtificialIntelligence.Models.TicTacToe
 
         public MiniMax(TicTacToeSymbol[,] boardBeforeMove)
         {
-            // rewrite board (it won't work with the original)
-            for(int x = 0; x < 3; x ++)
+            CopyTicTacToeBoard(BoardBeforeMove, boardBeforeMove);
+        }
+
+        public void CopyTicTacToeBoard(TicTacToeSymbol[,] empty, TicTacToeSymbol[,] original)
+        {
+            for (int x = 0; x < 3; x++)
             {
-                for(int y = 0; y < 3; y ++)
+                for (int y = 0; y < 3; y++)
                 {
-                    BoardBeforeMove[x, y] = boardBeforeMove[x, y];
+                    empty[x, y] = original[x, y];
                 }
             }
         }
@@ -32,7 +36,7 @@ namespace ArtificialIntelligence.Models.TicTacToe
                     if(BoardBeforeMove[i,j] == TicTacToeSymbol.Empty)
                     {
                         BoardBeforeMove[i, j] = TicTacToeSymbol.Circle;
-                        int score = GetScore(i, j, level, true);
+                        int score = GetScore(0, true);
                         BoardBeforeMove[i, j] = TicTacToeSymbol.Empty;
                         if (score > bestScore)
                         {
@@ -48,27 +52,62 @@ namespace ArtificialIntelligence.Models.TicTacToe
         }
 
         // MiniMax algorithm
-        private int GetScore(int x, int y, int depth, bool isMaximizing)
+        private int GetScore(int depth, bool isMaximizing)
         {
-            int score = 0;
             TicTacToeChecker ticTacToeChecker = new TicTacToeChecker();
 
-            if(isMaximizing) // circle should be the best
+            // checking board state
+            if (ticTacToeChecker.CheckIfSymbolWon(TicTacToeSymbol.Circle, BoardBeforeMove))
             {
-                if(ticTacToeChecker.CheckIfSymbolWon(TicTacToeSymbol.Circle, BoardBeforeMove))
+                return 10;
+            }
+            else if (ticTacToeChecker.CheckIfSymbolWon(TicTacToeSymbol.Cross, BoardBeforeMove))
+            {
+                return -10;
+            }
+            else if (ticTacToeChecker.GameEnded(BoardBeforeMove))
+            {
+                return 0;
+            }
+
+            if (isMaximizing) // circle should be the best
+            {
+                int bestScore = -int.MaxValue;
+                for (int i = 0; i < 3; i++)
                 {
-                    score++;
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (BoardBeforeMove[i, j] == TicTacToeSymbol.Empty)
+                        {
+                            BoardBeforeMove[i, j] = TicTacToeSymbol.Circle;
+                            int scoreMax = GetScore(depth + 1, false);
+                            BoardBeforeMove[i, j] = TicTacToeSymbol.Empty;
+
+                            bestScore = Math.Max(scoreMax, bestScore);
+                        }
+                    }
                 }
+                return bestScore;
             }
             else // cross should be the worst
             {
-                if (ticTacToeChecker.CheckIfSymbolWon(TicTacToeSymbol.Cross, BoardBeforeMove))
+                int bestScore = int.MaxValue;
+                for (int i = 0; i < 3; i++)
                 {
-                    score--;
-                }
-            }
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (BoardBeforeMove[i, j] == TicTacToeSymbol.Empty)
+                        {
+                            BoardBeforeMove[i, j] = TicTacToeSymbol.Cross;
+                            int scoreMin = GetScore(depth + 1, true);
+                            BoardBeforeMove[i, j] = TicTacToeSymbol.Empty;
 
-            return 1;
+                            bestScore = Math.Min(scoreMin, bestScore);
+                        }
+                    }
+                }
+                return bestScore;
+            }
         }
     }
 }

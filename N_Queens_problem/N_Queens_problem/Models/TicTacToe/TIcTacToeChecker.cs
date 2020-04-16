@@ -65,17 +65,25 @@ namespace ArtificialIntelligence.Models.TicTacToe
 
         private void SetTieIfGameEnded(TicTacToe ticTacToe)
         {
+            if(GameEnded(ticTacToe.ticTacToeBoard))
+            {
+                ticTacToe.GameStatus = GameStatus.Tie;
+            }
+        }
+
+        public bool GameEnded(TicTacToeSymbol[,] ticTacToeBoard)
+        {
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    if (ticTacToe.ticTacToeBoard[i, j] == TicTacToeSymbol.Empty)
+                    if (ticTacToeBoard[i, j] == TicTacToeSymbol.Empty)
                     {
-                        return;
+                        return false;
                     }
                 }
             }
-            ticTacToe.GameStatus = GameStatus.Tie;
+            return true;
         }
     }
 }
