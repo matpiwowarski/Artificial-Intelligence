@@ -1,60 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-
-namespace ArtificialIntelligence.Models.TicTacToe
+namespace ArtificialIntelligence.Models.TicTacToe.Algorithm
 {
-    public class MiniMax
+    public class AlphaBetaPruning : TicTacToeAlgorithm
     {
-        private TicTacToeSymbol[,] _boardBeforeMove = new TicTacToeSymbol[3, 3]; // x,y
-        private int _maxDepth;
-
-        public MiniMax(TicTacToeSymbol[,] boardBeforeMove, int level)
+        public AlphaBetaPruning(TicTacToeSymbol[,] boardBeforeMove, int level)
         {
             CopyTicTacToeBoard(_boardBeforeMove, boardBeforeMove);
             _maxDepth = level;
         }
 
-        public void CopyTicTacToeBoard(TicTacToeSymbol[,] empty, TicTacToeSymbol[,] original)
+        protected override int DoAlgorithm()
         {
-            for (int x = 0; x < 3; x++)
-            {
-                for (int y = 0; y < 3; y++)
-                {
-                    empty[x, y] = original[x, y];
-                }
-            }
+            return AlphaBetaAlgorithm(1, false, -int.MaxValue, int.MaxValue);
         }
 
-        public Tuple<int, int> BestMove()
-        {
-            int bestX = 0;
-            int bestY = 0;
-            int bestScore = -int.MaxValue;
-
-            for(int i = 0; i < 3; i++)
-            {
-                for(int j = 0; j < 3; j++)
-                {
-                    if(_boardBeforeMove[i,j] == TicTacToeSymbol.Empty)
-                    {
-                        _boardBeforeMove[i, j] = TicTacToeSymbol.Circle;
-                        int score = MiniMaxAlgorithm(1, false);
-                        _boardBeforeMove[i, j] = TicTacToeSymbol.Empty;
-                        if (score > bestScore)
-                        {
-                            bestScore = score;
-                            bestX = i;
-                            bestY = j;
-                        }
-                    }
-                }
-            }
-
-            return new Tuple<int, int>(bestX, bestY);
-        }
-
-        // MiniMax algorithm
-        private int MiniMaxAlgorithm(int depth, bool isMaximizing)
+        private int AlphaBetaAlgorithm(int depth, bool isMaximizing, int alpha, int beta)
         {
             TicTacToeChecker ticTacToeChecker = new TicTacToeChecker();
 
@@ -87,10 +47,13 @@ namespace ArtificialIntelligence.Models.TicTacToe
                         if (_boardBeforeMove[i, j] == TicTacToeSymbol.Empty)
                         {
                             _boardBeforeMove[i, j] = TicTacToeSymbol.Circle;
-                            int scoreMax = MiniMaxAlgorithm(depth + 1, false);
+                            int scoreMax = AlphaBetaAlgorithm(depth + 1, false, alpha, beta);
                             _boardBeforeMove[i, j] = TicTacToeSymbol.Empty;
 
                             bestScore = Math.Max(scoreMax, bestScore);
+                            alpha = Math.Max(alpha, bestScore);
+                            if (beta <= alpha)
+                                return bestScore;
                         }
                     }
                 }
@@ -106,10 +69,13 @@ namespace ArtificialIntelligence.Models.TicTacToe
                         if (_boardBeforeMove[i, j] == TicTacToeSymbol.Empty)
                         {
                             _boardBeforeMove[i, j] = TicTacToeSymbol.Cross;
-                            int scoreMin = MiniMaxAlgorithm(depth + 1, true);
+                            int scoreMin = AlphaBetaAlgorithm(depth + 1, true, alpha, beta);
                             _boardBeforeMove[i, j] = TicTacToeSymbol.Empty;
 
                             bestScore = Math.Min(scoreMin, bestScore);
+                            beta = Math.Min(beta, bestScore);
+                            if (beta <= alpha)
+                                return bestScore;
                         }
                     }
                 }

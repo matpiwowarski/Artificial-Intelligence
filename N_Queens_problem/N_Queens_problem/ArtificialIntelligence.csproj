@@ -15,6 +15,7 @@
     <Folder Include="Views\Symbol\" />
     <Folder Include="Views\TicTacToe\" />
     <Folder Include="Models\SymbolGuessing\" />
+    <Folder Include="Models\TicTacToe\Algorithm\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Resources\queen.png" />

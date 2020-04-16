@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ArtificialIntelligence.Models.TicTacToe;
+using ArtificialIntelligence.Models.TicTacToe.Algorithm;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,8 +27,8 @@ namespace ArtificialIntelligence.Controllers
             {
                 ticTacToe.IsPlayerStarting = false;
                 // bot first move
-                MiniMax miniMax = new MiniMax(ticTacToe.ticTacToeBoard, ticTacToe.Level);
-                Tuple<int, int> xy = miniMax.BestMove();
+                AlphaBetaPruning alphaBetaPruning = new AlphaBetaPruning(ticTacToe.ticTacToeBoard, ticTacToe.Level);
+                Tuple<int, int> xy = alphaBetaPruning.BestMove();
                 bot.MakeMove(xy.Item1, xy.Item2);
             }
             else
@@ -61,8 +62,8 @@ namespace ArtificialIntelligence.Controllers
             if(ticTacToe.GameStatus == GameStatus.InProgress)
             {
                 // bot
-                MiniMax miniMax = new MiniMax(ticTacToe.ticTacToeBoard, ticTacToe.Level);
-                Tuple<int, int> xy = miniMax.BestMove();
+                AlphaBetaPruning alphaBetaPruning = new AlphaBetaPruning(ticTacToe.ticTacToeBoard, ticTacToe.Level);
+                Tuple<int, int> xy = alphaBetaPruning.BestMove();
                 bot.MakeMove(xy.Item1, xy.Item2);
                 //
                 ticTacToeChecker.CheckGameStatus(ticTacToe);
