@@ -21,11 +21,11 @@ namespace ArtificialIntelligence.Models.TicTacToe.Algorithm
             // checking board state
             if (ticTacToeChecker.CheckIfSymbolWon(TicTacToeSymbol.Circle, _boardBeforeMove))
             {
-                return 10 - depth;
+                return 10;
             }
             else if (ticTacToeChecker.CheckIfSymbolWon(TicTacToeSymbol.Cross, _boardBeforeMove))
             {
-                return depth - 10;
+                return -10;
             }
             else if (ticTacToeChecker.GameEnded(_boardBeforeMove))
             {
