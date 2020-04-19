@@ -1,5 +1,7 @@
 # Tic-Tac-Toe
 
+![Screen](https://github.com/matpiwowarski/Local-Search-Algorithms/blob/master/Screenshots/tictactoe.png?raw=true)
+
 ## General information
 
 Tic-tac-toe is a game for two players (you as `X` and computer as `O`). You take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row wins the game. Each game the player starts in exchange: this time user starts, next time bot starts. Score for user, bot and tie are saved and there's no limit.
@@ -53,7 +55,3 @@ Useful video:
 
 https://youtu.be/l-hh51ncgDI
 
-
-## Screenshot
-
-![Screen]()
