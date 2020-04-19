@@ -28,9 +28,11 @@ Representation of the user in the game. He plays as `Cross` symbol in the tic-ta
 Checks states of the tic-tac-toe board and return the information about it.
 
 Examples:
-- Check game status
-- Check if game ended
-- Check if symbol won
+* Check game status
+* Check if game ended
+* Check if symbol won
+
+
 
 - **TicTacToeSymbol**
 
