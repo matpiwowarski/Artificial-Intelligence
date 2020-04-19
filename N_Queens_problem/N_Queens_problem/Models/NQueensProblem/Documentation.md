@@ -1,5 +1,19 @@
 # N Queens problem - Local Search Algorithms
 
+![Screen](https://github.com/matpiwowarski/Artificial-Intelligence/blob/master/Screenshots/queens.png?raw=true)
+
+## General information
+
+The N Queen is the problem of placing N chess queens on an N×N chessboard so that no two queens attack each other.
+<br> In this program you can try 4 different local search algorithms to solve a problem.
+<br> You can use various parameters on `4x4` - `12x12` chess boards.
+
+Algorithms: 
+1. Hill Climbing Algorithm
+2. Simulated Annealing Algorithm
+3. Local Beam Search Algorithm
+4. Genetic Algorithm
+
 ## Main Classes:
 - **NQueensProblem**
 
@@ -122,6 +136,3 @@ Parameters:
 8. `generation` is changed into `newGeneration`.
 9. Repeat `NumberOfGenerations` times steps 2-8.
 
-## Screenshot
-
-![Screen](https://github.com/matpiwowarski/Local-Search-Algorithms/blob/master/Screenshots/queens.png)
